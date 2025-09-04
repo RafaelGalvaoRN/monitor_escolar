@@ -1,0 +1,27 @@
+
+/* ===== Layout base para sticky footer ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* empurra o footer para baixo quando a página é curta */
+}
+
+/* ===== Exemplo de estilo do título ===== */
+#h1 {
+  font-size: 40px;
+  color: blue;
+  text-align: center;
+  margin: 100px 0;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+  font-family: Arial, sans-serif;
+}

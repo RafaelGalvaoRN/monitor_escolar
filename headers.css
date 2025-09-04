@@ -1,0 +1,107 @@
+#novo_background {
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957);
+  width: 100%;
+  z-index: 1000; /* Um valor alto de z-index para garantir que o cabeçalho fique acima de outros elementos */
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.container-dropdown{
+    margin-right: 75px;
+}
+
+
+.container-logo-mp{
+margin-left: 75px;
+}
+
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 4% 2%;
+    box-sizing: border-box;
+    height: 80vh;
+  }
+
+  .box {
+    flex: 1;
+    overflow: hidden;
+    transition: 0.5s;
+    margin: 0 2%;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    line-height: 0;
+  }
+
+  .box > img {
+    width: 200%;
+    height: calc(100% - 10vh);
+    -o-object-fit: cover;
+       object-fit: cover;
+    transition: 0.5s;
+  }
+
+  .box > span {
+    font-size: 1.5vh;
+    display: block;
+    text-align: center;
+    height: 10vh;
+    line-height: 2.6;
+  }
+
+  .box:hover {
+    flex: 1 1 50%;
+  }
+
+  .box:hover > img {
+    width: 50%;
+    height: 50%;
+  }
+  .iframe-youtube{
+    position: relative;
+    width: 100%;
+    padding-bottom: 20%;
+    height: 0;
+  }
+  .iframe-container iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .box {
+      margin: 1% 2%;
+      flex: 1 1 auto; /* Ajuste conforme necessário */
+    }
+
+    .box > img {
+      width: 100%; /* Ajuste conforme necessário */
+      height: auto; /* Ajuste conforme necessário */
+    }
+
+    .box > span {
+      font-size: 3vh; /* Ajuste o tamanho da fonte conforme necessário */
+    }
+
+    .box:hover {
+      flex: none;
+    }
+
+    .box:hover > img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Adicione quaisquer outros ajustes específicos para telas pequenas aqui */
+  }
