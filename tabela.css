@@ -1,4 +1,3 @@
-<style>
 /* ===== Layout base para sticky footer ===== */
 html, body { height: 100%; margin: 0; }
 body {
@@ -7,7 +6,12 @@ body {
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-main { flex: 1; }
+main {
+  flex: 1;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 
 /* ===== Título ===== */
 #h1{
@@ -22,11 +26,36 @@ main { flex: 1; }
 }
 
 /* ===== Container principal ===== */
-.wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.wrap {
+  max-width: 80%;
+  max-height: 90vh;
+  height: fit-content; /* Ajusta à altura do conteúdo */
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* E ajuste também o .card para trabalhar bem com flex */
 .card {
-  background: #fff; border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.2);
-  overflow: hidden; margin-bottom: 300px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.18);
+  overflow: hidden;
+  margin-bottom: 20px; /* Reduzi de 80px */
+  flex: 1;
+  min-height: 0; /* Importante para flex funcionar com overflow */
+}
+
+
+
+.table-container {
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
 }
 
 /* ===== Filtros ===== */
@@ -36,9 +65,9 @@ main { flex: 1; }
 }
 .filter{ display:flex; flex-direction:column; min-width:150px; }
 .filter.grow{ flex:1; min-width:200px; }
-.filter label{ font-weight:600; color:#495057; margin-bottom:5px; font-size:.9rem; }
+.filter label{ font-weight:600; color:#495057; margin-bottom:5px; font-size:.95rem; }
 .filter select, .filter input{
-  padding:10px; border:2px solid #dee2e6; border-radius:8px; font-size:14px;
+  padding:12px; border:2px solid #dee2e6; border-radius:8px; font-size:15px;
   transition: border-color .3s ease;
 }
 .filter select:focus, .filter input:focus{
@@ -50,87 +79,240 @@ main { flex: 1; }
 }
 .btn:hover{ background:#c82333; }
 
-/* ===== Tabela (scroll X e Y) ===== */
-.table-wrap{
+/* ===== Container da Tabela com Scroll Duplo ===== */
+.table-wrap {
   width: 100%;
+  max-width: 100%;
   display: block;
-  max-height: 500px;          /* rolagem vertical quando passar disso */
-  overflow: auto;             /* X e Y */
+  max-height: 60vh;
+  overflow: auto;
+  box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;              /* Firefox */
-  scrollbar-color: #c9d2e1 transparent;
-}
-/* Scrollbar WebKit */
-.table-wrap::-webkit-scrollbar{ height:10px; width:10px; }
-.table-wrap::-webkit-scrollbar-thumb{ background:#c9d2e1; border-radius:10px; }
-.table-wrap::-webkit-scrollbar-track{ background:transparent; }
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
 
-/* Para existir rolagem horizontal, a tabela precisa poder ser mais larga
-   que o container; definimos uma largura mínima. */
+  /* Scrollbars customizadas - Firefox */
+  scrollbar-width: auto;
+  scrollbar-color: #b8c2d3 #f1f3f5;
+
+  padding: 0;
+  margin: 0;
+
+}
+.table-wrap::-webkit-scrollbar{
+  height: 14px;
+  width: 14px;
+}
+.table-wrap::-webkit-scrollbar-track{
+  background: #f1f3f5;
+  border-radius: 8px;
+}
+.table-wrap::-webkit-scrollbar-thumb{
+  background: #b8c2d3;
+  border-radius: 8px;
+  border: 2px solid #f1f3f5;
+}
+.table-wrap::-webkit-scrollbar-thumb:hover{
+  background: #9fb0c8;
+}
+.table-wrap::-webkit-scrollbar-corner{
+  background: #f1f3f5;
+}
+
+/* ===== Tabela Larga e Espaçosa ===== */
 table{
-  width: max(100%, 980px);    /* ocupa 100% mas nunca menos que 980px */
+  width: 100%;
+  min-width: 1800px;
+  margin: 0;  /* RESPIRO lateral */
   border-collapse: separate;
   border-spacing: 0;
-  table-layout: auto;
-  font-size: 14px;
+  table-layout: fixed;
+  font-size: 16px;
+  background: #fff;
 }
 
-/* Cabeçalho “grudado” dentro do container que rola */
+/* Colunas específicas */
+table col:nth-child(1) { width: 220px; }
+table col:nth-child(2) { width: 200px; }
+table col:nth-child(3) { width: 120px; }
+table col:nth-child(4) { width: 100px; }
+table col:nth-child(5) { width: 140px; }
+table col:nth-child(6) { width: 120px; }
+table col:nth-child(7) { width: 140px; }
+table col:nth-child(8) { width: 120px; }
+
+/* ===== Cabeçalho Sticky ===== */
 thead th{
-  position: sticky; top: 0; z-index: 3;
-  background:#495057; color:#fff;
-  padding: 15px 10px;
-  font-weight:600; text-align:left;
-  border-bottom:2px solid #dee2e6;
-  cursor:pointer; user-select:none;
-  transition: background-color .3s ease;
-  will-change: transform; backface-visibility: hidden; transform: translateZ(0);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg,#495057 0%, #3f464c 100%);
+  color: #fff;
+  padding: 10px 8px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 3px solid #dee2e6;
+  cursor: pointer;
+  user-select: none;
+  transition: all .3s ease;
+  letter-spacing: .3px;
+  font-size: 13px;
+  white-space: normal;
+  word-wrap: break-word;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
-th:hover{ background:#6c757d; }
-th i{ margin-left:5px; opacity:.5; }
+th:hover{
+  background: linear-gradient(180deg,#6c757d 0%, #5a6268 100%);
+  transform: translateY(-1px);
+}
+th i{ margin-left: 8px; opacity: .7; font-size: 12px; }
 
-/* Células e linhas */
+/* ===== Células do Corpo ===== */
 tbody td{
-  padding:12px 10px; border-bottom:1px solid #dee2e6;
-  transition: background-color .3s ease; background:#fff;
+  padding: 16px 12px;
+  border-bottom: 1px solid #dee2e6;
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: normal; /* era white-space: nowrap; */
+  word-wrap: break-word; /* Adicione esta */
+  word-break: break-word; /* Adicione esta também */
+  /* Remova ou comente estas linhas:
+  text-overflow: ellipsis;
+  overflow: hidden; */
+  transition: all .3s ease;
 }
-tbody tr{ height:48px; }               /* evita “achatamento” em DPI diferentes */
-tbody tr:hover{ background:#f8f9fa; }
-tbody tr:nth-child(even) td{ background:#f9f9f9; }
-tbody tr:nth-child(even):hover td{ background:#f1f3f5; }
 
-/* Se quiser evitar quebra de texto (forçar scroll horizontal), habilite: */
-/* thead th, tbody td { white-space: nowrap; } */
+tbody tr{
+  height: 50px;
+  transition: all .3s ease;
+}
+tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+tbody tr:hover td{
+  background: #e3f2fd;
+}
+tbody tr:nth-child(even) td{
+  background: #f8f9fa;
+}
+tbody tr:nth-child(even):hover td{
+  background: #e1f5fe;
+}
+
+/* ===== Primeira Coluna Fixa ===== */
+th.col-fixa, td.col-fixa{
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  box-shadow: 3px 0 6px rgba(0,0,0,.1);
+  border-right: 2px solid #e9ecef;
+}
+th.col-fixa {
+  z-index: 11;
+  background: linear-gradient(180deg,#495057 0%, #3f464c 100%) !important;
+}
 
 /* ===== Status ===== */
-.status{ padding:15px 20px; background:#e9ecef; color:#495057; text-align:center; font-weight:500; }
+.status{
+  padding: 16px 20px;
+  background: #e9ecef;
+  color: #495057;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+}
 
 /* ===== Nota colorida ===== */
-.nota{ padding:4px 8px; border-radius:4px; font-weight:600; color:#fff; text-align:center; }
-.nota.alta{ background:#28a745; }
-.nota.media{ background:#ffc107; color:#212529; }
-.nota.baixa{ background:#dc3545; }
+.nota{
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  min-width: 60px;
+  display: inline-block;
+}
+.nota.alta{ background: linear-gradient(45deg, #28a745, #20c997); }
+.nota.media{ background: linear-gradient(45deg, #ffc107, #fd7e14); color: #212529; }
+.nota.baixa{ background: linear-gradient(45deg, #dc3545, #e83e8c); }
 
 /* ===== Footer ===== */
-footer{ background:#212529; color:#fff; text-align:center; padding:20px; margin-top:auto; }
-
-/* ===== Responsivo ===== */
-@media (max-width: 768px){
-  .filters{ flex-direction:column; }
-  .filter{ min-width:100%; }
-  #h1{ font-size:2rem; margin:1rem 0; }
-  .wrap{ padding:10px; }
+footer{
+  background: #212529;
+  color: #fff;
+  text-align: center;
+  padding: 24px;
+  margin-top: auto;
 }
 
 /* ===== Loading ===== */
-.loading{ text-align:center; padding:40px; color:#6c757d; }
-.loading i{ font-size:2rem; margin-bottom:10px; animation: spin 1s linear infinite; }
-@keyframes spin{ 0%{ transform:rotate(0) } 100%{ transform:rotate(360deg) } }
-
-/* ===== (Opcional) Primeira coluna fixa ao rolar horizontalmente ===== */
-/* Adicione class="col-fixa" no <th> e nos <td> da primeira coluna se quiser. */
-th.col-fixa, td.col-fixa{
-  position: sticky; left: 0; z-index: 4; background: inherit;
-  box-shadow: 2px 0 0 rgba(0,0,0,.05);
+.loading{
+  text-align: center;
+  padding: 50px;
+  color: #6c757d;
 }
-</style>
+.loading i{
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin{
+  0%{ transform: rotate(0deg) }
+  100%{ transform: rotate(360deg) }
+}
+
+/* ===== Indicador de Scroll ===== */
+.table-wrap::after {
+  content: "← Arraste para ver mais colunas →";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,.7);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.table-wrap:hover::after {
+  opacity: 1;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 1200px){
+  .wrap{ padding: 16px; }
+  table{ min-width: 1600px; }
+  .table-wrap{ max-height: 65vh; }
+}
+@media (max-width: 992px){
+  .filters{ flex-direction: column; }
+  .filter{ min-width: 100%; }
+  #h1{ font-size: 2rem; margin: 1rem 0; }
+  .wrap{ padding: 12px; }
+  table{ font-size: 14px; min-width: 1400px; }
+  thead th{ font-size: 13px; padding: 14px 12px; }
+  tbody td{ padding: 12px; }
+  .table-wrap{ max-height: 60vh; }
+}
+@media (max-width: 768px){
+  table{ min-width: 1200px; }
+  .table-wrap{ max-height: 55vh; }
+  thead th{ padding: 12px 10px; }
+  tbody td{ padding: 10px; }
+}
+
+/* ===== Performance ===== */
+.table-wrap {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+tbody tr {
+  contain: layout style paint;
+}

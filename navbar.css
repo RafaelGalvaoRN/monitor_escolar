@@ -1,0 +1,196 @@
+/* ====== NAVBAR (lado do logo, sobre header com gradiente) ====== */
+.navbar{
+  flex: 1;
+  background: transparent;      /* usa o gradiente do header */
+  box-shadow: none;
+  border: 0;
+  position: relative;
+  z-index: 10;                   /* fica acima do conteúdo */
+}
+
+.navbar-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 70px;
+}
+
+/* ====== LISTA DE LINKS ====== */
+.navbar-nav{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item{ position: relative; }
+
+.nav-link{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  color: #ffffff;                /* contraste no gradiente */
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease, padding-left .2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link:focus{
+  color: #ffdd57;
+  background: rgba(255,255,255,.12);
+}
+
+.nav-icon{ font-size: 16px; }
+
+/* ====== DROPDOWN (DESKTOP) ====== */
+.dropdown{ position: relative; }
+
+.dropdown-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 9999;
+}
+
+.dropdown:hover > .dropdown-menu{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item{
+  display: block;
+  padding: 10px 14px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #f3f3f3;
+  transition: background .15s ease, color .15s ease, padding-left .15s ease;
+}
+
+.dropdown-item:last-child{ border-bottom: 0; }
+
+.dropdown-item:hover{
+  background: #f7f9ff;
+  color: #155799;
+  padding-left: 18px;
+}
+
+/* ====== BUSCA ====== */
+.navbar-search{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input{
+  padding: 8px 14px;
+  border: none;
+  border-radius: 22px;
+  outline: none;
+  width: 200px;
+  background: #ffffff;
+}
+
+.search-input:focus{
+  box-shadow: 0 0 0 3px rgba(255,255,255,.25);
+}
+
+.search-btn{
+  background: #ffffff;
+  color: #155799;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 22px;
+  cursor: pointer;
+}
+
+/* ====== BOTÃO MOBILE (HAMBURGUER) ====== */
+.mobile-menu-btn{
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+}
+.mobile-menu-btn span{
+  width: 26px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 992px){
+  .navbar-search{ display: none; }         /* esconde busca */
+}
+
+@media (max-width: 768px){
+  /* empilha logo + menu */
+  .navbar-container{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .mobile-menu-btn{ display: flex; }
+
+  /* menu fechado por padrão */
+  .navbar-nav{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0,0,0,0.06);          /* leve contraste sobre o gradiente */
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  /* classe ativada pelo JS: toggleMobileMenu() adiciona/remova .active */
+  .navbar-nav.active{ display: flex; }
+
+  .nav-link{
+    width: 100%;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    border-radius: 0;
+  }
+  .nav-item:last-child .nav-link{ border-bottom: 0; }
+
+  /* dropdown vira lista expandida dentro do fluxo */
+  .dropdown-menu{
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    border: 0;
+    background: rgba(255,255,255,.95);
+    border-radius: 0;
+    padding: 0;
+  }
+  .dropdown-item{
+    padding: 12px 18px;
+    border-bottom: 1px solid #eee;
+  }
+  .dropdown-item:last-child{ border-bottom: 0; }
+}

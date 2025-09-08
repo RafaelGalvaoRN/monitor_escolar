@@ -1,0 +1,29 @@
+/* ===== Imagem principal ===== */
+main img,
+body > img {
+  display: block;
+  max-width: 900px;       /* limite de largura (ajuste aqui) */
+  width: 100%;            /* ainda se adapta em telas menores */
+  height: auto;           /* mantém proporção */
+  margin: 32px auto;      /* centraliza */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover */
+main img:hover,
+body > img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  main img,
+  body > img {
+    max-width: 95%;      /* em telas pequenas ocupa quase toda a largura */
+    margin: 16px auto;
+    border-radius: 10px;
+  }
+}

@@ -92,7 +92,7 @@
     setTimeout(function() {
       $("#footer-placeholder").fadeOut("slow");
       // você pode trocar "slow" por 1000 (milissegundos = 1s)
-    }, 1000);
+    }, 1500);
   });
 </script>
 

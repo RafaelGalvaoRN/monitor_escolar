@@ -1,11 +1,11 @@
 #novo_background {
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957);
+  background: linear-gradient(120deg, #155799, #159957);
   width: 100%;
-  z-index: 1000; /* Um valor alto de z-index para garantir que o cabeçalho fique acima de outros elementos */
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
-
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .container-dropdown{
@@ -13,8 +13,10 @@
 }
 
 
-.container-logo-mp{
-margin-left: 75px;
+.container-logo-mp img {
+  height: 70px;
+  object-fit: contain;
+  margin-right: 30px;
 }
 
 

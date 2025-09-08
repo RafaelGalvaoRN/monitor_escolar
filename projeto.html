@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitor Escolar – Projeto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Seus estilos existentes -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="footer.css" />
+  <link rel="stylesheet" href="tabela.css" />
+  <link rel="stylesheet" href="headers.css" />
+  <link rel="stylesheet" href="navbar.css" />
+
+  <!-- Estilo desta página -->
+  <link rel="stylesheet" href="projeto.css" />
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+  <!-- jQuery (para carregar header/footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="proj-container">
+    <header class="proj-hero">
+      <h1>Projeto Monitoramento Escolar</h1>
+      <p>Coleta padronizada via formulários para diretores, consolidação de indicadores
+        e transparência pública dos dados.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#formularios"><i class="fas fa-clipboard-list"></i> Formulários</a>
+        <a class="btn ghost" href="#painel"><i class="fas fa-chart-line"></i> Painel de Dados</a>
+      </div>
+    </header>
+
+    <!-- Navegação interna da página -->
+    <nav class="proj-toc">
+      <a href="#descricao">Descrição</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#escopo">Escopo & Entregas</a>
+      <a href="#metodologia">Metodologia</a>
+      <a href="#indicadores">Indicadores</a>
+      <a href="#resultados">Resultados Esperados</a>
+      <a href="#stakeholders">Partes Interessadas</a>
+      <a href="#governanca">Governança & Equipe</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#riscos">Riscos & Mitigações</a>
+      <a href="#contato">Contato & Links</a>
+    </nav>
+
+    <!-- Descrição -->
+    <section id="descricao" class="proj-section">
+      <h2><i class="fas fa-info-circle"></i> Descrição do Projeto</h2>
+      <p>
+        O projeto visa mapear condições de funcionamento das escolas (infraestrutura,
+        segurança, recursos humanos e aspectos pedagógicos) por meio de formulários
+        enviados aos diretores. As respostas são validadas e publicadas em um painel
+        aberto, permitindo acompanhamento por gestores e comunidade.
+      </p>
+
+      <div class="kpis">
+        <div class="kpi"><span class="kpi-num">4</span><span class="kpi-label">Eixos</span></div>
+        <div class="kpi"><span class="kpi-num">20+</span><span class="kpi-label">Indicadores</span></div>
+        <div class="kpi"><span class="kpi-num">100%</span><span class="kpi-label">Transparência</span></div>
+      </div>
+    </section>
+
+    <!-- Objetivos -->
+    <section id="objetivos" class="proj-section">
+      <h2><i class="fas fa-bullseye"></i> Objetivos</h2>
+      <div class="grid two">
+        <ul class="check">
+          <li>Padronizar a coleta de informações nas unidades escolares.</li>
+          <li>Identificar gargalos críticos e priorizar intervenções.</li>
+          <li>Disponibilizar dados confiáveis para decisão e controle social.</li>
+        </ul>
+        <ul class="check">
+          <li>Monitorar a evolução dos indicadores ao longo do tempo.</li>
+          <li>Fomentar cultura de evidências na gestão da educação.</li>
+          <li>Facilitar prestação de contas e transparência ativa.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Escopo & Entregas -->
+    <section id="escopo" class="proj-section">
+      <h2><i class="fas fa-box-open"></i> Escopo & Entregas</h2>
+      <div class="cards three">
+        <article class="card">
+          <h3>Formulários</h3>
+          <p>Questionários para diretores cobrindo infraestrutura, RH, pedagógico e segurança.</p>
+          <ul class="bullets">
+            <li>Google Forms com validações;</li>
+            <li>Links públicos e QR codes;</li>
+            <li>Manual rápido de preenchimento.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Tratamento de Dados</h3>
+          <p>ETL simples com validação, padronização e geração de CSVs consolidados.</p>
+          <ul class="bullets">
+            <li>Verificação de consistência;</li>
+            <li>Normalização de respostas;</li>
+            <li>Logs e trilha de auditoria.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Painel & Downloads</h3>
+          <p>Site com filtros (escola, município, nota mínima, busca livre) e exportação.</p>
+          <ul class="bullets">
+            <li>Tabelas responsivas e gráficos;</li>
+            <li>Downloads em CSV;</li>
+            <li>Atualizações periódicas.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Metodologia -->
+    <section id="metodologia" class="proj-section">
+      <h2><i class="fas fa-project-diagram"></i> Metodologia de Coleta & Publicação</h2>
+      <ol class="steps">
+        <li><strong>Envio:</strong> disparo dos formulários aos diretores com prazo e instruções.</li>
+        <li><strong>Recebimento:</strong> acompanhamento de respostas e suporte aos responsáveis.</li>
+        <li><strong>Validação:</strong> conferência, limpeza e padronização dos dados.</li>
+        <li><strong>Publicação:</strong> atualização do painel e disponibilização dos CSVs.</li>
+        <li><strong>Monitoramento:</strong> revisão mensal dos indicadores e plano de ação.</li>
+      </ol>
+    </section>
+
+    <!-- Indicadores -->
+    <section id="indicadores" class="proj-section">
+      <h2><i class="fas fa-sliders-h"></i> Indicadores Monitorados</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Condições Mínimas</h3>
+          <ul class="check">
+            <li>Água potável regular</li>
+            <li>Banheiros adequados</li>
+            <li>Acessibilidade universal</li>
+            <li>Salas adequadas (iluminação/ventilação/mobiliário)</li>
+            <li>Manutenção preventiva/corretiva</li>
+            <li>Saídas/rotas de emergência, PPCI/brigada</li>
+            <li>Limpeza e manejo de resíduos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Pessoal & Pedagógico</h3>
+          <ul class="check">
+            <li>Docentes habilitados</li>
+            <li>Quadro docente suficiente</li>
+            <li>Equipe pedagógica presente</li>
+            <li>Profissionais de apoio</li>
+            <li>Formação continuada</li>
+            <li>Rotatividade/absenteísmo em níveis aceitáveis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resultados Esperados -->
+    <section id="resultados" class="proj-section">
+      <h2><i class="fas fa-flag-checkered"></i> Resultados Esperados</h2>
+      <div class="cards three">
+        <article class="card">
+          <h3>Diagnóstico Atualizado</h3>
+          <p>Visão consolidada das condições das escolas por município e por unidade.</p>
+        </article>
+        <article class="card">
+          <h3>Priorização de Ações</h3>
+          <p>Lista de pendências críticas e plano de atuação com metas e prazos.</p>
+        </article>
+        <article class="card">
+          <h3>Transparência</h3>
+          <p>Painel público para acompanhamento por gestores e comunidade.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Partes Interessadas -->
+    <section id="stakeholders" class="proj-section">
+      <h2><i class="fas fa-users"></i> Partes Interessadas</h2>
+      <div class="grid three">
+        <div class="stake card">
+          <h3>Diretores</h3>
+          <p>Preenchimento das informações e prestação de esclarecimentos.</p>
+        </div>
+        <div class="stake card">
+          <h3>Secretarias de Educação</h3>
+          <p>Suporte na coleta, validação e execução das ações priorizadas.</p>
+        </div>
+        <div class="stake card">
+          <h3>MP / Órgãos de Controle</h3>
+          <p>Acompanhamento, recomendações e articulação institucional.</p>
+        </div>
+        <div class="stake card">
+          <h3>Comunidade Escolar</h3>
+          <p>Acesso público aos dados e participação social.</p>
+        </div>
+        <div class="stake card">
+          <h3>TI / Analistas de Dados</h3>
+          <p>ETL, atualização do painel e garantia de qualidade dos dados.</p>
+        </div>
+        <div class="stake card">
+          <h3>Municípios</h3>
+          <p>Planejamento de investimentos e manutenção.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governança & Equipe -->
+    <section id="governanca" class="proj-section">
+      <h2><i class="fas fa-sitemap"></i> Governança & Equipe</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Papéis</h3>
+          <ul class="bullets">
+            <li><strong>Coordenação:</strong> define metodologia, cronograma e valida indicadores.</li>
+            <li><strong>Ponto Focal Municipal:</strong> interface com diretores e suporte.</li>
+            <li><strong>Dados/TI:</strong> tratamento, integração e publicação.</li>
+            <li><strong>Comunicação:</strong> divulgação e materiais de orientação.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Fluxo de Decisão</h3>
+          <p>Reuniões periódicas para homologação de indicadores e priorização de ações.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cronograma -->
+    <section id="cronograma" class="proj-section">
+      <h2><i class="far fa-calendar-alt"></i> Cronograma Macro</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div>
+            <h4>Semana 1–2</h4>
+            <p>Envio dos formulários e capacitação rápida dos diretores.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div>
+            <h4>Semana 3–4</h4>
+            <p>Recebimento, suporte e validação das respostas.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div>
+            <h4>Semana 5</h4>
+            <p>Publicação do painel e abertura para downloads.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div>
+            <h4>Mensal</h4>
+            <p>Atualização dos dados e revisão dos indicadores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Riscos & Mitigações -->
+    <section id="riscos" class="proj-section">
+      <h2><i class="fas fa-exclamation-triangle"></i> Riscos & Mitigações</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Riscos</h3>
+          <ul class="bullets">
+            <li>Baixa taxa de resposta ou atrasos.</li>
+            <li>Inconsistência/omissões nos dados.</li>
+            <li>Desatualização do painel.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Mitigações</h3>
+          <ul class="bullets">
+            <li>Campanha de engajamento e suporte ativo.</li>
+            <li>Regras de validação e checagem amostral.</li>
+            <li>Agenda de atualização e responsáveis definidos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato & Links -->
+    <section id="contato" class="proj-section">
+      <h2><i class="fas fa-link"></i> Contato & Links</h2>
+
+      <div id="formularios" class="cards three">
+        <a class="card link" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-school"></i>
+          <span>Formulário – Infraestrutura</span>
+        </a>
+        <a class="card link" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-user-tie"></i>
+          <span>Formulário – Recursos Humanos</span>
+        </a>
+        <a class="card link" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-book-reader"></i>
+          <span>Formulário – Pedagógico & Rotinas</span>
+        </a>
+      </div>
+
+      <div id="painel" class="cards two">
+        <a class="card link" href="index.html">
+          <i class="fas fa-table"></i>
+          <span>Painel de Dados (Tabela com Filtros)</span>
+        </a>
+        <a class="card link" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-file-csv"></i>
+          <span>Downloads (CSV)</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    $(function(){
+      $("#footer-placeholder").load("footer.html");
+      $("#header-placeholder").load("header.html");
+    });
+  </script>
+</body>
+</html>
