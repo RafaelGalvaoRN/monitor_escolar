@@ -87,14 +87,10 @@ let dadosEscolares = [];
 let dadosFiltrados = [];
 let ordemAtual = { coluna: null, ascendente: true };
 
-
 // Inicializar a aplicação quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
-  configurarBotoesEixo();   // ativa cliques nos botões de eixo
-  carregarCSV();            // carrega "Tabela Completa" inicialmente
-  marcarBotaoAtivo('all');  // deixa o botão "Tabela Completa" destacado
+    carregarCSV();
 });
-
 
 function carregarCSV() {
   document.getElementById('status').innerHTML =

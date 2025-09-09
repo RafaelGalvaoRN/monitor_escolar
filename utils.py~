@@ -1,0 +1,60 @@
+import pandas as pd
+from typing import Dict, Iterable, Tuple, Optional
+import os
+
+
+
+
+def extrai_eixos_por_faixas(
+        csv_path: str,
+        faixas: Dict[str, Tuple[int, int]],
+        id_cols: Optional[Iterable[str]] = None,
+        salvar: bool = False,
+        prefixo_arquivo: str = "eixo_",
+        pasta_destino: str = "./",
+
+) -> Dict[str, pd.DataFrame]:
+    """
+    Lê o CSV e retorna um dict {nome_eixo: DataFrame} contendo apenas as colunas daquele eixo.
+
+    Parâmetros
+    ----------
+    csv_path : caminho do CSV de entrada.
+    faixas   : mapeia nome do eixo -> (inicio, fim_inclusivo) por índice de coluna.
+               Ex.: {"eixo_1": (0, 10), "eixo_2": (11, 20)}
+    id_cols  : colunas (por nome) que você quer manter em todos os eixos (ex.: ["Escola","Município"]).
+    salvar   : se True, salva cada eixo em CSV.
+    prefixo_arquivo : prefixo para os arquivos salvos, ex.: "eixo_" -> "eixo_eixo_1.csv".
+    pasta_destino: pasta onde os arquivos serão salvos
+    """
+    df = pd.read_csv(csv_path)
+    out: Dict[str, pd.DataFrame] = {}
+
+    # Colunas de identificação opcionais (mantidas em todos os CSVs)
+    id_cols = list(id_cols) if id_cols else []
+
+    for nome_eixo, (ini, fim_inclusivo) in faixas.items():
+        # validação básica
+        ncols = df.shape[1]
+        if not (0 <= ini <= fim_inclusivo < ncols):
+            raise IndexError(
+                f"Faixa inválida para {nome_eixo}: ({ini}, {fim_inclusivo}) com {ncols} colunas no arquivo."
+            )
+
+        # fatia por posição: fim é exclusivo no iloc, então somamos 1
+        cols_eixo = df.columns[ini:fim_inclusivo + 1]
+
+        # monta o DataFrame do eixo (id_cols primeiro, se existirem)
+        cols_final = [c for c in id_cols if c in df.columns] + list(cols_eixo)
+        eixo_df = df.loc[:, cols_final].copy()
+
+        if salvar:
+            os.makedirs(pasta_destino, exist_ok=True)
+
+            caminho_arquivo = os.path.join(pasta_destino, f"{prefixo_arquivo}{nome_eixo}.csv")
+            eixo_df.to_csv(caminho_arquivo, index=False, encoding="utf-8")
+
+
+        out[nome_eixo] = eixo_df
+
+    return out

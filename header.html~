@@ -6,7 +6,7 @@
                 <div class="navbar-container">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link active">
+                            <a href="inicio.html" class="nav-link active">
                                 <span class="nav-icon">🏠</span>
                                 Início
                             </a>
@@ -21,7 +21,7 @@
 
                         <li class="nav-item">
                             <a href="tabela.html" class="nav-link active">
-                                <span class="nav-icon">📊</span>
+                                <span class="nav-icon">📋</span>
                                 Projeto
                             </a>
                         </li>

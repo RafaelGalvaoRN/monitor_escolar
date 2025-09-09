@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitor Escolar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="footer.css" />
+  <link rel="stylesheet" href="tabela.css" />
+  <link rel="stylesheet" href="headers.css" />
+  <link rel="stylesheet" href="navbar.css" />
+  <link rel="stylesheet" href="projeto.css" />
+
+
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+  <!-- jQuery (necessário para .load do footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <h1 id="h1">MONITOR ESCOLAR</h1>
+    <!-- seu conteúdo aqui -->
+  </main>
+
+
+
+<section class="wrap">
+      <div class="card">
+          <header class="proj-hero">
+      <h1>Eixos Temáticos</h1>
+      <div class="hero-actions">
+        <a class="btn primary eixo-btn" data-eixo="1" href="#"><i class="fas fa-clipboard-list"></i>Dados Escola</a>
+        <a class="btn primary eixo-btn" data-eixo="2" href="#"><i class="fas fa-clipboard-list"></i>Estrutura e Funcionamento</a>
+        <a class="btn primary eixo-btn" data-eixo="3" href="#"><i class="fas fa-clipboard-list"></i>Alunos</a>
+        <a class="btn primary eixo-btn" data-eixo="4" href="#"><i class="fas fa-clipboard-list"></i>Professores</a>
+        <a class="btn primary eixo-btn" data-eixo="5" href="#"><i class="fas fa-clipboard-list"></i>Gestão</a>
+        <a class="btn primary eixo-btn" data-eixo="6" href="#"><i class="fas fa-clipboard-list"></i>Comunidade</a>
+        <a class="btn primary eixo-btn" data-eixo="7" href="#"><i class="fas fa-clipboard-list"></i>Pedagogia</a>
+        <a class="btn primary eixo-btn" data-eixo="8" href="#"><i class="fas fa-clipboard-list"></i>Gestão Democrática</a>
+        <a class="btn primary eixo-btn" data-eixo="9" href="#"><i class="fas fa-clipboard-list"></i>Documentos</a>
+        <a class="btn primary eixo-btn" data-eixo="10" href="#"><i class="fas fa-clipboard-list"></i>Segurança</a>
+        <a class="btn primary eixo-btn" data-eixo="11" href="#"><i class="fas fa-clipboard-list"></i>Violência/Indisciplina</a>
+        <a class="btn primary eixo-btn" data-eixo="12" href="#"><i class="fas fa-clipboard-list"></i>Contas</a>
+        <a class="btn primary eixo-btn" data-eixo="13" href="#"><i class="fas fa-clipboard-list"></i>Violência</a>
+        <a class="btn primary eixo-btn" data-eixo="14" href="#"><i class="fas fa-clipboard-list"></i>Inovação</a>
+        <a class="btn ghost eixo-btn"   data-eixo="all" href="#"><i class="fas fa-chart-line"></i> Tabela Completa</a>
+      </div>
+    </header>
+
+            <div class="filters">
+                <div class="filter">
+                    <label for="f-escola">Escola</label>
+                    <select id="f-escola">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+
+                <div class="filter">
+                    <label for="f-municipio">Município</label>
+                    <select id="f-municipio">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+
+                <div class="filter">
+                    <label for="f-nota-min">Nota mínima</label>
+                    <input id="f-nota-min" type="number" step="0.1" placeholder="ex: 6.0">
+                </div>
+
+                <div class="filter grow">
+                    <label for="f-busca">Busca livre</label>
+                    <input id="f-busca" type="search" placeholder="Digite para filtrar…">
+                </div>
+
+                <button id="btn-limpar" class="btn">
+                    <i class="fas fa-broom"></i> Limpar
+                </button>
+            </div>
+
+          <div class="table-container">
+      <div class="table-wrap">
+        <table id="tabela">
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="status" class="status">Carregando dados do arquivo CSV...</div>
+  </div>
+</section>
+
+
+
+  <div id="footer-placeholder"></div>
+
+ <script>
+  // Quando a página carregar, insere header e footer
+  $(function () {
+    $("#footer-placeholder").load("footer.html");
+    $("#header-placeholder").load("header.html");
+
+    // 3 segundos depois, faz o fade-out do footer
+    setTimeout(function() {
+      $("#footer-placeholder").fadeOut("slow");
+      // você pode trocar "slow" por 1000 (milissegundos = 1s)
+    }, 1000);
+  });
+</script>
+
+  <script src="app.js"></script>
+
+
+</body>
+</html>

@@ -5,7 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+background: linear-gradient(135deg, #e3eeef 0%, #b8c6db 100%);
 }
 main {
   flex: 1;
