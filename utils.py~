@@ -1,11 +1,12 @@
 import pandas as pd
 from typing import Dict, Iterable, Tuple, Optional
 import os
+import shutil
 
 
 
 
-def extrai_eixos_por_faixas(
+def fragmenta_csv_por_faixas(
         csv_path: str,
         faixas: Dict[str, Tuple[int, int]],
         id_cols: Optional[Iterable[str]] = None,
@@ -16,6 +17,7 @@ def extrai_eixos_por_faixas(
 ) -> Dict[str, pd.DataFrame]:
     """
     Lê o CSV e retorna um dict {nome_eixo: DataFrame} contendo apenas as colunas daquele eixo.
+    Salva os CSVs em pasta especifica.
 
     Parâmetros
     ----------
@@ -58,3 +60,34 @@ def extrai_eixos_por_faixas(
         out[nome_eixo] = eixo_df
 
     return out
+
+
+
+def rename_move(origem, novo_nome, destino_dir):
+    # Garante que a pasta de destino existe
+    os.makedirs(destino_dir, exist_ok=True)
+
+    # Se for um ZIP, extrai antes de renomear
+    if origem.lower().endswith(".zip") and zipfile.is_zipfile(origem):
+        with zipfile.ZipFile(origem, 'r') as zip_ref:
+            # Extrai todos os arquivos para a pasta destino
+            zip_ref.extractall(destino_dir)
+
+            # Pega o primeiro arquivo extraído (ou poderia iterar todos)
+            extraidos = zip_ref.namelist()
+            if extraidos:
+                caminho_extraido = os.path.join(destino_dir, extraidos[0])
+                destino_final = os.path.join(destino_dir, novo_nome)
+
+                # Renomeia o arquivo extraído
+                os.replace(caminho_extraido, destino_final)
+
+                return destino_final
+            else:
+                raise FileNotFoundError("O arquivo zip está vazio.")
+
+    else:
+        # Caso não seja zip → apenas move e renomeia
+        destino_final = os.path.join(destino_dir, novo_nome)
+        shutil.move(origem, destino_final)
+        return destino_final

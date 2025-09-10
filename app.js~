@@ -2,10 +2,39 @@
 // === CONFIG dinâmico ===
 let CSV_PATH = 'data/projeto_monitor.csv'; // "Todos" (tabela completa)
 
-// Se seus arquivos seguem esse padrão, ajuste aqui uma vez:
-const csvPathPorEixo = (n) => `data/eixo_eixo_${n}.csv`;
-// se preferir mapa explícito, use:
-// const MAP = { '1':'data/eixo_eixo_1.csv','2':'data/eixo_eixo_2.csv', /* ... */ 'all':'data/projeto_monitor.csv' };
+// Mapeamento dos eixos para os arquivos que você TEM
+const MAP_EIXOS = {
+    'all': 'data/projeto_monitor.csv',                             // Todos os dados
+    '1': 'data/eixo_Identificacao_Escola.csv',                    // Eixo 1
+    '2': 'data/eixo_Estrutura_Fisica_Funcionamento.csv',         // Eixo 2
+    '3': 'data/eixo_Alunos.csv',                   // Eixo 3
+    '4': 'data/eixo_Professores.csv',              // Eixo 4
+    '5': 'data/eixo_Gestao_Equipe.csv',            // Eixo 5
+    '6': 'data/eixo_Pais_Comunidade.csv',          // Eixo 6
+    '7': 'data/eixo_Questoes_Pedagogicas.csv',              // Eixo 7
+    '8': 'data/eixo_Gestao_Democratica.csv',       // Eixo 8
+    '9': 'data/eixo_Documentos.csv',               // Eixo 9
+    '10': 'data/eixo_Seguranca_Escola.csv',        // Eixo 10
+    '11': 'data/eixo_Violencia_Indisciplina.csv',  // Eixo 11
+    '12': 'data/eixo_Prestacao_Contas.csv',        // Eixo 12
+    '13': 'data/eixo_Experiencia_Inovadora.csv',                // Eixo 13
+    '14': 'data/eixo_Objetivos_Gestao.csv'         // Eixo 14
+};// Mapeamento dos eixos para os arquivos que você TEM
+
+function getCsvPath(eixo) {
+    // Se eixo for "all" ou vazio, retorna arquivo principal
+    if (!eixo || eixo === 'all') {
+        return MAP_EIXOS['all'];
+    }
+
+    // Se existe no mapa, retorna o caminho
+    if (MAP_EIXOS[eixo]) {
+        return MAP_EIXOS[eixo];
+    }
+
+    // Fallback: arquivo principal
+    return MAP_EIXOS['all'];
+}
 
 function marcarBotaoAtivo(valorEixo) {
   document.querySelectorAll('.eixo-btn').forEach(btn => {
@@ -20,7 +49,7 @@ function trocarEixo(valorEixo) {
   if (valorEixo === 'all') {
     CSV_PATH = 'data/projeto_monitor.csv';
   } else {
-    CSV_PATH = csvPathPorEixo(valorEixo); // ou MAP[valorEixo]
+    CSV_PATH = getCsvPath(valorEixo); // ou MAP[valorEixo]
   }
 
   // Reseta ordenação e recarrega
@@ -87,10 +116,14 @@ let dadosEscolares = [];
 let dadosFiltrados = [];
 let ordemAtual = { coluna: null, ascendente: true };
 
+
 // Inicializar a aplicação quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
-    carregarCSV();
+  configurarBotoesEixo();   // ativa cliques nos botões de eixo
+  carregarCSV();            // carrega "Tabela Completa" inicialmente
+  marcarBotaoAtivo('all');  // deixa o botão "Tabela Completa" destacado
 });
+
 
 function carregarCSV() {
   document.getElementById('status').innerHTML =

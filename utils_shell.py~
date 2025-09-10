@@ -1,0 +1,94 @@
+from python_shell import Shell
+from python_shell.util.streaming import decode_stream
+import os
+
+
+def git_add_commit_push(commit_message, branch="main", repository_path="."):
+    """
+    Executa git add ., git commit e git push usando python_shell
+
+    Args:
+        commit_message (str): Mensagem do commit
+        branch (str): Nome da branch (padrão: "main")
+        repository_path (str): Caminho do repositório (padrão: diretório atual)
+
+    Returns:
+        bool: True se todos os comandos foram executados com sucesso, False caso contrário
+    """
+
+    original_dir = os.getcwd()
+
+    try:
+        # Salva diretório atual e muda para o repositório
+        original_dir = os.getcwd()
+        os.chdir(repository_path)
+
+        print(f"📁 Trabalhando no diretório: {os.getcwd()}")
+
+        # Verifica se é um repositório Git
+        status_check = Shell.git('status')
+        if status_check.return_code != 0:
+            print("❌ Erro: Este diretório não é um repositório Git")
+            print(decode_stream(status_check.errors))
+            return False
+
+        # Git add .
+        print("➕ Executando git add ...")
+        add_result = Shell.git('add', '.')
+        if add_result.return_code != 0:
+            print(f"❌ Erro no git add:")
+            print(decode_stream(add_result.errors))
+            return False
+        print("✅ git add executado com sucesso")
+
+        # Verifica se há mudanças para commit
+        diff_check = Shell.git('diff', '--cached', '--quiet')
+        if diff_check.return_code == 0:
+            print("⚠️ Nenhuma mudança para fazer commit")
+            return True
+
+        # Git commit
+        print("💾 Executando git commit...")
+        commit_result = Shell.git('commit', '-m', commit_message)
+        if commit_result.return_code != 0:
+            print(f"❌ Erro no git commit:")
+            print(decode_stream(commit_result.errors))
+            return False
+        print(f"✅ git commit executado: {commit_message}")
+
+        # Git push
+        print(f"🚀 Executando git push origin {branch}...")
+        push_result = Shell.git('push', 'origin', branch)
+        if push_result.return_code != 0:
+            print(f"❌ Erro no git push:")
+            print(decode_stream(push_result.errors))
+            return False
+        print("✅ git push executado com sucesso")
+
+        print("🎉 Todos os comandos Git executados com sucesso!")
+        return True
+
+    except Exception as e:
+        print(f"❌ Erro inesperado: {e}")
+        return False
+    finally:
+        # Retorna ao diretório original
+        os.chdir(original_dir)
+
+
+# Exemplo de uso
+if __name__ == "__main__":
+    # Mostra status atual
+
+
+    # Executa os comandos
+    mensagem = input("\nDigite a mensagem do commit: ")
+    if mensagem.strip():
+        print("\n=== EXECUTANDO COMANDOS ===")
+        sucesso = git_add_commit_push(mensagem)
+
+        if sucesso:
+            print("\n=== STATUS DEPOIS ===")
+            git_status()
+    else:
+        print("❌ Mensagem do commit não pode estar vazia")

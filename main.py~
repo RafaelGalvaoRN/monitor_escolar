@@ -8,9 +8,9 @@ if __name__ == '__main__':
     print("Arquivo movido para:", novo_arquivo)
 
     #
-    # df = pd.read_csv("data/projeto_monitor.csv")
-    # num_cols = df.shape[1]
-    # print(f"CSV tem {num_cols} colunas (índices 0 a {num_cols - 1})")
+    df = pd.read_csv("data/projeto_monitor.csv")
+    num_cols = df.shape[1]
+    print(f"CSV tem {num_cols} colunas (índices 0 a {num_cols - 1})")
 
     # Faixas corrigidas baseadas na estrutura real do CSV
     result = fragmenta_csv_por_faixas(
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     print("Fragmentação concluída com sucesso!")
     print(f"Foram criados {len(result)} arquivos CSV na pasta 'data/'")
 
-    # # Opcionalmente, mostrar info sobre cada fragmento
-    # for nome_eixo, df in result.items():
-    #     print(f"{nome_eixo}: {df.shape[1]} colunas, {df.shape[0]} linhas")
+    # Opcionalmente, mostrar info sobre cada fragmento
+    for nome_eixo, df in result.items():
+        print(f"{nome_eixo}: {df.shape[1]} colunas, {df.shape[0]} linhas")
 
     # import pandas as pd
     #
