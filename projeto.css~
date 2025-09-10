@@ -57,6 +57,9 @@
 .grid.two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 .grid.three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 
+
+
+
 .cards{ display:grid; gap:16px; }
 .cards.two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 .cards.three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -131,3 +134,28 @@
   outline: 2px solid rgba(255,255,255,.25);
 }
 .eixo-btn.is-active i { filter: none; }
+
+
+/* Estado padrão dos botões */
+.eixo-btn {
+  background: #155799;   /* azul */
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 14px;
+  transition: all 0.2s ease;
+}
+
+/* Hover (quando passa o mouse) */
+.eixo-btn:hover {
+  background: #159957;   /* verde-azulado */
+  color: #fff;
+}
+
+/* Ativo (quando clicado/selecionado) */
+.eixo-btn.is-active {
+  background: #ff9800;   /* laranja para destacar */
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0,0,0,.3);
+}
+

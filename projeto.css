@@ -57,6 +57,30 @@
 .grid.two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 .grid.three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 
+/* NOVO: grid automático e responsivo */
+.grid.auto{
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Opcional: compactar listas dentro dos cards para caber melhor */
+.card ul.check{
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+.card ul.check li{
+  line-height: 1.35;
+  margin: 0.35rem 0;
+}
+
+/* (Opcional) diferenciar visualmente por eixo via atributo data-eixo */
+.card[data-eixo]{ border-top: 4px solid #e9eef6; }
+.card[data-eixo="2"]{ border-top-color: #cfd9ff; }
+.card[data-eixo="3"]{ border-top-color: #c9f2d0; }
+.card[data-eixo="12"]{ border-top-color: #ffe2b8; }
+/* adicione outras cores se quiser destacar eixos específicos */
+
+
+
 .cards{ display:grid; gap:16px; }
 .cards.two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 .cards.three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
