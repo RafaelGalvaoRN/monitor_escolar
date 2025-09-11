@@ -27,7 +27,7 @@
                         </li>
 
                          <li class="nav-item">
-                            <a href="estatisticas.html" class="nav-link active">
+                            <a href="estatísticas.html" class="nav-link active">
 <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
                                 Estatísticas
                             </a>

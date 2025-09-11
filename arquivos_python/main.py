@@ -4,7 +4,7 @@ import pandas as pd
 if __name__ == '__main__':
 
     file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv.zip"
-    novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "data")
+    novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "../data")
     print("Arquivo movido para:", novo_arquivo)
 
     #
@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     # Faixas corrigidas baseadas na estrutura real do CSV
     result = fragmenta_csv_por_faixas(
-        "data/projeto_monitor.csv",
+        "../data/projeto_monitor.csv",
         {
             "Identificacao_Escola": (0, 13),  # Eixo 1
             "Estrutura_Fisica_Funcionamento": (14, 61),  # Eixo 2
@@ -33,7 +33,7 @@ if __name__ == '__main__':
         },
         salvar=True,
         prefixo_arquivo="eixo_",
-        pasta_destino="data/",
+        pasta_destino="../data/",
     )
 
     print("Fragmentação concluída com sucesso!")

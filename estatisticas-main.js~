@@ -1,0 +1,124 @@
+// estatisticas-main.js - Arquivo principal para inicializar os gráficos
+
+// Caminho do seu CSV (ajuste conforme necessário)
+const CSV_URL = "data/projeto_monitor.csv";
+
+// Colunas que você quer oferecer no seletor (fallback caso o CSV não carregue)
+const COLUNAS_INICIAIS = [
+  "Água potável disponível e regular",
+  "Banheiros em quantidade/condição adequada ",
+  "Acessibilidade (rampas, banheiros PCD, sinalização) ",
+  "Salas em condições (iluminação, ventilação, mobiliário) ",
+  "Manutenção preventiva/corretiva realizada ",
+  "Saídas de emergência/rotas/PPCI/brigada ",
+  "Docentes habilitados nas disciplinas/etapas",
+  "Quadro de professores suficiente"
+];
+
+function mostrarMensagem(mensagem, tipo = "info") {
+  console.log(`[${tipo.toUpperCase()}] ${mensagem}`);
+}
+
+function preencherSeletor(colunas) {
+  const select = document.getElementById("colunaSelect");
+  if (!select) {
+    console.error("Elemento colunaSelect não encontrado");
+    return;
+  }
+  select.innerHTML = '<option value="">Selecione uma coluna...</option>';
+  colunas.forEach((coluna) => {
+    const option = document.createElement("option");
+    option.value = coluna;
+    option.textContent = coluna;
+    select.appendChild(option);
+  });
+  if (colunas.length > 0) select.value = colunas[0];
+}
+
+function plotarColuna() {
+  const select = document.getElementById("colunaSelect");
+  if (!select || !select.value) {
+    mostrarMensagem("Selecione uma coluna para plotar", "warning");
+    return;
+  }
+
+  const colunaSelecionada = select.value;
+  mostrarMensagem(`Gerando gráficos para: ${colunaSelecionada}`, "info");
+
+  try {
+    Estatisticas.plotColumn({
+      column: colunaSelecionada,
+      pieCanvasId: "graficoPizza1",
+      barCanvasId: "graficoBarra1",
+      titleElIds: { pie: "tituloGrafico1", bar: "tituloGrafico2" }
+    });
+
+    const stats = Estatisticas.gerarEstatisticas(colunaSelecionada);
+    console.log("Estatísticas da coluna:", stats);
+  } catch (error) {
+    mostrarMensagem(`Erro ao gerar gráficos: ${error.message}`, "error");
+    console.error("Erro detalhado:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      mostrarMensagem("Carregando dados...", "info");
+  
+      // 1) Carrega CSV
+      await Estatisticas.initCSV(CSV_URL);
+  
+      // 2) Headers detectados
+      let headers = Estatisticas.getHeaders() || [];
+      headers = headers
+        .map(h => (h == null ? "" : String(h).trim()))
+        .filter(h => h.length > 0 && !/^carimbo de data\/hora$/i.test(h)); // opcional: remove "Carimbo..."
+  
+      // 3) Valores da primeira linha de dados (para evitar “vazamento” pro <select>)
+      const primeiraLinha = (Estatisticas.getDados() && Estatisticas.getDados()[0]) || {};
+      const valoresPrimeiraLinha = new Set(
+        Object.values(primeiraLinha).map(v => (v == null ? "" : String(v).trim()))
+      );
+  
+      // 4) Remove do header qualquer item que coincida com os valores da 1ª linha e elimina duplicados
+      let colunas = headers.filter(h => !valoresPrimeiraLinha.has(h));
+      colunas = [...new Set(colunas)]; // dedup
+  
+      // 5) Fallback se nada sobrar
+      if (colunas.length === 0) {
+        colunas = COLUNAS_INICIAIS;
+      }
+  
+      // 6) Preenche seletor e plota inicial
+      preencherSeletor(colunas);
+      mostrarMensagem(`CSV carregado com sucesso! ${colunas.length} colunas encontradas.`, "success");
+  
+      const selectEl = document.getElementById("colunaSelect");
+      if (selectEl && selectEl.value) {
+        setTimeout(() => plotarColuna(), 300);
+      }
+    } catch (error) {
+      console.error("Erro ao carregar CSV:", error);
+      mostrarMensagem(`Erro ao carregar dados: ${error.message}`, "error");
+  
+      // Fallback: usa COLUNAS_INICIAIS no select para testar a UI
+      preencherSeletor(COLUNAS_INICIAIS);
+      mostrarMensagem("Usando colunas padrão (fallback)", "warning");
+    }
+  
+    // Eventos
+    const btnPlotar = document.getElementById("btnPlotar");
+    if (btnPlotar) btnPlotar.addEventListener("click", plotarColuna);
+  
+    const selectEl = document.getElementById("colunaSelect");
+    if (selectEl) {
+      selectEl.addEventListener("change", () => {
+        if (selectEl.value) plotarColuna();
+      });
+    }
+  });
+  
+
+// Expor utilidades, se quiser chamar pelo console
+window.plotarColuna = plotarColuna;
+window.preencherSeletor = preencherSeletor;

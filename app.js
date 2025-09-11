@@ -1,40 +1,44 @@
 
 // === CONFIG dinâmico ===
-let CSV_PATH = 'data/projeto_monitor.csv'; // "Todos" (tabela completa)
+let CSV_PATH = "./data/projeto_monitor.csv"; // Adicione 'let'
 
 // Mapeamento dos eixos para os arquivos que você TEM
+
 const MAP_EIXOS = {
-    'all': 'data/projeto_monitor.csv',                             // Todos os dados
-    '1': 'data/eixo_Identificacao_Escola.csv',                    // Eixo 1
-    '2': 'data/eixo_Estrutura_Fisica_Funcionamento.csv',         // Eixo 2
-    '3': 'data/eixo_Alunos.csv',                   // Eixo 3
-    '4': 'data/eixo_Professores.csv',              // Eixo 4
-    '5': 'data/eixo_Gestao_Equipe.csv',            // Eixo 5
-    '6': 'data/eixo_Pais_Comunidade.csv',          // Eixo 6
-    '7': 'data/eixo_Questoes_Pedagogicas.csv',              // Eixo 7
-    '8': 'data/eixo_Gestao_Democratica.csv',       // Eixo 8
-    '9': 'data/eixo_Documentos.csv',               // Eixo 9
-    '10': 'data/eixo_Seguranca_Escola.csv',        // Eixo 10
-    '11': 'data/eixo_Violencia_Indisciplina.csv',  // Eixo 11
-    '12': 'data/eixo_Prestacao_Contas.csv',        // Eixo 12
-    '13': 'data/eixo_Experiencia_Inovadora.csv',                // Eixo 13
-    '14': 'data/eixo_Objetivo_Gestao.csv'         // Eixo 14
-};// Mapeamento dos eixos para os arquivos que você TEM
+    'all': 'data/projeto_monitor.csv',
+    '1': 'data/eixo_Identificacao_Escola.csv',
+    '2': 'data/eixo_Estrutura_Fisica_Funcionamento.csv',
+    '3': 'data/eixo_Alunos.csv',
+    '4': 'data/eixo_Professores.csv',
+    '5': 'data/eixo_Gestao_Equipe.csv',
+    '6': 'data/eixo_Pais_Comunidade.csv',
+    '7': 'data/eixo_Questoes_Pedagogicas.csv',
+    '8': 'data/eixo_Gestao_Democratica.csv',
+    '9': 'data/eixo_Documentos.csv',
+    '10': 'data/eixo_Seguranca_Escola.csv',
+    '11': 'data/eixo_Violencia_Indisciplina.csv',
+    '12': 'data/eixo_Prestacao_Contas.csv',
+    '13': 'data/eixo_Experiencia_Inovadora.csv',
+    '14': 'data/eixo_Objetivo_Gestao.csv'
+};
 
 function getCsvPath(eixo) {
-    // Se eixo for "all" ou vazio, retorna arquivo principal
+    console.log(`Solicitado eixo: ${eixo}`); // Debug
+
     if (!eixo || eixo === 'all') {
+        console.log(`Retornando arquivo principal: ${MAP_EIXOS['all']}`);
         return MAP_EIXOS['all'];
     }
 
-    // Se existe no mapa, retorna o caminho
     if (MAP_EIXOS[eixo]) {
+        console.log(`Retornando arquivo do eixo ${eixo}: ${MAP_EIXOS[eixo]}`);
         return MAP_EIXOS[eixo];
     }
 
-    // Fallback: arquivo principal
+    console.warn(`Eixo ${eixo} não encontrado, usando arquivo principal`);
     return MAP_EIXOS['all'];
 }
+
 
 function marcarBotaoAtivo(valorEixo) {
   document.querySelectorAll('.eixo-btn').forEach(btn => {
@@ -45,25 +49,26 @@ function marcarBotaoAtivo(valorEixo) {
 }
 
 function trocarEixo(valorEixo) {
-  // Define o caminho do CSV
-  if (valorEixo === 'all') {
-    CSV_PATH = 'data/projeto_monitor.csv';
-  } else {
-    CSV_PATH = getCsvPath(valorEixo); // ou MAP[valorEixo]
-  }
+    console.log(`Trocando para eixo: ${valorEixo}`); // Debug
 
-  // Reseta ordenação e recarrega
-  ordemAtual = { coluna: null, ascendente: true };
-  carregarCSV();
+    // Atualiza a variável global
+    CSV_PATH = getCsvPath(valorEixo);
+    console.log(`Novo CSV_PATH: ${CSV_PATH}`); // Debug
 
-  // Visual
-  marcarBotaoAtivo(valorEixo);
+    // Reseta ordenação
+    ordemAtual = { coluna: null, ascendente: true };
 
-  // Mensagem de status
-  const status = document.getElementById('status');
-  if (status) {
-    status.innerHTML = `<i class="fas fa-sync-alt"></i> Carregando Eixo ${valorEixo === 'all' ? 'Completo' : valorEixo}…`;
-  }
+    // Recarrega os dados
+    carregarCSV();
+
+    // Atualiza interface
+    marcarBotaoAtivo(valorEixo);
+
+    const status = document.getElementById('status');
+    if (status) {
+        const nomeEixo = valorEixo === 'all' ? 'Tabela Completa' : `Eixo ${valorEixo}`;
+        status.innerHTML = `<i class="fas fa-sync-alt fa-spin"></i> Carregando ${nomeEixo}...`;
+    }
 }
 
 function configurarBotoesEixo() {
@@ -126,69 +131,112 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function carregarCSV() {
-  document.getElementById('status').innerHTML =
-    '<i class="fas fa-spinner fa-spin"></i> Carregando dados do CSV...';
+    console.log(`Tentando carregar: ${CSV_PATH}`); // Debug importante
 
-  // cache-buster para o GitHub Pages
-  fetch(`${CSV_PATH}?ts=${Date.now()}`)
-    .then(r => { if (!r.ok) throw new Error('Arquivo CSV não encontrado'); return r.text(); })
-    .then(csvText => {
-      // normaliza quebras e BOM
-      const txt = csvText.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-      const linhas = txt.split('\n').filter(l => l.trim() !== '');
-      if (linhas.length < 2) throw new Error('CSV deve ter cabeçalho e ao menos 1 linha');
+    const status = document.getElementById('status');
+    if (status) {
+        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando dados...';
+    }
 
-      // detecta ; ou ,
-      const head = linhas[0];
-      const sep = (head.split(';').length > head.split(',').length) ? ';' : ',';
+    // Cache-buster para evitar cache
+    const urlComCache = `${CSV_PATH}?t=${Date.now()}`;
 
-      // cabeçalhos
-      const headers = splitCSV(linhas[0], sep).map(h => h.trim().replace(/^"|"$/g, ''));
+    fetch(urlComCache)
+        .then(response => {
+            console.log(`Status da resposta: ${response.status}`); // Debug
 
-      // monta registros
-      const rows = [];
-      for (let i = 1; i < linhas.length; i++) {
-        const parts = splitCSV(linhas[i], sep).map(v => v.trim().replace(/^"|"$/g, ''));
-        if (!parts.length) continue;
-        const row = {};
-        headers.forEach((h, idx) => row[h] = toNumberIfPossible(parts[idx]));
-        rows.push(row);
-      }
-      if (!rows.length) throw new Error('Nenhum dado válido no CSV');
+            if (!response.ok) {
+                throw new Error(`Arquivo não encontrado: ${CSV_PATH} (Status: ${response.status})`);
+            }
+            return response.text();
+        })
+        .then(csvText => {
+            console.log(`CSV carregado, tamanho: ${csvText.length} caracteres`); // Debug
 
-      // Calcula "nota" média (0–5) a partir das colunas de escala (0–5), ignorando vazios
-      const escalaCols = headers.filter(h => {
-        let tot = 0, ok = 0;
-        for (const r of rows) {
-          const v = r[h];
-          if (v === '' || v == null) continue;
-          tot++;
-          if (typeof v === 'number' && v >= 0 && v <= 5) ok++;
-        }
-        return tot > 0 && ok / tot >= 0.6; // coluna com maioria de notas 0–5
-      });
-      for (const r of rows) {
-        let s = 0, c = 0;
-        for (const h of escalaCols) {
-          const v = r[h];
-          if (typeof v === 'number') { s += v; c++; }
-        }
-        if (c) r.nota = Number((s / c).toFixed(1)); // 0–5
-      }
+            // Resto da função continua igual...
+            const txt = csvText.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+            const linhas = txt.split('\n').filter(l => l.trim() !== '');
 
-      dadosEscolares = rows;
-      dadosFiltrados = [...rows];
+            if (linhas.length < 2) {
+                throw new Error('CSV deve ter cabeçalho e ao menos uma linha de dados');
+            }
 
-      inicializarFiltros();          // continua igual
-      criarCabecalhoTabela();        // ver item 3 abaixo
-      atualizarTabela();
-      configurarEventos();
-    })
-    .catch(err => {
-      console.error('Erro ao carregar CSV:', err);
-    });
+            // Detecta separador
+            const head = linhas[0];
+            const sep = (head.split(';').length > head.split(',').length) ? ';' : ',';
+            console.log(`Separador detectado: "${sep}"`); // Debug
+
+            // Processa headers
+            const headers = splitCSV(linhas[0], sep).map(h => h.trim().replace(/^"|"$/g, ''));
+            console.log(`Headers encontrados: ${headers.length}`, headers); // Debug
+
+            // Processa dados
+            const rows = [];
+            for (let i = 1; i < linhas.length; i++) {
+                const parts = splitCSV(linhas[i], sep).map(v => v.trim().replace(/^"|"$/g, ''));
+                if (!parts.length) continue;
+
+                const row = {};
+                headers.forEach((h, idx) => {
+                    row[h] = toNumberIfPossible(parts[idx]);
+                });
+                rows.push(row);
+            }
+
+            if (!rows.length) {
+                throw new Error('Nenhum dado válido encontrado no CSV');
+            }
+
+            console.log(`Dados processados: ${rows.length} registros`); // Debug
+
+            // Calcula notas (mantém a lógica original)
+            const escalaCols = headers.filter(h => {
+                let tot = 0, ok = 0;
+                for (const r of rows) {
+                    const v = r[h];
+                    if (v === '' || v == null) continue;
+                    tot++;
+                    if (typeof v === 'number' && v >= 0 && v <= 5) ok++;
+                }
+                return tot > 0 && ok / tot >= 0.6;
+            });
+
+            for (const r of rows) {
+                let s = 0, c = 0;
+                for (const h of escalaCols) {
+                    const v = r[h];
+                    if (typeof v === 'number') { s += v; c++; }
+                }
+                if (c) r.nota = Number((s / c).toFixed(1));
+            }
+
+            // Atualiza dados globais
+            dadosEscolares = rows;
+            dadosFiltrados = [...rows];
+
+            // Atualiza interface
+            inicializarFiltros();
+            criarCabecalhoTabela();
+            atualizarTabela();
+            configurarEventos();
+
+            console.log('CSV carregado com sucesso!'); // Debug final
+
+        })
+        .catch(error => {
+            console.error('ERRO ao carregar CSV:', error);
+
+            if (status) {
+                status.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erro: ${error.message}`;
+                status.style.color = '#dc3545';
+            }
+
+            // Limpa dados em caso de erro
+            dadosEscolares = [];
+            dadosFiltrados = [];
+            atualizarTabela();
+        });
 }
-
 
 
 function inicializarFiltros() {

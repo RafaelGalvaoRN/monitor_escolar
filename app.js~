@@ -1,40 +1,44 @@
 
 // === CONFIG dinâmico ===
-let CSV_PATH = 'data/projeto_monitor.csv'; // "Todos" (tabela completa)
+let CSV_PATH = 'data/projeto_monitor.csv'; // Adicione 'let'
 
 // Mapeamento dos eixos para os arquivos que você TEM
+
 const MAP_EIXOS = {
-    'all': 'data/projeto_monitor.csv',                             // Todos os dados
-    '1': 'data/eixo_Identificacao_Escola.csv',                    // Eixo 1
-    '2': 'data/eixo_Estrutura_Fisica_Funcionamento.csv',         // Eixo 2
-    '3': 'data/eixo_Alunos.csv',                   // Eixo 3
-    '4': 'data/eixo_Professores.csv',              // Eixo 4
-    '5': 'data/eixo_Gestao_Equipe.csv',            // Eixo 5
-    '6': 'data/eixo_Pais_Comunidade.csv',          // Eixo 6
-    '7': 'data/eixo_Questoes_Pedagogicas.csv',              // Eixo 7
-    '8': 'data/eixo_Gestao_Democratica.csv',       // Eixo 8
-    '9': 'data/eixo_Documentos.csv',               // Eixo 9
-    '10': 'data/eixo_Seguranca_Escola.csv',        // Eixo 10
-    '11': 'data/eixo_Violencia_Indisciplina.csv',  // Eixo 11
-    '12': 'data/eixo_Prestacao_Contas.csv',        // Eixo 12
-    '13': 'data/eixo_Experiencia_Inovadora.csv',                // Eixo 13
-    '14': 'data/eixo_Objetivos_Gestao.csv'         // Eixo 14
-};// Mapeamento dos eixos para os arquivos que você TEM
+    'all': 'data/projeto_monitor.csv',
+    '1': 'data/eixo_Identificacao_Escola.csv',
+    '2': 'data/eixo_Estrutura_Fisica_Funcionamento.csv',
+    '3': 'data/eixo_Alunos.csv',
+    '4': 'data/eixo_Professores.csv',
+    '5': 'data/eixo_Gestao_Equipe.csv',
+    '6': 'data/eixo_Pais_Comunidade.csv',
+    '7': 'data/eixo_Questoes_Pedagogicas.csv',
+    '8': 'data/eixo_Gestao_Democratica.csv',
+    '9': 'data/eixo_Documentos.csv',
+    '10': 'data/eixo_Seguranca_Escola.csv',
+    '11': 'data/eixo_Violencia_Indisciplina.csv',
+    '12': 'data/eixo_Prestacao_Contas.csv',
+    '13': 'data/eixo_Experiencia_Inovadora.csv',
+    '14': 'data/eixo_Objetivo_Gestao.csv'
+};
 
 function getCsvPath(eixo) {
-    // Se eixo for "all" ou vazio, retorna arquivo principal
+    console.log(`Solicitado eixo: ${eixo}`); // Debug
+
     if (!eixo || eixo === 'all') {
+        console.log(`Retornando arquivo principal: ${MAP_EIXOS['all']}`);
         return MAP_EIXOS['all'];
     }
 
-    // Se existe no mapa, retorna o caminho
     if (MAP_EIXOS[eixo]) {
+        console.log(`Retornando arquivo do eixo ${eixo}: ${MAP_EIXOS[eixo]}`);
         return MAP_EIXOS[eixo];
     }
 
-    // Fallback: arquivo principal
+    console.warn(`Eixo ${eixo} não encontrado, usando arquivo principal`);
     return MAP_EIXOS['all'];
 }
+
 
 function marcarBotaoAtivo(valorEixo) {
   document.querySelectorAll('.eixo-btn').forEach(btn => {
@@ -45,25 +49,26 @@ function marcarBotaoAtivo(valorEixo) {
 }
 
 function trocarEixo(valorEixo) {
-  // Define o caminho do CSV
-  if (valorEixo === 'all') {
-    CSV_PATH = 'data/projeto_monitor.csv';
-  } else {
-    CSV_PATH = getCsvPath(valorEixo); // ou MAP[valorEixo]
-  }
+    console.log(`Trocando para eixo: ${valorEixo}`); // Debug
 
-  // Reseta ordenação e recarrega
-  ordemAtual = { coluna: null, ascendente: true };
-  carregarCSV();
+    // Atualiza a variável global
+    CSV_PATH = getCsvPath(valorEixo);
+    console.log(`Novo CSV_PATH: ${CSV_PATH}`); // Debug
 
-  // Visual
-  marcarBotaoAtivo(valorEixo);
+    // Reseta ordenação
+    ordemAtual = { coluna: null, ascendente: true };
 
-  // Mensagem de status
-  const status = document.getElementById('status');
-  if (status) {
-    status.innerHTML = `<i class="fas fa-sync-alt"></i> Carregando Eixo ${valorEixo === 'all' ? 'Completo' : valorEixo}…`;
-  }
+    // Recarrega os dados
+    carregarCSV();
+
+    // Atualiza interface
+    marcarBotaoAtivo(valorEixo);
+
+    const status = document.getElementById('status');
+    if (status) {
+        const nomeEixo = valorEixo === 'all' ? 'Tabela Completa' : `Eixo ${valorEixo}`;
+        status.innerHTML = `<i class="fas fa-sync-alt fa-spin"></i> Carregando ${nomeEixo}...`;
+    }
 }
 
 function configurarBotoesEixo() {
