@@ -1,11 +1,32 @@
-from utils import fragmenta_csv_por_faixas, rename_move
+import os
+from utils import fragmenta_csv_por_faixas, rename_move, \
+    save_csv, cleanup_paths, ensure_csv_local, normalize_timestamp_column
 import pandas as pd
+
 
 if __name__ == '__main__':
 
-    file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
-    novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "../data")
-    print("Arquivo movido para:", novo_arquivo)
+    # file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
+    # novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "../data")
+    # print("Arquivo movido para:", novo_arquivo)
+
+    # 1) Garantir CSV local (lida com .zip ou .csv)
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
+    csv_local, to_clean = ensure_csv_local(src_path)
+
+    try:
+        # 2) Ler e transformar
+        df = pd.read_csv(csv_local, dtype=str)
+        df = normalize_timestamp_column(df, src_col="Carimbo de data/hora", dst_col="Data do Envio")
+
+        # 3) Salvar no destino com novo nome
+        dest_path = os.path.join("../data", "projeto_monitor.csv")
+        save_csv(df, dest_path)
+        print("CSV corrigido e salvo em:", dest_path)
+
+    finally:
+        # 4) Limpar temporários (se extraiu de ZIP)
+        cleanup_paths(to_clean)
 
     #
     # df = pd.read_csv("data/projeto_monitor.csv")

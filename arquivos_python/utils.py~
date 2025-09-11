@@ -1,11 +1,39 @@
 import time
 
-import pandas as pd
 from typing import Dict, Iterable, Tuple, Optional
-import os
 import shutil
 import zipfile
+import os
+import zipfile
+import tempfile
+import shutil
+from typing import List, Tuple, Optional
+import pandas as pd
 from icecream import ic
+
+
+
+
+def ajustar_coluna_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Renomeia a coluna de data e converte para formato brasileiro - (dd/mm/aaaa HH:MM:SS)"""
+
+    print("ajustar_coluna_data")
+    coluna_original = "Carimbo de data/hora"
+
+    if coluna_original not in df.columns:
+        raise KeyError(f"F Coluna {coluna_original} não encontrada no Dataframe")
+
+    # Converter para datetime (pandas reconhece automaticamente o AM/PM + GMT-3)
+    df[coluna_original] = pd.to_datetime(df[coluna_original], errors="coerce")
+
+    #formatar no padrão brasileiro
+    df[coluna_original] = df[coluna_original].dt.strftime('%d/%m/%Y %H:%M:%S')
+
+    novo_nome = "Data"
+    df.rename(columns={coluna_original: novo_nome}, inplace=True)
+
+    return df
+
 
 
 
@@ -36,16 +64,6 @@ def fragmenta_csv_por_faixas(
     """
     df = pd.read_csv(csv_path)
     out: Dict[str, pd.DataFrame] = {}
-
-
-
-    ic(df.columns)
-
-    ic(df["1.1. Nome da Escola"])
-
-    df_escola = df["1.1. Nome da Escola"]
-    ic(df_escola)
-
 
 
     # Colunas de identificação opcionais (mantidas em todos os CSVs)
@@ -108,3 +126,93 @@ def rename_move(origem, novo_nome, destino_dir):
         destino_final = os.path.join(destino_dir, novo_nome)
         shutil.move(origem, destino_final)
         return destino_final
+
+
+
+def ensure_csv_local(src_path: str, temp_dir: Optional[str] = None) -> Tuple[str, List[str]]:
+    """
+    Garante um CSV local a partir de:
+      - um arquivo .csv (retorna o próprio caminho), ou
+      - um arquivo .zip (extrai o PRIMEIRO .csv e retorna o caminho extraído).
+
+    Retorna: (csv_path_local, paths_para_cleanup)
+    """
+    paths_to_cleanup: List[str] = []
+
+    # Se já for CSV, só retorna o próprio caminho
+    if src_path.lower().endswith(".csv"):
+        return src_path, paths_to_cleanup
+
+    # Se for ZIP, extrai o primeiro CSV
+    if src_path.lower().endswith(".zip"):
+        # diretório temporário para extração
+        if temp_dir is None:
+            temp_dir = tempfile.mkdtemp(prefix="csv_tmp_")
+            paths_to_cleanup.append(temp_dir)
+
+        with zipfile.ZipFile(src_path, "r") as zf:
+            csv_members = [n for n in zf.namelist() if n.lower().endswith(".csv")]
+            if not csv_members:
+                raise FileNotFoundError("Nenhum arquivo CSV encontrado dentro do ZIP.")
+            # pega o primeiro CSV
+            member = csv_members[0]
+            extracted_path = zf.extract(member, path=temp_dir)
+
+            # Em alguns casos o ZIP mantém subpastas; garanta um caminho “achatado” opcionalmente
+            # Aqui vamos apenas retornar o caminho extraído
+            return extracted_path, paths_to_cleanup
+
+    raise ValueError("O arquivo de entrada deve ser .csv ou .zip contendo um .csv.")
+
+
+def normalize_timestamp_column(
+    df: pd.DataFrame,
+    src_col: str = "Carimbo de data/hora",
+    dst_col: str = "Data do Envio",
+    tz: str = "America/Fortaleza",
+) -> pd.DataFrame:
+    """
+    Converte a coluna de data/hora para o formato brasileiro e renomeia a coluna.
+
+    - Aceita strings tipo: '2025/09/08 12:41:09 PM GMT-3'
+    - Faz parsing com fuso (se houver), converte para o timezone indicado e formata 'dd/mm/yyyy HH:MM:SS'.
+    """
+    if src_col not in df.columns:
+        raise KeyError(f"Coluna '{src_col}' não encontrada. Colunas: {list(df.columns)}")
+
+    # Parsing robusto: interpreta offsets (ex.: GMT-3), normaliza para UTC e converte para tz local
+    s = pd.to_datetime(df[src_col], utc=True, errors="coerce")
+    # Alguns valores podem falhar no parse; você pode tratar aqui se quiser
+    s = s.dt.tz_convert(tz)
+
+    # Formato brasileiro
+    df[src_col] = s.dt.strftime("%d/%m/%Y %H:%M:%S")
+
+    # Renomeia a coluna
+    if dst_col != src_col:
+        df = df.rename(columns={src_col: dst_col})
+
+    return df
+
+
+def save_csv(df: pd.DataFrame, dest_path: str) -> str:
+    """
+    Salva o DataFrame com encoding 'utf-8-sig' (bom para abrir no Excel) e retorna o caminho salvo.
+    """
+    os.makedirs(os.path.dirname(os.path.abspath(dest_path)), exist_ok=True)
+    df.to_csv(dest_path, index=False, encoding="utf-8-sig")
+    return dest_path
+
+
+def cleanup_paths(paths: List[str]) -> None:
+    """
+    Remove arquivos/pastas temporárias criadas no processo.
+    """
+    for p in paths:
+        try:
+            if os.path.isdir(p):
+                shutil.rmtree(p, ignore_errors=True)
+            elif os.path.isfile(p):
+                os.remove(p)
+        except Exception:
+            pass
