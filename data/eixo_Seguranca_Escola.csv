@@ -1,2 +1,8 @@
-10.1. A Escola possui vigilante no período noturno?,10.2. A Escola possui porteiro(a)?,10.3. A Escola possui alarme e/ou câmeras instalados?
-Não,Não,Não
+1.1. Nome da Escola,10.1. A Escola possui vigilante no período noturno?,10.2. A Escola possui porteiro(a)?,10.3. A Escola possui alarme e/ou câmeras instalados?
+Salesiano São José ,Não,Não,Não
+XXX,Não,Sim,Não
+,,,
+Escola Estadual Santos Dumont,Sim,Sim,Sim
+Teste,Sim,Sim,Não
+Instituto Da Vinci,Não,Sim,Não
+Escola Estadual Joaquim da Luz,Sim,Sim,Não

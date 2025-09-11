@@ -38,6 +38,16 @@ def fragmenta_csv_por_faixas(
     out: Dict[str, pd.DataFrame] = {}
 
 
+
+    ic(df.columns)
+
+    ic(df["1.1. Nome da Escola"])
+
+    df_escola = df["1.1. Nome da Escola"]
+    ic(df_escola)
+
+
+
     # Colunas de identificação opcionais (mantidas em todos os CSVs)
     id_cols = list(id_cols) if id_cols else []
 

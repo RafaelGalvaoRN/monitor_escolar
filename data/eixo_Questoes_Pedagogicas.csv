@@ -1,2 +1,8 @@
-"7.1. Qual(is) foi(ram) a(s) nota(s) obtida(s) pela Escola na última avaliação do IDEB? Caso a Escola não possua nota, responder ""Não se aplica"".","7.2. Qual(is) foi(ram) a(s) nota(s) obtida(s) pela Escola na última avaliação do SIMAIS? Caso a Escola não possua nota, responder ""Não se aplica"".",7.3. Qual é o índice de reprovação da Escola no ano passado?,7.4. A Escola disponibiliza algum tipo de atividade de ensino a distância ou remota?
-7,12,25,Não
+1.1. Nome da Escola,"7.1. Qual(is) foi(ram) a(s) nota(s) obtida(s) pela Escola na última avaliação do IDEB? Caso a Escola não possua nota, responder ""Não se aplica"".","7.2. Qual(is) foi(ram) a(s) nota(s) obtida(s) pela Escola na última avaliação do SIMAIS? Caso a Escola não possua nota, responder ""Não se aplica"".",7.3. Qual é o índice de reprovação da Escola no ano passado?,7.4. A Escola disponibiliza algum tipo de atividade de ensino a distância ou remota?
+Salesiano São José ,7,12,25,Não
+XXX,XXX,XXX,XXX,Não
+,,,,
+Escola Estadual Santos Dumont,5,6,20%,Não
+Teste,Não se aplica,Não se aplica,8%,Não
+Instituto Da Vinci,Não se aplica.,Não se aplica.,12%,Não
+Escola Estadual Joaquim da Luz,Não se aplica.,Não se aplica ,20%,Sim

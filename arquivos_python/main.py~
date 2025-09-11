@@ -33,7 +33,7 @@ if __name__ == '__main__':
         },
         salvar=True,
         prefixo_arquivo="eixo_",
-        pasta_destino="data/",
+        pasta_destino="../data/",
     )
 
     print("Fragmentação concluída com sucesso!")

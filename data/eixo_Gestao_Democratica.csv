@@ -1,2 +1,8 @@
-8.1. A Escola possui Conselho Escolar?,"8.1.1. Caso a resposta anterior seja ""Sim"", o Conselho Escolar está funcionando regularmente?",8.2. O Conselho Escolar está completo ou possui vacância?,8.3. A Escola possui Conselho de Classe?,"8.3.1. Caso a resposta anterior seja ""Sim"", o Conselho de Classe está funcionando regularmente?",8.3.2. O Conselho de Classe está completo ou possui vacância?,8.4. A Escola possui Grêmio estudantil?,8.5. A Direção da Escola é eleita?
-Não,Não,Completo,Sim,Não,Possui vacância,Não,Sim
+1.1. Nome da Escola,8.1. A Escola possui Conselho Escolar?,"8.1.1. Caso a resposta anterior seja ""Sim"", o Conselho Escolar está funcionando regularmente?",8.2. O Conselho Escolar está completo ou possui vacância?,8.3. A Escola possui Conselho de Classe?,"8.3.1. Caso a resposta anterior seja ""Sim"", o Conselho de Classe está funcionando regularmente?",8.3.2. O Conselho de Classe está completo ou possui vacância?,8.4. A Escola possui Grêmio estudantil?,8.5. A Direção da Escola é eleita?
+Salesiano São José ,Não,Não,Completo,Sim,Não,Possui vacância,Não,Sim
+XXX,Sim,Sim,Completo,Não,Não se aplica porque a Escola não possui Conselho de Classe,Não se aplica porque a Escola não possui Conselho de Classe,Não,Não
+,,,,,,,,
+Escola Estadual Santos Dumont,Sim,Sim,Completo,Sim,Sim,Completo,Sim,Sim
+Teste,Sim,Sim,Possui vacância,Não,Não se aplica porque a Escola não possui Conselho de Classe,Não se aplica porque a Escola não possui Conselho de Classe,Não,Não
+Instituto Da Vinci,Não,Não se aplica porque a Escola não possui Conselho Escolar,Não se aplica porque a Escola não possui Conselho Escolar,Não,Não se aplica porque a Escola não possui Conselho de Classe,Não se aplica porque a Escola não possui Conselho de Classe,Não,Não
+Escola Estadual Joaquim da Luz,Sim,Sim,Completo,Sim,Sim,Possui vacância,Sim,Sim

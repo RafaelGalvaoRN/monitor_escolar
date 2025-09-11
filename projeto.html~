@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="footer.css" />
-  <link rel="stylesheet" href="tabela.css" />
-  <link rel="stylesheet" href="headers.css" />
-  <link rel="stylesheet" href="navbar.css" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/footer.css" />
+  <link rel="stylesheet" href="style/tabela.css" />
+  <link rel="stylesheet" href="style/headers.css" />
+  <link rel="stylesheet" href="style/navbar.css" />
 
   <!-- Estilo desta página -->
-  <link rel="stylesheet" href="projeto.css" />
+  <link rel="stylesheet" href="style/projeto.css" />
 
   <!-- Font Awesome (ícones) -->
   <link rel="stylesheet"
@@ -34,7 +34,7 @@
         e transparência pública dos dados.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#formularios"><i class="fas fa-clipboard-list"></i> Formulários</a>
-        <a class="btn ghost" href="#painel"><i class="fas fa-chart-line"></i> Painel de Dados</a>
+        <a class="btn ghost" href="tabela.html"><i class="fas fa-chart-line"></i> Painel de Dados</a>
       </div>
     </header>
 
@@ -157,34 +157,188 @@
     </section>
 
     <!-- Indicadores -->
-    <section id="indicadores" class="proj-section">
-      <h2><i class="fas fa-sliders-h"></i> Indicadores Monitorados</h2>
-      <div class="grid two">
-        <div class="card">
-          <h3>Condições Mínimas</h3>
-          <ul class="check">
-            <li>Água potável regular</li>
-            <li>Banheiros adequados</li>
-            <li>Acessibilidade universal</li>
-            <li>Salas adequadas (iluminação/ventilação/mobiliário)</li>
-            <li>Manutenção preventiva/corretiva</li>
-            <li>Saídas/rotas de emergência, PPCI/brigada</li>
-            <li>Limpeza e manejo de resíduos</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Pessoal & Pedagógico</h3>
-          <ul class="check">
-            <li>Docentes habilitados</li>
-            <li>Quadro docente suficiente</li>
-            <li>Equipe pedagógica presente</li>
-            <li>Profissionais de apoio</li>
-            <li>Formação continuada</li>
-            <li>Rotatividade/absenteísmo em níveis aceitáveis</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section id="indicadores" class="proj-section">
+  <h2><i class="fas fa-sliders-h"></i> Indicadores Monitorados</h2>
+
+  <!-- Grid responsivo (usa auto-fit) -->
+  <div class="grid auto">
+
+    <!-- Eixo 1 -->
+    <div class="card" data-eixo="1">
+      <h3>Identificação da Escola</h3>
+      <ul class="check">
+        <li>Nome, endereço, contatos e redes sociais</li>
+        <li>Direção/Vice-Direção</li>
+        <li>Níveis de ensino e turnos</li>
+        <li>Porte, nº de alunos, turmas e salas</li>
+        <li>Uso integral das salas</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 2 -->
+    <div class="card" data-eixo="2">
+      <h3>Estrutura Física & Funcionamento</h3>
+      <ul class="check">
+        <li>Estado de conservação e necessidade de reforma</li>
+        <li>Histórico de manutenção (últimos 4 anos)</li>
+        <li>Acessibilidade</li>
+        <li>Manutenções pontuais (elétrica/hidráulica)</li>
+        <li>Climatização (tipo e cobertura)</li>
+        <li>Rede elétrica (capacidade p/ equipamentos)</li>
+        <li>Quadra poliesportiva e uso</li>
+      </ul>
+    </div>
+
+    <div class="card" data-eixo="2">
+      <h3>Ambientes & Recursos</h3>
+      <ul class="check">
+        <li>Biblioteca/sala de leitura (uso e necessidade de livros)</li>
+        <li>Laboratório de informática (nº de PCs, uso, manutenção)</li>
+        <li>Internet (contrato, qualidade, acesso)</li>
+        <li>Laboratório de ciências (funcionamento, materiais, uso)</li>
+        <li>Refeitório (mesas/cadeiras e equipe de cozinha)</li>
+        <li>Cozinha (eletros/utensílios e fiscalização)</li>
+        <li>Cardápio por nutricionista e aderência</li>
+      </ul>
+    </div>
+
+    <div class="card" data-eixo="2">
+      <h3>Merenda & Mobiliário</h3>
+      <ul class="check">
+        <li>Frequência da merenda e suficiência do recurso</li>
+        <li>Controle de estoque (forma de controle)</li>
+        <li>Mobília suficiente e itens em falta</li>
+        <li>Substituição/conserto de equipamentos</li>
+        <li>Materiais inservíveis aguardando remoção</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 3 -->
+    <div class="card" data-eixo="3">
+      <h3>Alunos</h3>
+      <ul class="check">
+        <li>Evasão escolar e medidas adotadas</li>
+        <li>Preenchimento de vagas e novas turmas</li>
+        <li>Fardamento, livros e material escolar</li>
+        <li>Alunos com NEE (quantidade e suporte)</li>
+        <li>Transporte escolar (demanda, estado, especial)</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 4 -->
+    <div class="card" data-eixo="4">
+      <h3>Professores</h3>
+      <ul class="check">
+        <li>Carência (efetivos/temporários)</li>
+        <li>Planejamento com orientação pedagógica</li>
+        <li>Avaliação do desempenho</li>
+        <li>Capacitação periódica</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 5 -->
+    <div class="card" data-eixo="5">
+      <h3>Gestão & Equipe</h3>
+      <ul class="check">
+        <li>Equipe gestora e equipe de apoio completas</li>
+        <li>Formação da direção em gestão</li>
+        <li>Classificação para recursos/gratificação</li>
+        <li>Uso do SIGEDUC (direção e docentes)</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 6 -->
+    <div class="card" data-eixo="6">
+      <h3>Pais & Comunidade</h3>
+      <ul class="check">
+        <li>Reuniões com pais (frequência e participação)</li>
+        <li>Projetos para engajamento das famílias</li>
+        <li>Atividades culturais/esportivas/feiras</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 7 -->
+    <div class="card" data-eixo="7">
+      <h3>Indicadores Pedagógicos</h3>
+      <ul class="check">
+        <li>Notas IDEB e SIMAIS</li>
+        <li>Índice de reprovação</li>
+        <li>Oferta de EAD/atividades remotas</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 8 -->
+    <div class="card" data-eixo="8">
+      <h3>Gestão Democrática</h3>
+      <ul class="check">
+        <li>Conselho Escolar (existência e funcionamento)</li>
+        <li>Conselho de Classe (composição e regularidade)</li>
+        <li>Grêmio estudantil</li>
+        <li>Eleições para direção</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 9 -->
+    <div class="card" data-eixo="9">
+      <h3>Documentos Institucionais</h3>
+      <ul class="check">
+        <li>Regimento Interno</li>
+        <li>Projeto Político-Pedagógico (PPP)</li>
+        <li>Expedição de histórico/notas/frequência</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 10 -->
+    <div class="card" data-eixo="10">
+      <h3>Segurança da Escola</h3>
+      <ul class="check">
+        <li>Vigilante noturno</li>
+        <li>Porteiro(a)</li>
+        <li>Alarmes e câmeras</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 11 -->
+    <div class="card" data-eixo="11">
+      <h3>Violência & Indisciplina</h3>
+      <ul class="check">
+        <li>Gravidade da indisciplina</li>
+        <li>Registro dos atos</li>
+        <li>Projetos de prevenção (álcool e drogas)</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 12 -->
+    <div class="card" data-eixo="12">
+      <h3>Prestação de Contas</h3>
+      <ul class="check">
+        <li>Recursos recebidos e planejamento de uso</li>
+        <li>Regularidade de valores/prazos</li>
+        <li>Dificuldades e pendências por ano/fonte</li>
+        <li>Capacitação da equipe</li>
+        <li>Suporte (DIREC, DRAE, FEE, etc.)</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 13 -->
+    <div class="card" data-eixo="13">
+      <h3>Experiências Inovadoras</h3>
+      <ul class="check">
+        <li>Existência e breve descrição</li>
+      </ul>
+    </div>
+
+    <!-- Eixo 14 -->
+    <div class="card" data-eixo="14">
+      <h3>Objetivo da Gestão</h3>
+      <ul class="check">
+        <li>Objetivo do(a) Diretor(a)</li>
+        <li>Projetos desejados e requisitos</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
 
     <!-- Resultados Esperados -->
     <section id="resultados" class="proj-section">

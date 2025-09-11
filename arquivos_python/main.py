@@ -3,7 +3,7 @@ import pandas as pd
 
 if __name__ == '__main__':
 
-    file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv.zip"
+    file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
     novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "../data")
     print("Arquivo movido para:", novo_arquivo)
 
