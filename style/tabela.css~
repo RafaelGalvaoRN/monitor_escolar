@@ -186,7 +186,7 @@ background: linear-gradient(180deg, #2c7da0 0%, #43aa8b 100%);
 }
 
 th:hover {
-background: linear-gradient(180deg, #3da9b7 0%, #58c2a3 100%);
+background: linear-gradient(180deg, #226276 0%, #2f7a65 100%);
 }
 
 th i{

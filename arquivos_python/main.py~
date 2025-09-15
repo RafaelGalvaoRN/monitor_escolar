@@ -1,5 +1,6 @@
-from utils import fragmenta_csv_por_faixas, rename_move
-from utils_novo import *
+import os
+from utils import fragmenta_csv_por_faixas, rename_move, \
+    save_csv, cleanup_paths, ensure_csv_local, normalize_timestamp_column
 import pandas as pd
 
 
@@ -10,7 +11,7 @@ if __name__ == '__main__':
     # print("Arquivo movido para:", novo_arquivo)
 
     # 1) Garantir CSV local (lida com .zip ou .csv)
-    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv.zip"
     csv_local, to_clean = ensure_csv_local(src_path)
 
     try:

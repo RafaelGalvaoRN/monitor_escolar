@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # print("Arquivo movido para:", novo_arquivo)
 
     # 1) Garantir CSV local (lida com .zip ou .csv)
-    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv.zip"
     csv_local, to_clean = ensure_csv_local(src_path)
 
     try:
@@ -37,20 +37,20 @@ if __name__ == '__main__':
     result = fragmenta_csv_por_faixas(
         "../data/projeto_monitor.csv",
         {
-            "Identificacao_Escola": (0, 13),  # Eixo 1
-            "Estrutura_Fisica_Funcionamento": (14, 61),  # Eixo 2
-            "Alunos": (62, 82),  # Eixo 3
-            "Professores": (83, 88),  # Eixo 4
-            "Gestao_Equipe": (89, 96),  # Eixo 5
-            "Pais_Comunidade": (97, 102),  # Eixo 6
-            "Questoes_Pedagogicas": (103, 106),  # Eixo 7
-            "Gestao_Democratica": (107, 114),  # Eixo 8
-            "Documentos": (115, 117),  # Eixo 9
-            "Seguranca_Escola": (118, 120),  # Eixo 10
-            "Violencia_Indisciplina": (121, 123),  # Eixo 11
-            "Prestacao_Contas": (124, 133),  # Eixo 12
-            "Experiencia_Inovadora": (134, 135),  # Eixo 13
-            "Objetivo_Gestao": (136, 138),  # Eixo 14
+            "Identificacao_Escola": (0, 15),  # Eixo 1
+            "Estrutura_Fisica_Funcionamento": (16, 63),  # Eixo 2
+            "Alunos": (64, 84),  # Eixo 3
+            "Professores": (85, 90),  # Eixo 4
+            "Gestao_Equipe": (91, 98),  # Eixo 5
+            "Pais_Comunidade": (99, 104),  # Eixo 6
+            "Questoes_Pedagogicas": (105, 108),  # Eixo 7
+            "Gestao_Democratica": (109, 116),  # Eixo 8
+            "Documentos": (117, 119),  # Eixo 9
+            "Seguranca_Escola": (120, 122),  # Eixo 10
+            "Violencia_Indisciplina": (123, 125),  # Eixo 11
+            "Prestacao_Contas": (126, 135),  # Eixo 12
+            "Experiencia_Inovadora": (136, 137),  # Eixo 13
+            "Objetivo_Gestao": (138, 140),  # Eixo 14
         },
         salvar=True,
         prefixo_arquivo="eixo_",

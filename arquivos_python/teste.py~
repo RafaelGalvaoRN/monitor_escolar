@@ -1,0 +1,8 @@
+
+
+def teste_maluco():
+    print(f"nome da funcao: {teste_maluco.__name__}")
+
+
+if __name__ == "__main__":
+    teste_maluco()
