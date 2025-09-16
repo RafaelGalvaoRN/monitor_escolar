@@ -1,43 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Monitor Escolar – Projeto</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/projeto.css" />
-  <link rel="stylesheet" href="style/imagem-logo.css"/>
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Monitor Escolar – Projeto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Seus estilos existentes -->
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/footer.css" />
+    <link rel="stylesheet" href="style/tabela.css" />
+    <link rel="stylesheet" href="style/headers.css" />
+    <link rel="stylesheet" href="style/navbar.css" />
+    <link rel="stylesheet" href="style/projeto.css" />
+    <link rel="stylesheet" href="style/imagem-logo.css"/>
+    <link rel="stylesheet" href="style/index.css"/>
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
-  <div id="header-placeholder"></div>
+    <!-- Overlay de carregamento (opcional) -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
 
-<main>
-    <img src="img/monitoramento.png" alt="Monitoramento Escolar">
-</main>
-  <!-- CONTEÚDO PRINCIPAL -->
+    <div id="header-placeholder"></div>
+    
+    <main>
+        <div class="hero-container">
+            <!-- Círculos de fundo -->
+            <div class="background-circles">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
 
-  <div id="footer-placeholder"></div>
+            <!-- Partículas flutuantes -->
+            <div class="particles">
+                <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+                <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+                <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+                <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+                <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+                <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+                <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+                <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+                <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+            </div>
 
-  <script>
-    $(function(){
-      $("#footer-placeholder").load("footer.html");
-      $("#header-placeholder").load("header.html");
-    });
-  </script>
+            <!-- Pulso de energia -->
+            <div class="energy-pulse"></div>
+
+            <!-- Imagem principal -->
+            <img src="img/img-nova.png" alt="Monitoramento Escolar" class="hero-image">
+            
+            <!-- Título -->
+            <h1 class="hero-title">Monitor Escolar</h1>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Script unificado -->
+    <script>
+        $(function(){
+            // Carregar header e footer
+            $("#footer-placeholder").load("footer.html");
+            $("#header-placeholder").load("header.html");
+            
+            // Criar mais partículas dinamicamente
+            const particlesContainer = document.querySelector('.particles');
+            if(particlesContainer) {
+                for(let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

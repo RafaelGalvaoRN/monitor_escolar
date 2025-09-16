@@ -1,0 +1,370 @@
+/* Reset e configurações base para a página index */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    /* Evita conflitos com outros estilos */
+    position: relative;
+}
+
+/* Container principal com efeito de profundidade */
+main {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+}
+
+/* Container da imagem com múltiplos efeitos */
+.hero-container {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    perspective: 1000px;
+    /* Garante que o container tenha altura suficiente */
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Círculos de fundo animados */
+.background-circles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    /* Evita overflow */
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+    /* Melhora a performance */
+    will-change: transform;
+}
+
+.circle:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    top: 10%;
+    left: 10%;
+    animation-delay: -1s;
+}
+
+.circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    background: #4facfe;
+    top: 70%;
+    right: 20%;
+    animation-delay: -3s;
+}
+
+.circle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    background: #00f2fe;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -5s;
+}
+
+/* Imagem principal com animação complexa */
+.hero-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Removeu rotação inicial para deixar reta */
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: heroEntrance 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               gentleFloat 4s ease-in-out 2s infinite;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+    /* Melhora a performance */
+    will-change: transform, opacity;
+}
+
+/* Efeito de brilho que passa pela imagem */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 70%);
+    transform: rotate(-45deg) translateX(-100%);
+    animation: shine 3s ease-in-out 1s infinite;
+    z-index: 1;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+/* Hover effects */
+.hero-image:hover {
+    transform: rotateX(0deg) rotateY(0deg) scale(1.08);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Partículas flutuantes */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 8s linear infinite;
+    /* Melhora a performance */
+    will-change: transform;
+}
+
+.particle:nth-child(odd) {
+    background: rgba(79, 172, 254, 0.6);
+    animation-duration: 12s;
+}
+
+/* Título animado */
+.hero-title {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    animation: titleSlideUp 1.5s ease-out 1.5s forwards;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    /* Evita quebra de linha */
+    white-space: nowrap;
+    /* Melhora a legibilidade */
+    letter-spacing: 1px;
+}
+
+/* Pulso de energia */
+.energy-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    animation: pulse 4s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ANIMAÇÕES */
+@keyframes heroEntrance {
+    0% {
+        opacity: 0;
+        transform: rotateX(0deg) rotateY(0deg) scale(0.5) translateY(100px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: rotateX(0deg) rotateY(0deg) scale(0.8) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg) rotateY(0deg) scale(1) translateY(0px);
+    }
+}
+
+/* Nova animação de flutuação suave */
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.02);
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(-45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(-45deg) translateX(100%);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes titleSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 1.8rem;
+        bottom: -50px;
+        /* Permite quebra em telas pequenas */
+        white-space: normal;
+    }
+
+    .hero-container {
+        max-width: 90%;
+        min-height: 300px;
+    }
+
+    main {
+        padding: 1rem;
+        min-height: 80vh;
+    }
+
+    .hero-image {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+        bottom: -40px;
+    }
+
+    .hero-container {
+        min-height: 250px;
+    }
+
+    /* Reduz partículas em telas pequenas para melhor performance */
+    .particle:nth-child(n+15) {
+        display: none;
+    }
+}
+
+/* Efeito de carregamento (opcional) */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeOut 1s ease-out 2s forwards;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* Otimizações de performance */
+* {
+    box-sizing: border-box;
+}
+
+/* Melhora a renderização de elementos animados */
+.hero-image,
+.particle,
+.circle,
+.energy-pulse {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
