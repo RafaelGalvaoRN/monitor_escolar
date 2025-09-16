@@ -1,0 +1,32 @@
+/* grade de cards aproveitando seu layout existente */
+.cards.three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+@media (max-width: 1024px) {
+  .cards.three { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+}
+@media (max-width: 640px) {
+  .cards.three { grid-template-columns: 1fr; }
+}
+
+.escola-card { display: flex; flex-direction: column; gap: 8px; }
+.escola-nome { margin: 0; font-size: 1.05rem; }
+.escola-meta { margin: 0; color: #555; }
+.escola-status { margin-top: 4px; }
+
+/* badges de status */
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+.badge.s-participando { background: linear-gradient(180deg, #2c7da0 0%, #43aa8b 100%); }
+.badge.s-enviado      { background: linear-gradient(180deg, #28a745 0%, #20c997 100%); }
+.badge.s-pendente     { background: linear-gradient(180deg, #ffc107 0%, #fd7e14 100%); color: #212529; }

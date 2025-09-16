@@ -33,7 +33,10 @@
 .btn.primary{ background:#fff; color:#155799; }
 .btn.ghost{ border:2px solid rgba(255,255,255,.7); color:#fff; }
 
-
+.btn.ghost:hover {
+  background: #218838;   /* 🟢 verde mais escuro no hover */
+  border-color: #1e7e34;
+}
 
 /* Navegação interna (sumário) */
 .proj-toc{

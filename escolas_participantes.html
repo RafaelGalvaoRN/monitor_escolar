@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escolas Participantes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/footer.css" />
+  <link rel="stylesheet" href="style/tabela.css" />
+  <link rel="stylesheet" href="style/headers.css" />
+  <link rel="stylesheet" href="style/navbar.css" />
+  <link rel="stylesheet" href="style/projeto.css" />
+  <link rel="stylesheet" href="style/escolas_participantes.css" />
+  <script src="escolas_participantes.js"></script>
+
+
+  <!-- jQuery (para carregar header/footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <h1 id="h1">ESCOLAS PARTICIPANTES</h1>
+  </main>
+
+  <section class="wrap">
+    <div class="card">
+      <header class="proj-hero">
+        <h1>Escolas Participantes</h1>
+        <p class="sub">
+          Status no projeto:
+          <span class="badge s-pendente">Pendente de envio</span> ·
+          <span class="badge s-participando">Participando</span> ·
+          <span class="badge s-enviado">Dados enviados</span>
+        </p>
+      </header>
+
+      <!-- grade de cards -->
+      <div id="lista-escolas" class="cards three">
+        <!-- Os cards serão inseridos aqui dinamicamente -->
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Script principal para carregar CSV e preencher cards -->
+
+
+  <script>
+    $(function(){
+      $("#footer-placeholder").load("footer.html");
+      $("#header-placeholder").load("header.html");
+    });
+  </script>
+
+
+</body>
+</html>
