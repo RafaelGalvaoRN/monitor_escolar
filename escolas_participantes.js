@@ -5,6 +5,21 @@ const CSV_PATH = "./data/projeto_monitor.csv";
 let dadosEscolares = [];
 let escolasComStatus = [];
 
+let escolasPendentes = [
+    { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+    { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+    { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+    { nome: "Escola Estadual Professor Paulo Freire", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
+    { nome: "Escola Municipal Nossa Senhora do Desterro", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+    { nome: "Escola Estadual Tancredo Neves", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
+    { nome: "Escola Estadual Doutor Pedro Velho", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
+    { nome: "Escola Municipal Deputado Grimaldi Ribeiro", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" }
+  ];
+  
+
+
+
+
 // Função auxiliar para dividir CSV respeitando aspas
 function splitCSV(linha, separador) {
     const resultado = [];
@@ -159,6 +174,8 @@ function processarDadosParaCards() {
     
     // Renderiza os cards
     renderizarCards();
+    renderizarCardsPendentes();     // ✅ agora renderiza as pendentes também
+
 }
 
 // Função auxiliar para encontrar valor em colunas com nomes similares
@@ -236,6 +253,7 @@ function usarDadosEstaticos() {
     ];
     
     renderizarCards();
+    renderizarCardsPendentes();
 }
 
 // Inicialização quando o DOM estiver pronto
@@ -252,3 +270,37 @@ window.addEventListener('load', function() {
         carregarCSV();
     }
 });
+
+
+
+function renderizarCardsPendentes() {
+    const lista = document.getElementById("lista-escolas-pendentes");
+    
+    if (!lista) {
+        console.error('Elemento #lista-escolas não encontrado!');
+        return;
+    }
+    
+    
+    
+    
+    
+    
+    // Gera HTML dos cards
+    const cardsHTML = escolasPendentes.map(escola => `
+        <article class="card escola-card">
+            <h3 class="escola-nome">${escola.nome}</h3>
+            <p class="escola-meta">
+                <strong>Rede:</strong> ${escola.rede} · 
+                <strong>Município:</strong> ${escola.municipio}
+            </p>
+            <div class="escola-status">
+                <span class="badge ${getBadgeClass(escola.status)}">${escola.status}</span>
+            </div>
+        </article>
+    `).join('');
+    
+    lista.innerHTML = cardsHTML;
+    
+    console.log(`${escolasComStatus.length} cards renderizados com sucesso!`);
+}

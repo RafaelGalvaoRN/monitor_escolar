@@ -37,10 +37,10 @@ if __name__ == '__main__':
     result = fragmenta_csv_por_faixas(
         "../data/projeto_monitor.csv",
         {
-            "Identificacao_Escola": (0, 15),  # Eixo 1
-            "Estrutura_Fisica_Funcionamento": (16, 63),  # Eixo 2
-            "Alunos": (64, 84),  # Eixo 3
-            "Professores": (85, 90),  # Eixo 4
+            "Identificacao_Escola": (0, 16),  # Eixo 1
+            "Estrutura_Fisica_Funcionamento": (17, 64),  # Eixo 2
+            "Alunos": (65, 85),  # Eixo 3
+            "Professores": (86, 90),  # Eixo 4
             "Gestao_Equipe": (91, 98),  # Eixo 5
             "Pais_Comunidade": (99, 104),  # Eixo 6
             "Questoes_Pedagogicas": (105, 108),  # Eixo 7

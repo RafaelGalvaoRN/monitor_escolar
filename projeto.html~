@@ -475,28 +475,26 @@
       <div id="formularios" class="cards three">
         <a class="card link" href="#" target="_blank" rel="noopener">
           <i class="fas fa-school"></i>
-          <span>Formulário – Infraestrutura</span>
+          <span>Formulário</span>
         </a>
-        <a class="card link" href="#" target="_blank" rel="noopener">
-          <i class="fas fa-user-tie"></i>
-          <span>Formulário – Recursos Humanos</span>
-        </a>
-        <a class="card link" href="#" target="_blank" rel="noopener">
-          <i class="fas fa-book-reader"></i>
-          <span>Formulário – Pedagógico & Rotinas</span>
-        </a>
+                
       </div>
 
-      <div id="painel" class="cards two">
-        <a class="card link" href="index.html">
-          <i class="fas fa-table"></i>
-          <span>Painel de Dados (Tabela com Filtros)</span>
-        </a>
-        <a class="card link" href="#" target="_blank" rel="noopener">
-          <i class="fas fa-file-csv"></i>
-          <span>Downloads (CSV)</span>
-        </a>
-      </div>
+<div id="painel" class="cards two">
+  <!-- Link para baixar o PDF -->
+  <a class="card link" href="docs/formulario.pdf" download="formulario.pdf">
+    <i class="fas fa-school"></i>
+    <span>Painel de Dados (Tabela com Filtros)</span>
+  </a>
+
+  <!-- Link para baixar o CSV -->
+  <a class="card link" href="docs/dados.csv" download="dados.csv">
+    <i class="fas fa-file-csv"></i>
+    <span>Downloads (CSV)</span>
+  </a>
+</div>
+
+
     </section>
   </main>
 
