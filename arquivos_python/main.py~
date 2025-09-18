@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # print("Arquivo movido para:", novo_arquivo)
 
     # 1) Garantir CSV local (lida com .zip ou .csv)
-    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv.zip"
+    src_path = r"C:\Users\User\Downloads"
     csv_local, to_clean = ensure_csv_local(src_path)
 
     try:
@@ -48,9 +48,9 @@ if __name__ == '__main__':
             "Documentos": (117, 119),  # Eixo 9
             "Seguranca_Escola": (120, 122),  # Eixo 10
             "Violencia_Indisciplina": (123, 125),  # Eixo 11
-            "Prestacao_Contas": (126, 136),  # Eixo 12
-            "Experiencia_Inovadora": (137, 138),  # Eixo 13
-            "Objetivo_Gestao": (139, 140),  # Eixo 14
+            "Prestacao_Contas": (126, 135),  # Eixo 12
+            "Experiencia_Inovadora": (136, 137),  # Eixo 13
+            "Objetivo_Gestao": (138, 140),  # Eixo 14
         },
         salvar=True,
         prefixo_arquivo="eixo_",

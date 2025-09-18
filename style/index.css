@@ -368,3 +368,36 @@ main {
     transform-style: preserve-3d;
     backface-visibility: hidden;
 }
+
+/* CSS: brilho, glow e animação com drift */
+.particles {
+  position: absolute;      /* ou fixed, conforme seu layout */
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;    /* não bloquear cliques */
+  z-index: 1;              /* aumente se ficar atrás */
+}
+
+.particle {
+  position: absolute;
+  top: 100vh;                          /* nasce fora da tela, embaixo */
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--color, #fff);
+  opacity: var(--opacity, .7);
+  filter: blur(0.3px);
+  box-shadow:
+    0 0 6px rgba(255,255,255,.8),
+    0 0 14px rgba(180,220,255,.6);     /* glow suave */
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  animation: rise var(--duration, 12s) linear var(--delay, 0s) infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(var(--drift, 0px), -50vh, 0

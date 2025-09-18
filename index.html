@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="style/index.css"/>
     <!-- Font Awesome (ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -59,28 +61,20 @@
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+   <div id="footer-placeholder"></div>
 
-    <!-- Script unificado -->
-    <script>
-        $(function(){
-            // Carregar header e footer
-            $("#footer-placeholder").load("footer.html");
-            $("#header-placeholder").load("header.html");
-            
-            // Criar mais partículas dinamicamente
-            const particlesContainer = document.querySelector('.particles');
-            if(particlesContainer) {
-                for(let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 8 + 's';
-                    particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
-                    particlesContainer.appendChild(particle);
-                }
-            }
-        });
-    </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Corrigido: sem chave extra -->
+<script>
+  $(function () {
+    $("#footer-placeholder").load("footer.html");
+    $("#header-placeholder").load("header.html");
+  });
+</script>
+
+<!-- Agora sim: depois do DOM -->
+<script src="particulas.js"></script>
 </body>
 </html>

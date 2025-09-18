@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # print("Arquivo movido para:", novo_arquivo)
 
     # 1) Garantir CSV local (lida com .zip ou .csv)
-    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv.zip"
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (1).zip"
     csv_local, to_clean = ensure_csv_local(src_path)
 
     try:
