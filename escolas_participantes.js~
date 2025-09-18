@@ -6,15 +6,26 @@ let dadosEscolares = [];
 let escolasComStatus = [];
 
 let escolasPendentes = [
-    { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
-    { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-    { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
-    { nome: "Escola Estadual Professor Paulo Freire", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
-    { nome: "Escola Municipal Nossa Senhora do Desterro", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
-    { nome: "Escola Estadual Tancredo Neves", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
-    { nome: "Escola Estadual Doutor Pedro Velho", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
-    { nome: "Escola Municipal Deputado Grimaldi Ribeiro", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" }
-  ];
+  { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Centro Educacional Rural Roberto Magalhães de Melo (Barra do Cunhaú)", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal Maria Elza Bezerril Ribeiro (Piquiri)", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal João Anacleto", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal João Batista de Mendonça", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Estadual Professor Paulo Freire", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal Nossa Senhora do Desterro", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+  { nome: "Escola Municipal Bartolomeu Fagundes", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+  { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+  { nome: "Escola Estadual Tancredo Neves", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
+  { nome: "Escola Estadual Doutor Pedro Velho", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
+  { nome: "Escola Municipal Deputado Grimaldi Ribeiro", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
+  { nome: "Escola Municipal São Sebastião", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
+  { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
+  { nome: "Escola Municipal Dr. José Targino", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" }
+];
+
   
 
 

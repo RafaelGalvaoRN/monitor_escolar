@@ -14,7 +14,6 @@ let escolasPendentes = [
   { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Municipal João Anacleto", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Municipal João Batista de Mendonça", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
-  { nome: "Escola Estadual Professor Paulo Freire", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Municipal Nossa Senhora do Desterro", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Escola Municipal Bartolomeu Fagundes", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
