@@ -104,19 +104,28 @@
 
   <div id="footer-placeholder"></div>
 
- <script>
-  // Quando a página carregar, insere header e footer
+<!-- Carrega header e footer -->
+<script>
   $(function () {
+    // Carrega o footer normalmente
     $("#footer-placeholder").load("footer.html");
-    $("#header-placeholder").load("header.html");
 
-    // 3 segundos depois, faz o fade-out do footer
-    setTimeout(function() {
+    // Carrega apenas o header com id #novo_background
+    $("#header-placeholder").load("header.html #novo_background", function () {
+      console.log("Header carregado");
+      // Aqui o header já está no DOM, pode rodar menu.js ou outros scripts
+    });
+
+    // Se ainda quiser aplicar fadeOut no footer:
+    setTimeout(function () {
       $("#footer-placeholder").fadeOut("slow");
-      // você pode trocar "slow" por 1000 (milissegundos = 1s)
     }, 1000);
   });
 </script>
+
+
+<script src="menu.js"></script>
+
 
 <script src="app.js"></script>
 

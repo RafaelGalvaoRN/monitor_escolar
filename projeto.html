@@ -499,11 +499,18 @@
 
   <div id="footer-placeholder"></div>
 
-  <script>
-    $(function(){
-      $("#footer-placeholder").load("footer.html");
-      $("#header-placeholder").load("header.html");
+<!-- Carrega header e footer -->
+<script>
+  $(function () {
+    $("#footer-placeholder").load("footer.html");
+    $("#header-placeholder").load("header.html #novo_background", function () {
+      console.log("Header carregado");
+      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
     });
-  </script>
+  });
+</script>
+
+<!-- Agora sim: seu JS do menu -->
+<script src="menu.js"></script>
 </body>
 </html>

@@ -66,13 +66,20 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Corrigido: sem chave extra -->
+
+    <!-- Carrega header e footer -->
 <script>
   $(function () {
     $("#footer-placeholder").load("footer.html");
-    $("#header-placeholder").load("header.html");
+    $("#header-placeholder").load("header.html #novo_background", function () {
+      console.log("Header carregado");
+      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
+    });
   });
 </script>
+
+<!-- Agora sim: seu JS do menu -->
+<script src="menu.js"></script>
 
 <!-- Agora sim: depois do DOM -->
 <script src="particulas.js"></script>

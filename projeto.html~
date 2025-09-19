@@ -473,8 +473,8 @@
       <h2><i class="fas fa-link"></i> Contato & Links</h2>
 
       <div id="formularios" class="cards three">
-        <a class="card link" href="#" target="_blank" rel="noopener">
-          <i class="fas fa-school"></i>
+        <a class="card link" href="docs/formulario2.pdf" download="formulario2.pdf">
+          <i class="fas fa-edit"></i>
           <span>Formulário</span>
         </a>
                 
@@ -482,13 +482,12 @@
 
 <div id="painel" class="cards two">
   <!-- Link para baixar o PDF -->
-  <a class="card link" href="docs/formulario.pdf" download="formulario.pdf">
-    <i class="fas fa-school"></i>
+  <a class="card link" href="tabela.html">
+    <i class="fas fa-table"></i>
     <span>Painel de Dados (Tabela com Filtros)</span>
   </a>
-
   <!-- Link para baixar o CSV -->
-  <a class="card link" href="docs/dados.csv" download="dados.csv">
+  <a class="card link" href="data/projeto_monitor.csv" download="projeto_monitor.csv">
     <i class="fas fa-file-csv"></i>
     <span>Downloads (CSV)</span>
   </a>
@@ -500,11 +499,18 @@
 
   <div id="footer-placeholder"></div>
 
-  <script>
-    $(function(){
-      $("#footer-placeholder").load("footer.html");
-      $("#header-placeholder").load("header.html");
+<!-- Carrega header e footer -->
+<script>
+  $(function () {
+    $("#footer-placeholder").load("footer.html");
+    $("#header-placeholder").load("header.html #novo_background", function () {
+      console.log("Header carregado");
+      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
     });
-  </script>
+  });
+</script>
+
+<!-- Agora sim: seu JS do menu -->
+<script src="js/menu.js"></script>
 </body>
 </html>

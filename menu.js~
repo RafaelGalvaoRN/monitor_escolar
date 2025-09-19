@@ -1,0 +1,37 @@
+(() => {
+  const btn = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("primary-nav");
+  if (!btn || !nav) return;
+
+  const openMenu = () => {
+    nav.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+    document.body.classList.add("menu-open");
+  };
+  const closeMenu = () => {
+    nav.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-open");
+  };
+  const toggleMenu = () => (nav.classList.contains("open") ? closeMenu() : openMenu());
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Fecha ao clicar fora
+  document.addEventListener("click", (e) => {
+    if (!nav.classList.contains("open")) return;
+    const clickInside = nav.contains(e.target) || btn.contains(e.target);
+    if (!clickInside) closeMenu();
+  });
+
+  // Fecha com ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("open")) closeMenu();
+  });
+
+  // Fecha ao clicar em um link do menu
+  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+})();
