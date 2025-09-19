@@ -33,6 +33,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: visible; /* para o título não “cortar” no slide-in */
+
 }
 
 /* Círculos de fundo animados */
@@ -43,7 +46,7 @@ main {
     transform: translate(-50%, -50%);
     width: 120%;
     height: 120%;
-    z-index: -1;
+    z-index: 0;
     /* Evita overflow */
     pointer-events: none;
 }
@@ -132,28 +135,7 @@ main {
         0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Partículas flutuantes */
-.particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
 
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    animation: particleFloat 8s linear infinite;
-    /* Melhora a performance */
-    will-change: transform;
-}
 
 .particle:nth-child(odd) {
     background: rgba(79, 172, 254, 0.6);
@@ -163,7 +145,7 @@ main {
 /* Título animado */
 .hero-title {
     position: absolute;
-    bottom: -80px;
+    bottom: min(8vw, 48px);             /* em vez de -80px */
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -177,6 +159,8 @@ main {
     white-space: nowrap;
     /* Melhora a legibilidade */
     letter-spacing: 1px;
+    z-index: 3;                         /* acima da imagem (z:2) e partículas (z:1) */
+
 }
 
 /* Pulso de energia */
@@ -285,7 +269,7 @@ main {
 @media (max-width: 768px) {
     .hero-title {
         font-size: 1.8rem;
-        bottom: -50px;
+        bottom: 6vw;           /* em vez de -50px */
         /* Permite quebra em telas pequenas */
         white-space: normal;
     }
@@ -308,7 +292,7 @@ main {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 1.5rem;
-        bottom: -40px;
+         bottom: 7vw;           /* em vez de -40px */
     }
 
     .hero-container {
@@ -367,4 +351,59 @@ main {
 .energy-pulse {
     transform-style: preserve-3d;
     backface-visibility: hidden;
+}
+
+/* CSS: brilho, glow e animação com drift */
+.particles {
+  position: absolute;      /* ou fixed, conforme seu layout */
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;    /* não bloquear cliques */
+  z-index: 1;              /* aumente se ficar atrás */
+}
+
+.particle {
+  position: absolute;
+  top: 100vh;                          /* nasce fora da tela, embaixo */
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--color, #fff);
+  opacity: var(--opacity, .7);
+  filter: blur(0.3px);
+  box-shadow:
+    0 0 6px rgba(255,255,255,.8),
+    0 0 14px rgba(180,220,255,.6);     /* glow suave */
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  animation: rise var(--duration, 12s) linear var(--delay, 0s) infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(var(--drift, 0px), -50vh, 0) scale(1.02);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(calc(var(--drift, 0px) * 2), -100vh, 0) scale(1);
+    opacity: 0;
+  }
+}
+
+
+hero-title {
+  /* ...suas regras... */
+  padding: .15rem .5rem;
+  border-radius: 12px;
+  background: linear-gradient(0deg, rgba(0,0,0,.25), rgba(0,0,0,.25));
+  backdrop-filter: blur(6px);
 }
