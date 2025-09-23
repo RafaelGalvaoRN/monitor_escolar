@@ -13,8 +13,7 @@ let escolasPendentes = [
   { nome: "Escola Municipal Maria Elza Bezerril Ribeiro (Piquiri)", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Municipal João Anacleto", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
-  { nome: "Escola Municipal João Batista de Mendonça", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
-  { nome: "Escola Municipal Nossa Senhora do Desterro", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+
   { nome: "Escola Municipal Bartolomeu Fagundes", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Escola Estadual Tancredo Neves", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
@@ -263,10 +262,9 @@ function usarDadosEstaticos() {
         { nome:"Creche Municipal Dona Dal", rede:"Municipal", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Tancredo Neves", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Sebastião Policarpo", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
-        { nome:"Escola Estadual Doutor Pedro Velho", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
         { nome:"Escola Estadual Nossa Senhora das Graças", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
         { nome:"Escola Estadual Professora Maria Ocila Bezerril", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
-        { nome:"Escola Municipal Deputado Grimaldi Ribeiro", rede:"Municipal", municipio:"Pedro Velho", status:"Pendente de envio" },
+
         { nome:"Escola Municipal Dr. José Targino", rede:"Municipal", municipio:"Pedro Velho", status:"Pendente de envio" }
     ];
     
