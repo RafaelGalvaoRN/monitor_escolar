@@ -11,7 +11,7 @@ from utils_processamento import carregar_csv_forms_v7, limpar_dataframe_completo
 
 if __name__ == '__main__':
 
-    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (respostas) (2).xlsx"
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (7).zip"
 
     extensao = src_path.split(".")[-1]
 

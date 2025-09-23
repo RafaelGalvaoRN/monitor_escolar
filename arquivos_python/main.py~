@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     extensao = src_path.split(".")[-1]
 
-    if src_path.lower().endswith(".csv"):
+    if src_path.lower().endswith(".csv") or src_path.lower().endswith(".zip"):
         csv_local, to_clean = ensure_csv_local(src_path)
         df = pd.read_csv(csv_local, dtype=str)
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     df = transformar_coluna(df, "1.4. E-mail de Contato", "lower")
 
 
-    #
+
     # 3) Salvar no destino com novo nome
     dest_path = os.path.join("../data", "projeto_monitor.csv")
     save_csv(df, dest_path)

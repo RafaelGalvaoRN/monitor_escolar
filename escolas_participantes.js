@@ -18,7 +18,7 @@ let escolasPendentes = [
   { nome: "Escola Municipal Bartolomeu Fagundes", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Escola Estadual Tancredo Neves", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
-  { nome: "Escola Municipal Deputado Grimaldi Ribeiro", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
+
   { nome: "Escola Municipal São Sebastião", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
   { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
   { nome: "Escola Municipal Dr. José Targino", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
