@@ -40,7 +40,7 @@ def ajustar_coluna_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def fragmenta_csv_por_faixas(
-        csv_path: str,
+        dataframe: pd.DataFrame,
         faixas: Dict[str, Tuple[int, int]],
         id_cols: Optional[Iterable[str]] = None,
         salvar: bool = False,
@@ -62,7 +62,7 @@ def fragmenta_csv_por_faixas(
     prefixo_arquivo : prefixo para os arquivos salvos, ex.: "eixo_" -> "eixo_eixo_1.csv".
     pasta_destino: pasta onde os arquivos serão salvos
     """
-    df = pd.read_csv(csv_path)
+    df = dataframe
     out: Dict[str, pd.DataFrame] = {}
 
 
@@ -90,7 +90,6 @@ def fragmenta_csv_por_faixas(
 
             caminho_arquivo = os.path.join(pasta_destino, f"{prefixo_arquivo}{nome_eixo}.csv")
             eixo_df.to_csv(caminho_arquivo, index=False, encoding="utf-8")
-
 
         out[nome_eixo] = eixo_df
 
@@ -129,7 +128,7 @@ def rename_move(origem, novo_nome, destino_dir):
 
 
 
-def ensure_csv_local(src_path: str, temp_dir: Optional[str] = None) -> Tuple[str, List[str]]:
+def ensure_csv_local(src_path: str, temp_dir: Optional[str] = None) -> Tuple[str, List[str]] |bool:
     """
     Garante um CSV local a partir de:
       - um arquivo .csv (retorna o próprio caminho), ou
@@ -162,7 +161,7 @@ def ensure_csv_local(src_path: str, temp_dir: Optional[str] = None) -> Tuple[str
             # Aqui vamos apenas retornar o caminho extraído
             return extracted_path, paths_to_cleanup
 
-    raise ValueError("O arquivo de entrada deve ser .csv ou .zip contendo um .csv.")
+    raise "Arquivo deve terminar em .CSV ou .ZIP"
 
 
 def normalize_timestamp_column(
@@ -192,7 +191,6 @@ def normalize_timestamp_column(
     if dst_col != src_col:
         df = df.rename(columns={src_col: dst_col})
 
-    print("normalize_timestamp_column")
     return df
 
 
@@ -217,3 +215,35 @@ def cleanup_paths(paths: List[str]) -> None:
                 os.remove(p)
         except Exception:
             pass
+
+
+import pandas as pd
+
+
+def transformar_coluna(df: pd.DataFrame, coluna: str, modo: str = "lower") -> pd.DataFrame:
+    """
+    Transforma o texto de uma coluna de um DataFrame em 'lower' ou 'capitalize'.
+
+    Args:
+        df (pd.DataFrame): DataFrame de entrada
+        coluna (str): Nome da coluna a ser transformada
+        modo (str): 'lower' para minúsculas ou 'capitalize' para apenas a primeira letra maiúscula
+
+    Returns:
+        pd.DataFrame: DataFrame com a coluna transformada
+    """
+    if coluna not in df.columns:
+        raise ValueError(f"A coluna '{coluna}' não existe no DataFrame.")
+
+    if modo == "lower":
+        df[coluna] = df[coluna].str.lower()
+    elif modo == "capitalize":
+        df[coluna] = df[coluna].str.capitalize()
+
+    elif modo == "upper":
+        df[coluna] = df[coluna].str.upper()
+
+    else:
+        raise ValueError("Modo inválido. Use 'lower' ou 'capitalize'.")
+
+    return df

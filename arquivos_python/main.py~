@@ -1,41 +1,46 @@
 import os
+import time
+
 from utils import fragmenta_csv_por_faixas, rename_move, \
     save_csv, cleanup_paths, ensure_csv_local, normalize_timestamp_column
 import pandas as pd
+from utils import transformar_coluna
+import csv
 
+from utils_processamento import carregar_csv_forms_v7, limpar_dataframe_completo
 
 if __name__ == '__main__':
 
-    # file_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (teste).csv (1).zip"
-    # novo_arquivo = rename_move(file_path, "projeto_monitor.csv", "../data")
-    # print("Arquivo movido para:", novo_arquivo)
+    src_path = r"C:\Users\User\Downloads\Projeto Monitor Escolar (respostas) (2).xlsx"
 
-    # 1) Garantir CSV local (lida com .zip ou .csv)
-    src_path = r"C:\Users\User\Downloads"
-    csv_local, to_clean = ensure_csv_local(src_path)
+    extensao = src_path.split(".")[-1]
 
-    try:
-        # 2) Ler e transformar
+    if src_path.lower().endswith(".csv"):
+        csv_local, to_clean = ensure_csv_local(src_path)
         df = pd.read_csv(csv_local, dtype=str)
-        df = normalize_timestamp_column(df, src_col="Carimbo de data/hora", dst_col="Data do Envio")
 
-        # 3) Salvar no destino com novo nome
-        dest_path = os.path.join("../data", "projeto_monitor.csv")
-        save_csv(df, dest_path)
-        print("CSV corrigido e salvo em:", dest_path)
+    elif src_path.lower().endswith(".xlsx"):
+        df = pd.read_excel(src_path, dtype=str)
 
-    finally:
-        # 4) Limpar temporários (se extraiu de ZIP)
-        cleanup_paths(to_clean)
+    else:
+        raise ValueError(f"Extensão '{extensao}' desconhecida.")
+
+
+    df = limpar_dataframe_completo(df)
+    df = normalize_timestamp_column(df, src_col="Carimbo de data/hora", dst_col="Data do Envio")
+
+    df = transformar_coluna(df, "1.1. Nome da Escola", "upper")
+    df = transformar_coluna(df, "1.4. E-mail de Contato", "lower")
+
 
     #
-    # df = pd.read_csv("data/projeto_monitor.csv")
-    # num_cols = df.shape[1]
-    # print(f"CSV tem {num_cols} colunas (índices 0 a {num_cols - 1})")
+    # 3) Salvar no destino com novo nome
+    dest_path = os.path.join("../data", "projeto_monitor.csv")
+    save_csv(df, dest_path)
+    print("CSV corrigido e salvo em:", dest_path)
 
-    # Faixas corrigidas baseadas na estrutura real do CSV
     result = fragmenta_csv_por_faixas(
-        "../data/projeto_monitor.csv",
+        df,
         {
             "Identificacao_Escola": (0, 16),  # Eixo 1
             "Estrutura_Fisica_Funcionamento": (17, 64),  # Eixo 2
@@ -60,24 +65,4 @@ if __name__ == '__main__':
     print("Fragmentação concluída com sucesso!")
     print(f"Foram criados {len(result)} arquivos CSV na pasta 'data/'")
 
-    # # Opcionalmente, mostrar info sobre cada fragmento
-    # for nome_eixo, df in result.items():
-    #     print(f"{nome_eixo}: {df.shape[1]} colunas, {df.shape[0]} linhas")
 
-    # import pandas as pd
-    #
-    # # Vamos ver todas as 23 colunas do seu CSV
-    # df = pd.read_csv("dados_escolares.csv")
-    #
-    # print(f"CSV tem {df.shape[1]} colunas:")
-    # print("=" * 60)
-    #
-    # for i, col in enumerate(df.columns):
-    #     print(f"[{i:2d}] {col}")
-    #
-    # print("=" * 60)
-    # print(f"Dados disponíveis: {df.shape[0]} linha(s)")
-    #
-    # # Vamos também ver um exemplo dos dados
-    # print("\nPrimeira linha de dados (primeiros 5 valores):")
-    # print(df.iloc[0, :5].tolist())
