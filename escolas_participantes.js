@@ -262,7 +262,6 @@ function usarDadosEstaticos() {
         { nome:"Escola Estadual Tancredo Neves", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Sebastião Policarpo", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Nossa Senhora das Graças", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
-        { nome:"Escola Estadual Professora Maria Ocila Bezerril", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
 
         { nome:"Escola Municipal Dr. José Targino", rede:"Municipal", municipio:"Pedro Velho", status:"Pendente de envio" }
     ];
