@@ -15,7 +15,7 @@
             <span class="nav-icon">🏠</span> Início
         </a>
     </li>
-                
+
    <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle">
     <span class="nav-icon">📋</span>
@@ -37,6 +37,7 @@
     </li>
   </ul>
 </li>
+
     <li class="nav-item">
         <a href="escolas_participantes.html" class="nav-link">
             <span class="nav-icon">🏫</span> Escolas Participantes - Gestores
