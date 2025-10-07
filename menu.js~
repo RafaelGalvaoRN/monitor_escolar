@@ -1,37 +1,107 @@
-(() => {
-  const btn = document.querySelector(".menu-toggle");
-  const nav = document.getElementById("primary-nav");
-  if (!btn || !nav) return;
+// menu.js
+(function () {
+  function getParts() {
+    const header = document.querySelector("#novo_background");
+    if (!header) return {};
+    return {
+      header,
+      btn: header.querySelector(".menu-toggle"),
+      nav: header.querySelector(".navbar-nav"),
+    };
+  }
 
-  const openMenu = () => {
-    nav.classList.add("open");
-    btn.setAttribute("aria-expanded", "true");
+  function openMenu(parts) {
+    parts.nav.classList.add("open");
+    if (parts.btn) parts.btn.setAttribute("aria-expanded", "true");
     document.body.classList.add("menu-open");
-  };
-  const closeMenu = () => {
-    nav.classList.remove("open");
-    btn.setAttribute("aria-expanded", "false");
+  }
+
+  function closeMenu(parts) {
+    parts.nav.classList.remove("open");
+    if (parts.btn) parts.btn.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open");
-  };
-  const toggleMenu = () => (nav.classList.contains("open") ? closeMenu() : openMenu());
+  }
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleMenu();
+  function toggleMenu(parts) {
+    if (parts.nav.classList.contains("open")) closeMenu(parts);
+    else openMenu(parts);
+  }
+
+  function closeAllDropdowns() {
+    document
+      .querySelectorAll("#primary-nav .nav-item.dropdown.open")
+      .forEach((el) => el.classList.remove("open"));
+  }
+
+  // Garante início fechado (útil quando o header é injetado via AJAX)
+  document.addEventListener("DOMContentLoaded", () => {
+    const { nav, btn } = getParts();
+    if (nav) nav.classList.remove("open");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+    closeAllDropdowns();
   });
 
-  // Fecha ao clicar fora
-  document.addEventListener("click", (e) => {
-    if (!nav.classList.contains("open")) return;
-    const clickInside = nav.contains(e.target) || btn.contains(e.target);
-    if (!clickInside) closeMenu();
+  // Delegação de eventos
+  document.addEventListener("click", function (e) {
+    const parts = getParts();
+    if (!parts.nav) return;
+
+    // 1) Hamburguer
+    if (e.target.closest(".menu-toggle")) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu(parts);
+      return;
+    }
+
+    // 2) Toggle do dropdown
+    const ddToggle = e.target.closest(".dropdown-toggle");
+    if (ddToggle) {
+      e.preventDefault();
+      const li = ddToggle.closest(".nav-item.dropdown");
+
+      // Fecha outros dropdowns antes de abrir este
+      document
+        .querySelectorAll("#primary-nav .nav-item.dropdown.open")
+        .forEach((el) => {
+          if (el !== li) el.classList.remove("open");
+        });
+
+      li.classList.toggle("open");
+      return;
+    }
+
+    // 3) Clique em qualquer link do menu → fecha dropdowns e (no mobile) fecha o painel
+    if (e.target.closest("#novo_background .navbar-nav a, #novo_background .dropdown-item")) {
+      closeAllDropdowns();
+      // Se o painel está aberto (mobile), fecha
+      if (parts.nav.classList.contains("open")) closeMenu(parts);
+      return;
+    }
+
+    // 4) Clique fora do header → fecha tudo
+    const clickedInside =
+      e.target.closest("#novo_background .navbar-nav") ||
+      e.target.closest("#novo_background .menu-toggle") ||
+      e.target.closest("#novo_background .dropdown-toggle");
+    if (!clickedInside) {
+      closeAllDropdowns();
+      if (parts.nav.classList.contains("open")) closeMenu(parts);
+    }
   });
 
-  // Fecha com ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav.classList.contains("open")) closeMenu();
+  // Tecla ESC fecha dropdowns e painel mobile
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      const parts = getParts();
+      closeAllDropdowns();
+      if (parts.nav && parts.nav.classList.contains("open")) closeMenu(parts);
+    }
   });
 
-  // Fecha ao clicar em um link do menu
-  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+  // Opcional: ao redimensionar para desktop, apenas limpa dropdowns
+  window.addEventListener("resize", function () {
+    // nada agressivo aqui; CSS controla visibilidade por breakpoint
+    closeAllDropdowns();
+  });
 })();

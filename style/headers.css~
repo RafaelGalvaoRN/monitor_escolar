@@ -165,16 +165,3 @@ button:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
-
-@media (max-width: 768px) {
-  /* fechado por padrão */
-  #novo_background .navbar-nav {
-    display: none !important;
-  }
-  /* só abre quando tiver .open */
-  #novo_background .navbar-nav.open {
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-  }
-}
