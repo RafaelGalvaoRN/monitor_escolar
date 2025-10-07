@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitor Escolar – Avaliação da Comunidade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Seus estilos existentes -->
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/footer.css" />
+  <link rel="stylesheet" href="style/tabela.css" />
+  <link rel="stylesheet" href="style/headers.css" />
+  <link rel="stylesheet" href="style/navbar.css" />
+
+  <!-- Estilo desta página -->
+  <link rel="stylesheet" href="style/projeto.css" />
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+  <!-- jQuery (para carregar header/footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="proj-container">
+    <header class="proj-hero">
+      <h1>Avaliação da Comunidade</h1>
+      <p>Sua opinião é fundamental para construirmos escolas melhores! Participe avaliando a qualidade dos serviços e da infraestrutura das escolas do município.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="https://forms.gle/7YwVNC8vuRiRnSa36" target="_blank">
+          <i class="fab fa-google"></i> Responder Avaliação
+        </a>
+        <a class="btn ghost" href="ranking.html"><i class="fas fa-chart-line"></i> Ver Resultados</a>
+      </div>
+    </header>
+
+    <!-- Navegação interna da página -->
+    <nav class="proj-toc">
+      <a href="#sobre">Sobre a Avaliação</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#participar">Como Participar</a>
+      <a href="#dimensoes">Dimensões Avaliadas</a>
+      <a href="#privacidade">Privacidade</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#escolas">Escolas Participantes</a>
+      <a href="#formulario">Formulário</a>
+    </nav>
+
+    <!-- Sobre a Avaliação -->
+    <section id="sobre" class="proj-section">
+      <h2><i class="fas fa-info-circle"></i> Sobre a Avaliação da Comunidade</h2>
+      <p>
+        A <strong>Avaliação da Comunidade</strong> é uma iniciativa do <strong>Projeto Monitor Escolar</strong>
+        que visa coletar a opinião de pais, responsáveis, alunos, professores e demais membros da comunidade
+        escolar sobre a qualidade dos serviços e da infraestrutura das escolas do nosso município.
+      </p>
+      <p>
+        Através desta pesquisa, buscamos dar voz à comunidade e criar um canal direto de participação
+        nas decisões sobre a educação pública, promovendo transparência e gestão colaborativa.
+      </p>
+
+      <div class="kpis">
+        <div class="kpi"><span class="kpi-num">11</span><span class="kpi-label">Dimensões</span></div>
+        <div class="kpi"><span class="kpi-num">+25</span><span class="kpi-label">Escolas</span></div>
+        <div class="kpi"><span class="kpi-num">2-5</span><span class="kpi-label">Minutos</span></div>
+      </div>
+    </section>
+
+    <!-- Objetivos -->
+    <section id="objetivos" class="proj-section">
+      <h2><i class="fas fa-bullseye"></i> Para que serve esta pesquisa?</h2>
+      <div class="grid two">
+        <ul class="check">
+          <li>Identificar pontos fortes e fragilidades das escolas.</li>
+          <li>Subsidiar melhorias na infraestrutura e nos serviços educacionais.</li>
+          <li>Promover maior participação da comunidade nas decisões sobre a educação.</li>
+        </ul>
+        <ul class="check">
+          <li>Auxiliar gestores públicos na elaboração de políticas educacionais mais efetivas.</li>
+          <li>Criar um ranking público e transparente das escolas do município.</li>
+          <li>Fortalecer o controle social sobre a qualidade da educação.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Como Participar -->
+    <section id="participar" class="proj-section">
+      <h2><i class="fas fa-hand-point-up"></i> Como Participar</h2>
+      <ol class="steps">
+        <li><strong>Acesse o formulário:</strong> clique no botão "Responder Avaliação" no topo desta página.</li>
+        <li><strong>Escolha a escola:</strong> selecione qual escola você deseja avaliar na lista disponível.</li>
+        <li><strong>Responda com sinceridade:</strong> avalie cada dimensão de acordo com sua experiência e observação.</li>
+        <li><strong>Envie sua avaliação:</strong> ao finalizar, clique em "Enviar" e pronto!</li>
+        <li><strong>Acompanhe os resultados:</strong> os dados consolidados serão publicados no site para consulta pública.</li>
+      </ol>
+      <p style="text-align: center; margin-top: 2rem;">
+        <strong>⏱️ O questionário leva aproximadamente 2 a 5 minutos para ser concluído.</strong>
+      </p>
+    </section>
+
+    <!-- Dimensões Avaliadas -->
+    <section id="dimensoes" class="proj-section">
+      <h2><i class="fas fa-clipboard-list"></i> Dimensões Avaliadas</h2>
+      <p style="margin-bottom: 2rem;">
+        A avaliação é estruturada em <strong>11 dimensões</strong> que cobrem diferentes aspectos da escola.
+        Para cada dimensão, você atribuirá uma nota de <strong>1 a 5</strong>:
+      </p>
+
+      <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+          <div style="text-align: center;">
+            <strong style="font-size: 1.2rem; color: #dc3545;">1</strong><br>
+            <span>Péssimo</span>
+          </div>
+          <div style="text-align: center;">
+            <strong style="font-size: 1.2rem; color: #fd7e14;">2</strong><br>
+            <span>Ruim</span>
+          </div>
+          <div style="text-align: center;">
+            <strong style="font-size: 1.2rem; color: #ffc107;">3</strong><br>
+            <span>Regular</span>
+          </div>
+          <div style="text-align: center;">
+            <strong style="font-size: 1.2rem; color: #28a745;">4</strong><br>
+            <span>Satisfatório</span>
+          </div>
+          <div style="text-align: center;">
+            <strong style="font-size: 1.2rem; color: #007bff;">5</strong><br>
+            <span>Excelente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid auto">
+        <div class="card">
+          <h3>1. Estrutura Física</h3>
+          <ul class="check">
+            <li>Estado de conservação (necessidade de reforma)</li>
+            <li>Histórico de manutenção (últimos 4 anos)</li>
+            <li>Manutenções pontuais (elétrica/hidráulica)</li>
+            <li>Climatização (tipo e cobertura)</li>
+            <li>Rede elétrica (capacidade para equipamentos)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>2. Acessibilidade</h3>
+          <ul class="check">
+            <li>Rampas</li>
+            <li>Banheiros adaptados</li>
+            <li>Acessos especiais</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>3. Equipamentos e Recursos</h3>
+          <ul class="check">
+            <li>Biblioteca/sala de leitura (uso e necessidade de livros)</li>
+            <li>Laboratório de informática (nº de computadores, uso, manutenção)</li>
+            <li>Laboratório de ciências (funcionamento, materiais, uso)</li>
+            <li>Internet (contrato, qualidade, acesso)</li>
+            <li>Quadra poliesportiva (estado e utilização)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>4. Merenda Escolar e Mobiliário</h3>
+          <ul class="check">
+            <li>Refeitório (mesas/cadeiras, equipe de cozinha)</li>
+            <li>Cozinha (eletrodomésticos/utensílios, fiscalização)</li>
+            <li>Cardápio (definido por nutricionista e cumprimento)</li>
+            <li>Frequência da merenda e suficiência do recurso</li>
+            <li>Controle de estoque (forma e eficiência)</li>
+            <li>Quantidade e qualidade dos móveis</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>5. Professores</h3>
+          <ul class="check">
+            <li>Didática</li>
+            <li>Comprometimento</li>
+            <li>Assiduidade</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>6. Segurança</h3>
+          <ul class="check">
+            <li>Vigilante noturno</li>
+            <li>Porteiro(a)</li>
+            <li>Alarmes e câmeras</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>7. Material Didático</h3>
+          <ul class="check">
+            <li>Fardamento</li>
+            <li>Livros didáticos</li>
+            <li>Material escolar básico</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>8. Transporte Escolar</h3>
+          <ul class="check">
+            <li>Quantidade de veículos (demanda atendida)</li>
+            <li>Estado de conservação</li>
+            <li>Atendimento a alunos com necessidades especiais</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>9. Violência e Disciplina</h3>
+          <ul class="check">
+            <li>Gravidade dos casos de indisciplina</li>
+            <li>Registro e acompanhamento dos atos</li>
+            <li>Projetos de prevenção (álcool, drogas, bullying, etc.)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>10. Gestão Escolar</h3>
+          <ul class="check">
+            <li>Objetivos e atuação do(a) diretor(a)</li>
+            <li>Projetos desenvolvidos</li>
+            <li>Necessidades e requisitos ainda não atendidos</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>11. Identificação da Escola</h3>
+          <ul class="check">
+            <li>Seleção da escola a ser avaliada</li>
+            <li>27 escolas municipais e estaduais disponíveis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacidade -->
+    <section id="privacidade" class="proj-section">
+      <h2><i class="fas fa-shield-alt"></i> Privacidade e Proteção de Dados</h2>
+      <div class="cards two">
+        <article class="card">
+          <h3>🔒 Confidencialidade</h3>
+          <p>
+            Seus dados pessoais são confidenciais e serão mantidos em sigilo.
+          </p>
+          <p>
+            As informações coletadas serão utilizadas exclusivamente para fins de
+            pesquisa e melhoria da educação pública.
+          </p>
+        </article>
+        <article class="card">
+          <h3>📊 Transparência dos Resultados</h3>
+          <p>
+            Os <strong>resultados gerais</strong> (consolidados de todas as respostas)
+            serão disponibilizados publicamente no site em formato de ranking.
+          </p>
+          <p>
+            Isso permitirá que a comunidade acompanhe a avaliação de cada escola
+            e promova o controle social sobre a qualidade da educação.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Resultados Esperados -->
+    <section id="resultados" class="proj-section">
+      <h2><i class="fas fa-flag-checkered"></i> Resultados Esperados</h2>
+      <div class="cards three">
+        <article class="card">
+          <h3>Diagnóstico Comunitário</h3>
+          <p>Visão consolidada da percepção da comunidade sobre as condições das escolas.</p>
+        </article>
+        <article class="card">
+          <h3>Ranking Público</h3>
+          <p>Classificação das escolas baseada nas avaliações da comunidade, promovendo transparência.</p>
+        </article>
+        <article class="card">
+          <h3>Subsídio para Ações</h3>
+          <p>Informações para orientar melhorias e investimentos prioritários na rede escolar.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Escolas Participantes -->
+    <section id="escolas" class="proj-section">
+      <h2><i class="fas fa-school"></i> Escolas Participantes</h2>
+      <p style="margin-bottom: 2rem;">
+        A avaliação contempla <strong>27 escolas</strong> dos municípios de Canguaretama e Pedro Velho,
+        incluindo unidades municipais e estaduais:
+      </p>
+
+      <div class="grid three">
+        <div class="card">
+          <h3>Escolas Estaduais</h3>
+          <ul class="bullets">
+            <li>E.E. Guiomar Vasconcelos</li>
+            <li>E.E. Matias Maciel</li>
+            <li>E.E. Felipe Ferreira</li>
+            <li>E.E. 4 de Março</li>
+            <li>E.E. Fabrício Maranhão (Canguaretama)</li>
+            <li>E.E. Águida Sucupira</li>
+            <li>E.E. Sebastião Policarpo</li>
+            <li>E.E. Fabrício Maranhão (Pedro Velho)</li>
+            <li>E.E. Nossa Senhora das Graças</li>
+            <li>E.E. Professor Paulo Freire</li>
+            <li>E.E. Doutor Pedro Velho</li>
+            <li>E.E. Presidente Tancredo Neves</li>
+            <li>E.E. Professora Maria Ocila Bezerril</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Escolas Municipais</h3>
+          <ul class="bullets">
+            <li>E.M. José de Carvalho e Silva</li>
+            <li>E.M. Juarez Rabelo</li>
+            <li>E.M. Manoel Germano dos Santos</li>
+            <li>E.M. João Anacleto</li>
+            <li>E.M. Bartolomeu Fagundes</li>
+            <li>E.M. São Sebastião</li>
+            <li>E.M. Padre Leôncio</li>
+            <li>E.M. Dr. José Targino</li>
+            <li>E.M. Nossa Senhora do Desterro</li>
+            <li>E.M. Deputado Grimaldi Ribeiro</li>
+            <li>E.M. João Batista de Mendonça</li>
+            <li>E.M. Elza Bezerril Ribeiro</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Unidades Especiais</h3>
+          <ul class="bullets">
+            <li>Centro Educacional Rural Roberto Magalhães de Melo (Barra do Cunhaú)</li>
+            <li>Creche Municipal Dona Dal</li>
+          </ul>
+          <p style="margin-top: 1rem;">
+            <strong>Total:</strong> 27 unidades escolares participantes da avaliação.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulário -->
+    <section id="formulario" class="proj-section">
+      <h2><i class="fab fa-google"></i> Acesso ao Formulário</h2>
+      <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+        Pronto para participar? Clique no botão abaixo para acessar o formulário de avaliação:
+      </p>
+
+      <div class="cards three">
+        <a class="card link" href="https://forms.gle/7YwVNC8vuRiRnSa36" target="_blank">
+          <i class="fab fa-google"></i>
+          <span>Formulário de Avaliação da Comunidade</span>
+        </a>
+
+        <a class="card link" href="rankinng.html">
+          <i class="fas fa-chart-bar"></i>
+          <span>Ver Resultados Consolidados</span>
+        </a>
+
+        <a class="card link" href="index.html">
+          <i class="fas fa-arrow-left"></i>
+          <span>Voltar ao Projeto Monitor Escolar</span>
+        </a>
+      </div>
+
+      <div style="background: #e7f3ff; padding: 2rem; border-radius: 8px; border-left: 4px solid #007bff; margin-top: 3rem;">
+        <h3 style="margin-top: 0; color: #007bff;">
+          <i class="fas fa-heart"></i> Sua opinião é fundamental!
+        </h3>
+        <p style="margin-bottom: 0;">
+          Ao participar desta avaliação, você está contribuindo diretamente para a melhoria
+          da qualidade da educação no nosso município. Juntos, podemos construir escolas
+          melhores para nossas crianças e jovens. <strong>Obrigado por fazer parte desta transformação!</strong>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Carrega header e footer -->
+  <script>
+    $(function () {
+      $("#footer-placeholder").load("footer.html");
+      $("#header-placeholder").load("header.html #novo_background", function () {
+        console.log("Header carregado");
+      });
+    });
+  </script>
+
+  <!-- JS do menu -->
+  <script src="menu.js"></script>
+</body>
+</html>
