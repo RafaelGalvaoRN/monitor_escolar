@@ -82,7 +82,7 @@ if __name__ == '__main__':
     etl_csv_gestao(file_gestao)
 
 
-    file_comunidade = r"C:\Users\User\Downloads\Projeto Monitor Escolar - Resposta da comunidade (5).csv"
+    file_comunidade = r"C:\Users\User\Downloads\Projeto Monitor Escolar - Resposta da comunidade.csv (6).zip"
     etl_csv_comunidade(file_comunidade)
 
 

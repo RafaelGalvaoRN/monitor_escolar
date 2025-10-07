@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escolas Participantes – Monitor Escolar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Seus estilos existentes -->
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/footer.css" />
+  <link rel="stylesheet" href="style/tabela.css" />
+  <link rel="stylesheet" href="style/headers.css" />
+  <link rel="stylesheet" href="style/navbar.css" />
+  <link rel="stylesheet" href="style/projeto.css" />
+  <link rel="stylesheet" href="style/escolas_participantes.css" />
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+  <!-- jQuery (para carregar header/footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="proj-container">
+    <header class="proj-hero">
+      <h1>Escolas Participantes</h1>
+      <p>Lista completa das escolas que participaram do Projeto Monitor Escolar.</p>
+    </header>
+
+    <!-- Seção com a lista de escolas -->
+    <section id="escolas" class="proj-section">
+      <div class="escolas-grid">
+        <article class="card escola-card">
+            <h3 class="escola-nome">Escola Estadual Fabrício Maranhão - Município de Pedro Velho</h3>
+            <div class="escola-status">
+                <span class="badge s-participando">Participando</span>
+            </div>
+        </article>
+        <article class="card escola-card">
+            <h3 class="escola-nome">Escola Estadual Guiomar Vasconcelos</h3>
+            <div class="escola-status">
+                <span class="badge s-participando">Participando</span>
+            </div>
+        </article>
+        <article class="card escola-card">
+            <h3 class="escola-nome">Escola Municipal João Anacleto</h3>
+            <div class="escola-status">
+                <span class="badge s-participando">Participando</span>
+            </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Carrega header e footer -->
+  <script>
+    $(function () {
+      $("#footer-placeholder").load("footer.html");
+      $("#header-placeholder").load("header.html #novo_background", function () {
+        console.log("Header carregado");
+      });
+    });
+  </script>
+
+  <!-- Seu JS do menu -->
+  <script src="menu.js"></script>
+</body>
+</html>

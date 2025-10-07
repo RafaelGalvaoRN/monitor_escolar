@@ -1,0 +1,184 @@
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <title>Ranking de Escolas - Avaliação da Comunidade</title>
+        
+        <!-- Seus estilos existentes -->
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/footer.css" />
+  <link rel="stylesheet" href="style/tabela.css" />
+  <link rel="stylesheet" href="style/headers.css" />
+  <link rel="stylesheet" href="style/navbar.css" />
+  <link rel="stylesheet" href="style/projeto.css" />
+  <link rel="stylesheet" href="style/imagem-logo.css"/>
+  <link rel="stylesheet" href="style/escolas_participantes.css" />        
+  <link rel="stylesheet" href="style/ranking_comunidade.css" />
+       <!-- Font Awesome (ícones) -->
+  
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+  <!-- jQuery (para carregar header/footer) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+    </head>
+    <body>
+    
+      <div id="header-placeholder"></div>
+      
+      <div id="h1">       
+                <h1>🏆 Ranking da Comunidade</h1>
+      </div>
+
+        <div class="container">
+           
+
+            <div class="conteudo">
+                <div class="estatisticas">
+                    <div class="stat-card">
+                        <h3>4</h3>
+                        <p>Escolas Avaliadas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>2.67</h3>
+                        <p>Média Geral</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>3.20</h3>
+                        <p>Melhor Nota</p>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome da Escola</th>
+                            <th>Média</th>
+                            <th>Estrutura</th>
+                            <th>Acessib.</th>
+                            <th>Equipam.</th>
+                            <th>Merenda</th>
+                            <th>Profess.</th>
+                            <th>Segurança</th>
+                            <th>Material</th>
+                            <th>Transp.</th>
+                            <th>Violência</th>
+                            <th>Gestão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td class="posicao">1º</td>
+            <td class="nome-escola">Escola Estadual Guiomar Vasconcelos</td>
+            <td class="media">3.2</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">3</td>
+        </tr>
+        
+
+        <tr>
+            <td class="posicao">2º</td>
+            <td class="nome-escola">Escola Municipal Dr. José Targino</td>
+            <td class="media">2.9</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">3</td>
+        </tr>
+        
+
+        <tr>
+            <td class="posicao">3º</td>
+            <td class="nome-escola">Escola Estadual Doutor Pedro Velho</td>
+            <td class="media">2.3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">4</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+        </tr>
+        
+
+        <tr>
+            <td class="posicao">4º</td>
+            <td class="nome-escola">Escola Municipal Juarez Rabelo</td>
+            <td class="media">2.3</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">3</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">1</td>
+            <td class="detalhe">2</td>
+            <td class="detalhe">2</td>
+        </tr>
+        
+                    </tbody>
+                </table>
+
+                <div class="legenda">
+                    <h3>📊 Sobre as Avaliações</h3>
+                    <p>
+                        <strong>Média Geral:</strong> Calculada a partir de todas as categorias avaliadas (escala de 1 a 5).<br>
+                        <strong>Categorias:</strong> Estrutura Física, Acessibilidade, Equipamentos, Merenda/Mobiliário, 
+                        Professores, Segurança, Material Didático, Transporte, Violência e Gestão.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+          <div id="footer-placeholder"></div>
+
+ <!-- Carrega header e footer -->
+  <!-- Carrega header e footer (com cache-buster) -->
+      <script>
+  $(function () {
+    // Carrega o footer normalmente
+    $("#footer-placeholder").load("footer.html");
+
+    // Carrega apenas o header com id #novo_background
+    $("#header-placeholder").load("header.html #novo_background", function () {
+      console.log("Header carregado");
+      // Aqui o header já está no DOM, pode rodar menu.js ou outros scripts
+    });
+
+    // Se ainda quiser aplicar fadeOut no footer:
+    setTimeout(function () {
+      $("#footer-placeholder").fadeOut("slow");
+    }, 1000);
+  });
+</script>
+        
+    <script src="menu.js"></script>
+
+    </body>
+    
+
+    </html>
+    

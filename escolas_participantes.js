@@ -11,13 +11,10 @@ let escolasPendentes = [
   { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
 
-  { nome: "Escola Municipal Manoel Germano dos Santos", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Municipal João Anacleto", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
 
-  { nome: "Escola Municipal Bartolomeu Fagundes", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
-  { nome: "Escola Municipal São Sebastião", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
   { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
   { nome: "Escola Municipal Dr. José Targino", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
 
@@ -250,7 +247,6 @@ function usarDadosEstaticos() {
         { nome:"Centro Educacional Rural Roberto Magalhães de Melo (Barra do Cunhaú)", rede:"Estadual", municipio:"Canguaretama", status:"Participando" },
         { nome:"Escola Municipal José de Carvalho e Silva", rede:"Municipal", municipio:"Canguaretama", status:"Dados enviados" },
         { nome:"Escola Municipal Juarez Rabelo", rede:"Municipal", municipio:"Canguaretama", status:"Pendente de envio" },
-        { nome:"Escola Municipal Maria Elza Bezerril Ribeiro (Piquiri)", rede:"Municipal", municipio:"Canguaretama", status:"Pendente de envio" },
 
         { nome:"Escola Municipal João Anacleto", rede:"Municipal", municipio:"Baía Formosa", status:"Pendente de envio" },
 
@@ -261,7 +257,7 @@ function usarDadosEstaticos() {
         { nome:"Escola Estadual Sebastião Policarpo", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Nossa Senhora das Graças", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
 
-        { nome:"Escola Municipal Dr. José Targino", rede:"Municipal", municipio:"Pedro Velho", status:"Pendente de envio" }
+
     ];
     
     renderizarCards();

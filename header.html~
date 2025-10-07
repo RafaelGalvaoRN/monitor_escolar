@@ -26,28 +26,48 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="tabela.html" class="nav-link active">
-                                <span class="nav-icon">📊</span>
-                                Dados
-                            </a>
-                        </li>
 
+
+                        <li class="nav-item">
     <a href="escolas_participantes.html" class="nav-link">
         <span class="nav-icon">🏫</span>
-        Escolas Participantes
+        Escolas Participantes pelos Gestores
     </a>
 </li>
 
 
                          <li class="nav-item">
+    <a href="escolas_participantes_censo.html" class="nav-link">
+        <span class="nav-icon">🏫</span>
+        Escolas Avaliadas pela Comunidade
+    </a>
+</li>
+
+                         <li class="nav-item">
+                            <a href="tabela.html" class="nav-link active">
+                                <span class="nav-icon">📊</span>
+                                Ranking dos Gestores
+                            </a>
+                        </li>
+
+                           <li class="nav-item">
+    <a href="ranking.html" class="nav-link">
+        <span class="nav-icon">🏫</span>
+        Ranking da Comunidade
+    </a>
+</li>
+
+
+
+                         <li class="nav-item">
                             <a href="estatisticas.html" class="nav-link active">
 <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
-                                Estatísticas
+                                Estatísticas da Gestão
                             </a>
                         </li>
 
 
+                           </ul> <!-- fechamento adicionado -->
 
 
 
