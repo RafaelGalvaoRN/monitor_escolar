@@ -369,7 +369,7 @@
           <span>Ver Resultados Consolidados</span>
         </a>
 
-        <a class="card link" href="projeto.html">
+        <a class="card link" href="index.html">
           <i class="fas fa-arrow-left"></i>
           <span>Voltar ao Projeto Monitor Escolar</span>
         </a>
