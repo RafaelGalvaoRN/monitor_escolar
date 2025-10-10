@@ -25,7 +25,6 @@ let escolasPendentes = [
   { nome: "Escola Estadual Águida Sucupira", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
   { nome: "Escola Estadual Sebastião Policarpo", rede: "Estadual", municipio: "Vila Flor", status: "Pendente" },
   { nome: "Escola Estadual Fabrício Maranhão - Município de Pedro Velho", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
-  { nome: "Escola Estadual Nossa Senhora das Graças", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
 ];
 
   
@@ -254,7 +253,6 @@ function usarDadosEstaticos() {
 
         { nome:"Creche Municipal Dona Dal", rede:"Municipal", municipio:"Vila Flor", status:"Pendente de envio" },
 
-        { nome:"Escola Estadual Sebastião Policarpo", rede:"Estadual", municipio:"Vila Flor", status:"Pendente de envio" },
         { nome:"Escola Estadual Nossa Senhora das Graças", rede:"Estadual", municipio:"Pedro Velho", status:"Pendente de envio" },
 
 
