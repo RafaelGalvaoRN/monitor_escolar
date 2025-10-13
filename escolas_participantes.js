@@ -7,16 +7,15 @@ let escolasComStatus = [];
 
 let escolasPendentes = [
   { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Centro Educacional Rural Roberto Magalhães de Melo (Barra do Cunhaú)", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+
   { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
 
-  { nome: "Escola Municipal João Anacleto", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
 
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
   { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
-  { nome: "Escola Municipal Dr. José Targino", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
 
   { nome: "Escola Estadual Matias Maciel", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Estadual Felipe Ferreira", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
@@ -242,11 +241,10 @@ function usarDadosEstaticos() {
         { nome:"Escola Estadual 4 de março", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
         { nome:"Escola Estadual Fabrício Maranhão", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
         { nome:"Escola Estadual Guiomar Vasconcelos", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
-        { nome:"Centro Educacional Rural Roberto Magalhães de Melo (Barra do Cunhaú)", rede:"Estadual", municipio:"Canguaretama", status:"Participando" },
-        { nome:"Escola Municipal José de Carvalho e Silva", rede:"Municipal", municipio:"Canguaretama", status:"Dados enviados" },
-        { nome:"Escola Municipal Juarez Rabelo", rede:"Municipal", municipio:"Canguaretama", status:"Pendente de envio" },
 
-        { nome:"Escola Municipal João Anacleto", rede:"Municipal", municipio:"Baía Formosa", status:"Pendente de envio" },
+        { nome:"Escola Municipal José de Carvalho e Silva", rede:"Municipal", municipio:"Canguaretama", status:"Dados enviados" },
+
+
 
         { nome:"Escola Estadual Águida Sucupira", rede:"Estadual", municipio:"Baía Formosa", status:"Pendente de envio" },
 
