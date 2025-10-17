@@ -10,6 +10,7 @@ let escolasPendentes = [
 
   { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal Juvêncio dos Santos", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
 
 
