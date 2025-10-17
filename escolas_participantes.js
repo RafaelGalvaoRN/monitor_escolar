@@ -12,6 +12,13 @@ let escolasPendentes = [
   { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Juvêncio dos Santos", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
+  { nome: "Centro Educacional Maria da Conceição Freire", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
+{ nome: "Escola Municipal Professor Bartolomeu Fagundes", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
+{ nome: "Escola Municipal Dr. Manoel Francisco de Melo", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
+{ nome: "Escola Municipal Jarbas Passarinho", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
 
 
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
