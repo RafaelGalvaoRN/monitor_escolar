@@ -78,7 +78,7 @@ def etl_csv_comunidade(path_file: str):
     gerar_pagina_html_ranking(df_com_colunas, "../ranking.html")
 
 if __name__ == '__main__':
-    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (14).zip"
+    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (15).zip"
     etl_csv_gestao(file_gestao)
 
 

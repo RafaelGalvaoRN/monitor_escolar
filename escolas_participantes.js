@@ -9,7 +9,6 @@ let escolasPendentes = [
   { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
 
   { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Juarez Rabelo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Municipal Juvêncio dos Santos", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
   { nome: "Centro Educacional Maria da Conceição Freire", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
@@ -25,8 +24,6 @@ let escolasPendentes = [
 
   { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
 
-  { nome: "Escola Estadual Matias Maciel", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Estadual Felipe Ferreira", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Estadual 4 de março", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Estadual Fabrício Maranhão - Município de Canguaretama", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Estadual Águida Sucupira", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
@@ -244,7 +241,7 @@ function renderizarCards() {
 // Dados estáticos como fallback (do código original)
 function usarDadosEstaticos() {
     escolasComStatus = [
-        { nome:"Escola Estadual Matias Maciel", rede:"Estadual", municipio:"Canguaretama", status:"Participando" },
+
         { nome:"Escola Estadual Felipe Ferreira", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
         { nome:"Escola Estadual 4 de março", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
         { nome:"Escola Estadual Fabrício Maranhão", rede:"Estadual", municipio:"Canguaretama", status:"Pendente de envio" },
