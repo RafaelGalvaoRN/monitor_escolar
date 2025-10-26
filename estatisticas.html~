@@ -32,7 +32,7 @@
   <div id="header-placeholder"></div>
 
   <main>
-    <h1 id="h1"><i class="fas fa-chart-pie"></i> Estatísticas por Pergunta</h1>
+    <h1 id="h1"><i class="fas fa-chart-pie"></i> Estatísticas por Quesito</h1>
 
     <!-- Seletor de coluna -->
     <div class="card" style="padding:16px;margin-bottom:16px;">

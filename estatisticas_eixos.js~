@@ -87,7 +87,7 @@ const GerenciadorEixos = {
             console.log('Iniciando sistema de estatísticas por eixo...');
 
             // Carrega o CSV usando o módulo Estatisticas
-            await Estatisticas.initCSV('data/questionario_completo.csv');
+            await Estatisticas.initCSV('data/projeto_monitor.csv');
             this.csvCarregado = true;
 
             // Popula o seletor de eixos
