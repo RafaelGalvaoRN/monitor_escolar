@@ -9,6 +9,7 @@ import tempfile
 import shutil
 from typing import List, Tuple, Optional
 import pandas as pd
+import re
 from icecream import ic
 
 
@@ -217,7 +218,35 @@ def cleanup_paths(paths: List[str]) -> None:
             pass
 
 
-import pandas as pd
+def corrigir_nao_se_aplica(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Corrige variações de 'Não se aplica' em todas as colunas de texto do DataFrame,
+    normalizando grafias como 'Nao se aplica', 'não se aplica.', 'NAO SE APLICA', etc.
+
+    Args:
+        df (pd.DataFrame): DataFrame de entrada
+
+    Returns:
+        pd.DataFrame: DataFrame com as variações corrigidas
+    """
+    def normalizar_texto(valor):
+        if isinstance(valor, str):
+
+            # Converte para minúsculo para comparar
+            texto_lower_strip = valor.lower().strip()
+
+            # Corrige apenas variações de "não se aplica"
+            if texto_lower_strip in ["nao se aplica", "não se aplica",
+                                     "nâo se aplica", "não se aplica.", "nao se aplica.",
+                                     "não se aplida", "não se aplida.", "nâo se aplida", "não se aplida.",]:
+                return "Não se aplica"
+        return valor
+
+    # Aplica em todas as colunas de tipo texto
+    for col in df.columns:
+        df[col] = df[col].apply(normalizar_texto)
+
+    return df
 
 
 def transformar_coluna(df: pd.DataFrame, coluna: str, modo: str = "lower") -> pd.DataFrame:
@@ -235,11 +264,51 @@ def transformar_coluna(df: pd.DataFrame, coluna: str, modo: str = "lower") -> pd
     if coluna not in df.columns:
         raise ValueError(f"A coluna '{coluna}' não existe no DataFrame.")
 
+    # Garante que tudo é string (evita erro com números ou NaN)
+    df[coluna] = df[coluna].astype(str)
+
     if modo == "lower":
         df[coluna] = df[coluna].str.lower()
+
     elif modo == "capitalize":
         df[coluna] = df[coluna].str.capitalize()
+
+    elif modo == "title":
+        df[coluna] = df[coluna].astype(str).str.title()
+
+    elif modo == "upper":
+        df[coluna] = df[coluna].str.upper()
+
+
+
+
     else:
-        raise ValueError("Modo inválido. Use 'lower' ou 'capitalize'.")
+        raise ValueError("Modo inválido. Use 'lower', 'title', 'upper' ou 'capitalize'.")
+
+    return df
+
+
+def limpar_coluna(df: pd.DataFrame, coluna: str, remover: list = None) -> pd.DataFrame:
+    """
+    Remove caracteres indesejados de uma coluna de texto em um DataFrame.
+
+    Args:
+        df (pd.DataFrame): DataFrame de entrada
+        coluna (str): Nome da coluna a ser limpa
+        remover (list): Lista de caracteres a remover (ex: [",", ".", "-", ";"])
+
+    Returns:
+        pd.DataFrame: DataFrame com a coluna limpa
+    """
+    if coluna not in df.columns:
+        raise ValueError(f"A coluna '{coluna}' não existe no DataFrame.")
+
+    if remover is None:
+        remover = [",", ".", "-", ";", ":", "!", "?", "(", ")", "[", "]", "{", "}", '"', "'"]
+
+    # Cria padrão regex com os caracteres escapados
+    padrao = "[" + re.escape("".join(remover)) + "]"
+
+    df[coluna] = df[coluna].astype(str).str.replace(padrao, "", regex=True)
 
     return df

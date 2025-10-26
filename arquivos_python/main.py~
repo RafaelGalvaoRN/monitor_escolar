@@ -51,6 +51,10 @@ def etl_csv_gestao(src_path: str):
 
     df = transformar_coluna(df, '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?', "capitalize")
 
+    df = limpar_coluna(df,
+                            '3.9.1. Caso a resposta anterior seja "Sim", a Escola possui quantos alunos com NEE, incluindo aqueles estudantes sem laudo médico?',
+                            ["aluno", "alunos"])
+
     df = limpar_coluna(df, "3.10.3. Qual a quantidade de alunos que necessitam de transporte escolar regular? Caso a Escola não utilize e não necessite de transporte escolar, indicar o número 0 (zero)", ["aluno", "alunos"])
 
     df = transformar_coluna(df, '3.11.1. Caso a resposta anterior seja "Sim", quantos alunos necessitam de transporte especial?', "capitalize")
