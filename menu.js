@@ -1,5 +1,7 @@
-// menu.js
+// menu.js - Sistema de menu com suporte a injeção jQuery
 (function () {
+  'use strict';
+
   function getParts() {
     const header = document.querySelector("#novo_background");
     if (!header) return {};
@@ -11,97 +13,262 @@
   }
 
   function openMenu(parts) {
+    if (!parts.nav) return;
     parts.nav.classList.add("open");
-    if (parts.btn) parts.btn.setAttribute("aria-expanded", "true");
+    if (parts.btn) {
+      parts.btn.setAttribute("aria-expanded", "true");
+      parts.btn.classList.add("active");
+    }
     document.body.classList.add("menu-open");
+    console.log("✅ Menu aberto");
   }
 
   function closeMenu(parts) {
+    if (!parts.nav) return;
     parts.nav.classList.remove("open");
-    if (parts.btn) parts.btn.setAttribute("aria-expanded", "false");
+    if (parts.btn) {
+      parts.btn.setAttribute("aria-expanded", "false");
+      parts.btn.classList.remove("active");
+    }
     document.body.classList.remove("menu-open");
+    console.log("✅ Menu fechado");
   }
 
   function toggleMenu(parts) {
-    if (parts.nav.classList.contains("open")) closeMenu(parts);
-    else openMenu(parts);
+    if (parts.nav.classList.contains("open")) {
+      closeMenu(parts);
+    } else {
+      openMenu(parts);
+    }
   }
 
   function closeAllDropdowns() {
     document
-      .querySelectorAll("#primary-nav .nav-item.dropdown.open")
-      .forEach((el) => el.classList.remove("open"));
+      .querySelectorAll(".nav-item.dropdown.open")
+      .forEach((el) => {
+        el.classList.remove("open");
+      });
   }
 
-  // === INIT: força começar fechado e liga os handlers (pode ser chamado várias vezes) ===
+  function toggleDropdown(dropdownItem) {
+    const isOpen = dropdownItem.classList.contains("open");
+
+    // Fecha todos os outros dropdowns
+    document
+      .querySelectorAll(".nav-item.dropdown.open")
+      .forEach((el) => {
+        if (el !== dropdownItem) {
+          el.classList.remove("open");
+        }
+      });
+
+    // Toggle do dropdown atual
+    if (isOpen) {
+      dropdownItem.classList.remove("open");
+      console.log("🔽 Dropdown fechado");
+    } else {
+      dropdownItem.classList.add("open");
+      console.log("🔼 Dropdown aberto");
+    }
+  }
+
+  // === INIT: força começar SEMPRE fechado ===
   function initMenu() {
     const parts = getParts();
-    if (!parts.header || !parts.nav) return;
+    if (!parts.header || !parts.nav) {
+      console.warn("⚠️ Header ou nav não encontrado");
+      return;
+    }
 
-    // força estado inicial fechado
+    console.log("🔧 Inicializando menu...");
+
+    // FORÇA estado inicial fechado (CRÍTICO para jQuery .load)
     parts.nav.classList.remove("open");
-    if (parts.btn) parts.btn.setAttribute("aria-expanded", "false");
+    parts.nav.style.display = ""; // Remove display inline se houver
+
+    if (parts.btn) {
+      parts.btn.setAttribute("aria-expanded", "false");
+      parts.btn.classList.remove("active");
+    }
+
+    document.body.classList.remove("menu-open");
     closeAllDropdowns();
+
+
+    // No mobile, garante que começa escondido
+    if (window.innerWidth <= 768) {
+      parts.nav.style.display = "none";
+      setTimeout(() => {
+        parts.nav.style.display = ""; // Remove depois para o CSS assumir
+      }, 50);
+    }
+
+    console.log("🚀 Menu inicializado - Estado:", {
+      menuAberto: parts.nav.classList.contains("open"),
+      display: parts.nav.style.display,
+      viewport: window.innerWidth + "px"
+    });
   }
 
-  // chama no DOM pronto (útil quando o header está estático)
-  document.addEventListener("DOMContentLoaded", initMenu);
+  // === OBSERVADOR DE MUTAÇÃO (detecta quando jQuery injeta o header) ===
+  function watchForHeader() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) { // Element node
+            if (node.id === 'novo_background' || node.querySelector('#novo_background')) {
+              console.log("🔍 Header injetado detectado!");
+              setTimeout(initMenu, 50); // Aguarda o DOM se estabilizar
+              observer.disconnect(); // Para de observar depois que encontrou
+            }
+          }
+        });
+      });
+    });
 
-  // chama quando o header for injetado via jQuery .load(...)
-  document.addEventListener("header:loaded", initMenu);
+    // Observa mudanças no body e no header-placeholder
+    const targets = [
+      document.body,
+      document.getElementById('header-placeholder')
+    ].filter(Boolean);
 
-  // Delegação de eventos (um só listener para tudo)
+    targets.forEach(target => {
+      observer.observe(target, {
+        childList: true,
+        subtree: true
+      });
+    });
+
+    console.log("👁️ Observador de header ativo");
+  }
+
+  // === EVENT LISTENERS ===
+
+  // 1. Quando DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", function() {
+      initMenu();
+      watchForHeader(); // Ativa o observador
+    });
+  } else {
+    initMenu();
+    watchForHeader();
+  }
+
+  // 2. Quando header for injetado via jQuery (evento customizado)
+  document.addEventListener("header:loaded", function() {
+    console.log("📡 Evento header:loaded recebido");
+    setTimeout(initMenu, 100);
+  });
+
+  // 3. Quando window carregar completamente
+  window.addEventListener("load", function() {
+    console.log("🌐 Window load completo");
+    setTimeout(initMenu, 100);
+  });
+
+  // === DELEGAÇÃO DE EVENTOS GLOBAL ===
   document.addEventListener("click", function (e) {
     const parts = getParts();
     if (!parts.nav) return;
 
-    // hamburguer
-    if (e.target.closest(".menu-toggle")) {
+    // === HAMBURGER ===
+    const hamburger = e.target.closest(".menu-toggle");
+    if (hamburger) {
       e.preventDefault();
       e.stopPropagation();
       toggleMenu(parts);
       return;
     }
 
-    // toggle do dropdown
+    // === DROPDOWN TOGGLE ===
     const ddToggle = e.target.closest(".dropdown-toggle");
     if (ddToggle) {
       e.preventDefault();
-      const li = ddToggle.closest(".nav-item.dropdown");
-      document
-        .querySelectorAll("#primary-nav .nav-item.dropdown.open")
-        .forEach((el) => { if (el !== li) el.classList.remove("open"); });
-      li.classList.toggle("open");
+      e.stopPropagation();
+      const dropdownItem = ddToggle.closest(".nav-item.dropdown");
+      if (dropdownItem) {
+        toggleDropdown(dropdownItem);
+      }
       return;
     }
 
-    // clique em link do menu → fecha dropdowns e painel (se mobile)
-    if (e.target.closest("#novo_background .navbar-nav a, #novo_background .dropdown-item")) {
+    // === CLICK EM LINK DO DROPDOWN ===
+    const dropdownLink = e.target.closest(".dropdown-item");
+    if (dropdownLink && !dropdownLink.classList.contains("dropdown-toggle")) {
+      console.log("📎 Link do dropdown clicado");
       closeAllDropdowns();
-      if (parts.nav.classList.contains("open")) closeMenu(parts);
+      if (window.innerWidth <= 768 && parts.nav.classList.contains("open")) {
+        setTimeout(() => closeMenu(parts), 150);
+      }
       return;
     }
 
-    // clique fora → fecha tudo
-    const clickedInside =
-      e.target.closest("#novo_background .navbar-nav") ||
-      e.target.closest("#novo_background .menu-toggle") ||
-      e.target.closest("#novo_background .dropdown-toggle");
-    if (!clickedInside) {
+    // === CLICK EM LINK NORMAL DO NAV ===
+    const navLink = e.target.closest(".nav-link:not(.dropdown-toggle)");
+    if (navLink) {
+      console.log("📎 Link do nav clicado");
       closeAllDropdowns();
-      if (parts.nav.classList.contains("open")) closeMenu(parts);
+      if (window.innerWidth <= 768 && parts.nav.classList.contains("open")) {
+        setTimeout(() => closeMenu(parts), 150);
+      }
+      return;
+    }
+
+    // === CLICK FORA DO MENU ===
+    const clickedInsideNav = e.target.closest(".navbar-nav");
+    const clickedInsideToggle = e.target.closest(".menu-toggle");
+
+    if (!clickedInsideNav && !clickedInsideToggle) {
+      closeAllDropdowns();
+      if (parts.nav.classList.contains("open")) {
+        closeMenu(parts);
+      }
     }
   });
 
-  // ESC fecha tudo
+  // === ESC FECHA TUDO ===
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       const parts = getParts();
       closeAllDropdowns();
-      if (parts.nav && parts.nav.classList.contains("open")) closeMenu(parts);
+      if (parts.nav && parts.nav.classList.contains("open")) {
+        closeMenu(parts);
+      }
     }
   });
 
-  // (opcional) ao redimensionar, apenas fecha dropdowns
-  window.addEventListener("resize", closeAllDropdowns);
+  // === RESIZE: fecha dropdowns e menu mobile ===
+  let resizeTimer;
+  window.addEventListener("resize", function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      closeAllDropdowns();
+
+      if (window.innerWidth > 768) {
+        const parts = getParts();
+        if (parts.nav && parts.nav.classList.contains("open")) {
+          closeMenu(parts);
+        }
+      }
+
+      console.log("📐 Resize:", window.innerWidth + "px");
+    }, 250);
+  });
+
+  // === DEBUG ===
+  window.debugMenu = function() {
+    const parts = getParts();
+    console.log("🔍 Debug Menu:");
+    console.log("- Header existe?", !!parts.header);
+    console.log("- Nav existe?", !!parts.nav);
+    console.log("- Toggle existe?", !!parts.btn);
+    console.log("- Menu aberto?", parts.nav?.classList.contains("open"));
+    console.log("- Display nav:", parts.nav?.style.display);
+    console.log("- Dropdowns:", document.querySelectorAll(".nav-item.dropdown").length);
+    console.log("- Dropdowns abertos:", document.querySelectorAll(".nav-item.dropdown.open").length);
+    console.log("- Viewport:", window.innerWidth + "x" + window.innerHeight);
+  };
+
+  console.log("✅ Sistema de menu carregado");
 })();

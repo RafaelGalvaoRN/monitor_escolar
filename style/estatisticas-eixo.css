@@ -1,0 +1,198 @@
+/* estatisticas-eixos.css - Estilos específicos para visualização por eixos */
+
+/* Melhorias no container principal */
+#graficosContainer {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para o card do título do eixo */
+#graficosContainer > .card:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+#graficosContainer > .card:first-child h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+#graficosContainer > .card:first-child p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Animação de entrada dos itens de gráfico */
+.grafico-item {
+    animation: slideIn 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.grafico-item:nth-child(2) { animation-delay: 0.1s; }
+.grafico-item:nth-child(3) { animation-delay: 0.2s; }
+.grafico-item:nth-child(4) { animation-delay: 0.3s; }
+.grafico-item:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hover nos cards de gráfico */
+.grafico-item {
+    transition: all 0.3s ease;
+}
+
+.grafico-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* Título da pergunta */
+.grafico-item h3 {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 1200px) {
+    .grafico-container {
+        grid-template-columns: 1fr;
+    }
+
+    .grafico-box canvas {
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .grafico-item h3 {
+        font-size: 14px;
+    }
+
+    .eixo-selector label {
+        font-size: 14px;
+    }
+
+    .eixo-selector select,
+    .eixo-selector button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Efeito no botão de gerar */
+.eixo-selector button {
+    position: relative;
+    overflow: hidden;
+}
+
+.eixo-selector button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.eixo-selector button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Melhorias no estado vazio */
+#graficosContainer.empty {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+#graficosContainer.empty i {
+    color: #adb5bd;
+    margin-bottom: 15px;
+}
+
+#graficosContainer.empty p {
+    color: #6c757d;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Efeito de pulsação no loading */
+.spinner {
+    animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Cores alternadas para os cards de gráfico */
+.grafico-item:nth-child(odd) {
+    background: #ffffff;
+}
+
+.grafico-item:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* Melhorias na tipografia */
+.grafico-box h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Print styles */
+@media print {
+    .eixo-selector,
+    #header-placeholder,
+    #footer-placeholder,
+    .loading-overlay {
+        display: none !important;
+    }
+
+    .grafico-item {
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+    }
+
+    .grafico-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
