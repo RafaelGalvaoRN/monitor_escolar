@@ -15,7 +15,10 @@ let escolasPendentes = [
 
 { nome: "Escola Municipal Professor Bartolomeu Fagundes", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
 
+{ nome: "Escola Municipal Dr. Manoel Francisco de Melo", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
 { nome: "Escola Municipal Jarbas Passarinho", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+
 
   { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
