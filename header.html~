@@ -31,8 +31,8 @@
         <span class="nav-icon">📋</span> Participantes
       </a>
       <ul class="dropdown-menu">
-        <li><a href="escolas_participantes.html" class="dropdown-item"><span class="nav-icon">🏫</span>Escolas avaliadas pelos Gestores</a></li>
-        <li><a href="escolas_participantes_censo.html" class="dropdown-item"><span class="nav-icon">👥</span>Escolas avaliadas pela Comunidade</a></li>
+        <li><a href="escolas_participantes.html" class="dropdown-item"><span class="nav-icon">🏫</span>Escolas - Gestores</a></li>
+        <li><a href="escolas_participantes_censo.html" class="dropdown-item"><span class="nav-icon">👥</span>Escolas - Comunidade</a></li>
       </ul>
     </li>
 
