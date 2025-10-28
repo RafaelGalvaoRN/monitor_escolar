@@ -17,14 +17,11 @@ let escolasPendentes = [
 
 { nome: "Escola Municipal Jarbas Passarinho", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
 
-  { nome: "Creche Municipal Dona Dal", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
 
   { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
 
   { nome: "Escola Estadual 4 de março", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Estadual Fabrício Maranhão - Município de Canguaretama", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
   { nome: "Escola Estadual Águida Sucupira", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
-  { nome: "Escola Estadual Fabrício Maranhão - Município de Pedro Velho", rede: "Estadual", municipio: "Pedro Velho", status: "Pendente" },
 ];
 
   
