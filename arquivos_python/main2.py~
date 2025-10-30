@@ -255,4 +255,4 @@ if __name__ == '__main__':
     etl_csv_comunidade(file_comunidade)
 
     # Abrir no navegador (se necessário)
-    webbrowser.open(Path("../projeto.html").resolve().as_uri())
+    webbrowser.open(Path("../index.html").resolve().as_uri())
