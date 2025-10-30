@@ -267,6 +267,9 @@ def transformar_coluna(df: pd.DataFrame, coluna: str, modo: str = "lower") -> pd
     # Garante que tudo é string (evita erro com números ou NaN)
     df[coluna] = df[coluna].astype(str)
 
+    print(coluna)
+    print(modo)
+
     if modo == "lower":
         df[coluna] = df[coluna].str.lower()
 
@@ -281,21 +284,23 @@ def transformar_coluna(df: pd.DataFrame, coluna: str, modo: str = "lower") -> pd
 
 
 
-
     else:
         raise ValueError("Modo inválido. Use 'lower', 'title', 'upper' ou 'capitalize'.")
+
+    print(df[coluna])
 
     return df
 
 
-def limpar_coluna(df: pd.DataFrame, coluna: str, remover: list = None) -> pd.DataFrame:
+def limpar_coluna(df: pd.DataFrame, coluna: str, remover: list = None, remover_palavras: list = None) -> pd.DataFrame:
     """
-    Remove caracteres indesejados de uma coluna de texto em um DataFrame.
+    Remove caracteres e/ou palavras indesejadas de uma coluna de texto em um DataFrame.
 
     Args:
         df (pd.DataFrame): DataFrame de entrada
         coluna (str): Nome da coluna a ser limpa
         remover (list): Lista de caracteres a remover (ex: [",", ".", "-", ";"])
+        remover_palavras (list): Lista de palavras a remover (ex: ["computadores", "unidades"])
 
     Returns:
         pd.DataFrame: DataFrame com a coluna limpa
@@ -303,12 +308,120 @@ def limpar_coluna(df: pd.DataFrame, coluna: str, remover: list = None) -> pd.Dat
     if coluna not in df.columns:
         raise ValueError(f"A coluna '{coluna}' não existe no DataFrame.")
 
+    # Remove caracteres individuais
     if remover is None:
         remover = [",", ".", "-", ";", ":", "!", "?", "(", ")", "[", "]", "{", "}", '"', "'"]
 
-    # Cria padrão regex com os caracteres escapados
-    padrao = "[" + re.escape("".join(remover)) + "]"
+    if remover:
+        padrao = "[" + re.escape("".join(remover)) + "]"
+        df[coluna] = df[coluna].astype(str).str.replace(padrao, "", regex=True)
 
-    df[coluna] = df[coluna].astype(str).str.replace(padrao, "", regex=True)
+    # Remove palavras completas (com word boundaries)
+    if remover_palavras:
+        for palavra in remover_palavras:
+            # \b garante que é uma palavra completa, não parte de outra
+            # Faz case-insensitive com (?i)
+            padrao_palavra = r'\b' + re.escape(palavra) + r'\b'
+            df[coluna] = df[coluna].str.replace(padrao_palavra, "", regex=True, flags=re.IGNORECASE)
+
+    # Remove espaços extras que podem ter sobrado
+    df[coluna] = df[coluna].str.strip().str.replace(r'\s+', ' ', regex=True)
 
     return df
+
+
+
+import re
+import unicodedata
+import pandas as pd
+from typing import Dict, List, Union
+
+import unicodedata
+import pandas as pd
+import pandas as pd
+import unicodedata
+import string
+
+
+import unicodedata
+import pandas as pd
+
+import pandas as pd
+import unicodedata
+from typing import Dict, List, Union
+
+import pandas as pd
+import unicodedata
+from typing import Dict, List
+
+
+def normalizar_texto(texto: str) -> str:
+    """Normaliza texto para comparação."""
+    if not isinstance(texto, str) or pd.isna(texto):
+        return ""
+
+    texto = texto.strip().lower()
+
+    # Remove acentos
+    texto = unicodedata.normalize("NFKD", texto)
+    texto = texto.encode("ascii", errors="ignore").decode("utf-8")
+
+    # Remove pontuação
+    for char in ".;:!?()[]{}-_/\\\"'`":
+        texto = texto.replace(char, " ")
+
+    # Remove espaços múltiplos
+    texto = " ".join(texto.split())
+
+    return texto
+
+
+def padronizar_respostas(
+        df: pd.DataFrame,
+        coluna: str,
+        mapa_equivalencias: Dict[str, List[str]]
+) -> pd.DataFrame:
+    """
+    Padroniza respostas baseando-se em um mapa de equivalências.
+
+    Parâmetros:
+    -----------
+    df : pd.DataFrame
+        DataFrame contendo os dados
+    coluna : str
+        Nome da coluna a ser padronizada
+    mapa_equivalencias : Dict[str, List[str]]
+        Dicionário: {resposta_padrao: [lista_de_variacoes]}
+
+    Retorna:
+    --------
+    pd.DataFrame (modificado in-place)
+    """
+    if coluna not in df.columns:
+        raise ValueError(f"Coluna '{coluna}' não existe no DataFrame.")
+
+    # Cria mapa reverso: variacao_normalizada -> resposta_padrao
+    mapa_reverso = {}
+    for resposta_padrao, variacoes in mapa_equivalencias.items():
+
+        for variacao in variacoes:
+            variacao_norm = normalizar_texto(variacao)
+            if variacao_norm:
+                mapa_reverso[variacao_norm] = resposta_padrao
+
+    # Substitui valores
+    def substituir(valor):
+        if pd.isna(valor):
+            return valor
+
+        valor_norm = normalizar_texto(str(valor))
+
+        return mapa_reverso.get(valor_norm, valor)
+
+    df[coluna] = df[coluna].apply(substituir)
+
+    return df
+
+
+
+

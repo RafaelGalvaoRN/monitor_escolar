@@ -1,7 +1,9 @@
 import os
+import time
 
 from utils import fragmenta_csv_por_faixas, \
-    save_csv, ensure_csv_local, normalize_timestamp_column, transformar_coluna, limpar_coluna, corrigir_nao_se_aplica
+    save_csv, ensure_csv_local, normalize_timestamp_column, transformar_coluna, limpar_coluna, corrigir_nao_se_aplica, \
+    padronizar_respostas
 import pandas as pd
 
 from utils_censo import escolas_unicas, gerar_pagina_html_escolas_unicas, \
@@ -39,17 +41,269 @@ def etl_csv_gestao(src_path: str):
     df = transformar_coluna(df, '1.7. Nome da Vice-Direção (se não houver, responder "Não se aplica")', "title")
     df = limpar_coluna(df, "1.13. A Escola possui quantos alunos matriculados no momento?", [".", "alunos", " "])
     df = limpar_coluna(df, "1.14. Qual é a quantidade de turmas existentes na Escola?", ["turmas"])
-    df = transformar_coluna(df, '2.11.1. Caso a resposta anterior seja "Sim", quais esportes são oferecidos? Caso a resposta anterior seja "Não", responder "Não se aplica".', "capitalize")
+
+    mapa_uniformizacao = {
+        "8": [
+            "8 salas",
+            ],
+        "10": [
+            "10 salas de aulas",
+        ],
+        "05": [
+            "05 salas",
+        ],
+        "04": [
+            "04 por turno",
+        ]
+    }
+    df = padronizar_respostas(df, "1.15. Qual é a quantidade de salas de aula existentes na Escola?", mapa_uniformizacao)
+
+    # mapa_uniformizacao = {
+    #     "Futebol masculino": [
+    #         "Futebol masculino",
+    #         "futebol masculino",
+    #         "Futebol masculino e feminino",
+    #         "Futebol, futsal e futebol",
+    #         "Futebol, futsal",
+    #         "Futebol masculino e feminino, karatê",
+    #         "Futebol, voleibol, surf.",
+    #         "Futsal, futebol e futebol de areia",
+    #         "Futebol e volei",
+    #         "vôlei, jiu-jistsu, futebol",
+    #     ],
+    #
+    #     "Futebol feminino": [
+    #         "Futebol feminino",
+    #         "futebol feminino",
+    #         "Futebol masculino e feminino",
+    #         "Futebol masculino e feminino, karatê",
+    #     ],
+    #
+    #     "Futsal": [
+    #         "Futsal",
+    #         "futsal",
+    #         "Futebol, futsal e futebol",
+    #         "Futsal, capoeira, volei, queimada.",
+    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
+    #         "Futsal, vôlei, jiu-jítsu, futebol",
+    #         "Futsal, futebol e futebol de areia",
+    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
+    #     ],
+    #
+    #     "Jiu-jítsu": [
+    #         "Jiu-jitsu",
+    #         "Jiu-jítsu",
+    #         "Vôlei, jiu-jitsu, futebol",
+    #         "Vôlei, jiu-jítsu, futebol",
+    #         "vôlei, jiu-jistsu, futebol",
+    #     ],
+    #
+    #     "Capoeira": [
+    #         "Capoeira",
+    #         "capoeira",
+    #         "Futsal, capoeira, volei, queimada.",
+    #     ],
+    #
+    #     "Queimada": [
+    #         "Queimada",
+    #         "queimada",
+    #         "Futsal, capoeira, volei, queimada.",
+    #     ],
+    #
+    #     "Karatê": [
+    #         "Karatê",
+    #         "karate",
+    #         "karatê",
+    #         "Futebol masculino e feminino, karatê",
+    #     ],
+    #
+    #     "Futvôlei": [
+    #         "Futvôlei",
+    #         "futvolei",
+    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
+    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
+    #     ],
+    #
+    #     "Handball": [
+    #         "Handball",
+    #         "handball",
+    #         "handbol",
+    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
+    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
+    #     ],
+    #
+    #     "Basquete": [
+    #         "Basquete",
+    #         "basquete",
+    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
+    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
+    #     ],
+    #
+    #     "Futebol de Areia": [
+    #         "Futebol de areia",
+    #         "futebol de areia",
+    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
+    #         "Futsal, futebol e futebol de areia",
+    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
+    #     ],
+    #
+    #     "Surf": [
+    #         "Surf",
+    #         "surf",
+    #         "Futebol, voleibol, surf.",
+    #     ],
+    #
+    #     "Não se aplica": [
+    #         "Não se aplica",
+    #         "NAO SE APLICA",
+    #         "NÃO SE APLICA",
+    #         "não se aplica",
+    #         "Nao se aplica",
+    #     ],
+    #
+    #     "Outro": [
+    #         "Outro",
+    #         "Outros",
+    #         "outro",
+    #         "outros",
+    #     ],
+    # }
+    coluna = '2.11.1. Caso a resposta anterior seja "Sim", quais esportes são oferecidos? Caso a resposta anterior seja "Não", responder "Não se aplica".'
+    # df = padronizar_respostas(df, coluna , mapa_uniformizacao)
+    df = transformar_coluna(df, coluna, "capitalize")
+
+    df = limpar_coluna(df, "2.14.1. Caso a Escola possua laboratório de informática, quantos computadores estão funcionando?", remover_palavras = ["computadores"])
+
+
+
+
     df = transformar_coluna(df, '2.12.1. Caso a resposta anterior seja "Sim", em qual local se realizam as aulas práticas de Educação Física? Caso a resposta anterior seja "Não", responder "Não se aplica".', "capitalize")
     df = transformar_coluna(df, '2.21.1. Caso a resposta anterior seja "Não", quais equipamentos se encontram em falta ou necessitando de manutenção/substituição? (Pode marcar mais de uma opção)', "lower")
     df = transformar_coluna(df, '2.26.1. Caso a resposta anterior seja "Sim", de que forma é realizado o controle de estoque?', "capitalize")
 
+    mapa_uniformizacao = {
+        "Todos estão em perfeito estado/Não está faltando nada": [
+            "tem tudo que necessita para preparar e servir a merenda.",
+            "Todos estão em perfeito estado",
+            "não",
+            "não está faltando nada na cozinha"
+        ],
+        "Processador/Multiprocessador": [
+            "MULTIPROCESSADOR",
+            "PROCESSADOR",
+
+        ],
+        "Liquidificador": [
+            "LIQUIDIFICADOR INDUSTRIAL"
+        ]
+    }
+    coluna = '2.21.1. Caso a resposta anterior seja "Não", quais equipamentos se encontram em falta ou necessitando de manutenção/substituição? (Pode marcar mais de uma opção)'
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+    df = transformar_coluna(df, coluna, "title")
+
     df = transformar_coluna(df,
                             '2.27.1. Caso a resposta anterior seja "Não", quais equipamentos estão em falta? (Pode marcar mais de uma opção)',
-                            "capitalize")
+                            "title")
 
 
-    df = transformar_coluna(df, '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?', "capitalize")
+
+    df = transformar_coluna(df, '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?', "title")
+
+
+
+    #padronizar respostas
+
+
+    coluna = '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?'
+
+    mapa_uniformizacao = {
+        "Busca ativa escolar": [
+            "Busca ativa escolar",
+            "Busca ativa escolar.",
+            "Busca ativa",
+            "A escola realiza busca ativa",
+            "A escola realiza Busca ativa.",
+            "A escola realiza a busca ativa.",
+            "Fazendo busca ativa através de ligação e ou visita a família",
+            "Entramos em contato com as famílias, quando não coseguimos encaminhamos para o busca ativa.",
+            "Ações do busca ativa escolar e personalização do currículo",
+            "REUNIAO COM A FAMILA, BUSCA ATIVA DESNTRE OUTROS.",
+            "fazendo busca ativa através de ligação e ou visita a família"
+        ],
+
+        "Busca ativa com o Conselho Tutelar": [
+            "Busca ativa e encaminhamento ao o Conselho Tutelar.",
+            "Busca ativa com o Conselho Tutelar, Encaminhamento à rede de proteção/ao Conselho Tutelar",
+            "Encaminhamento para o setor de Busca Ativa e uso da FICAI com encaminhamento ao Conselho Tutelar.",
+            "A escola realiza a busca ativa do aluno, não tendo retorno a escola, aciona o conselho tutelar e a rede de proteção.",
+            "BUSCA ATIVA E ENCAMINHAMENTO AO CONSELHO TUTELAR.",
+            "Contato com os responsáveis. visitas domiciliares. encaminhamento para o setor de busca ativa e uso da ficai com encaminhamento ao conselho tutelar.",
+        ],
+
+        "Contato com pais ou responsáveis": [
+            "Contato com os responsáveis.",
+            "contato com pais ou responsáveis",
+            "Entrar em contato com os pais ou responsáveis.",
+            "Entramos em contato com as famílias, quando não coseguimos encaminhamos para o busca ativa."
+        ],
+
+        "Visitas domiciliares": [
+            "Visitas domiciliares.",
+            "Visitas domiciliares",
+            "Fazendo busca ativa através de ligação e ou visita a família"
+        ],
+
+        "Reuniões com a família": [
+            "Reuniões com a família",
+            "REUNIAO COM A FAMILA, BUSCA ATIVA DESNTRE OUTROS."
+        ],
+
+        "Encaminhamento à rede de proteção/ao Conselho Tutelar": [
+            "Encaminhamento para o setor de Busca Ativa e uso da FICAI com encaminhamento ao Conselho Tutelar.",
+            "A escola realiza a busca ativa do aluno, não tendo retorno a escola, aciona o conselho tutelar e a rede de proteção.",
+            "BUSCA ATIVA E ENCAMINHAMENTO AO CONSELHO TUTELAR."
+        ],
+
+        "Acompanhamento individualizado dos alunos": [
+            "Acompanhamento individualizado dos alunos",
+            "Monitoramento individualizado do aluno",
+            "Acompanhamento pedagógico individualizado"
+        ],
+
+        "Reuniões de gestão sobre evasão": [
+            "Reuniões de gestão sobre evasão",
+            "reuniões de gestão sobre evasão"
+        ],
+
+        "Monitoramento pela frequência escolar": [
+            "Monitoramento pela frequência escolar",
+            "monitoramento pela frequência escolar"
+        ],
+
+        "Não se aplica": [
+            "NAO SE APLICA",
+            "NÃO SE APLICA",
+            "NÃO TEMOS EVASÃO",
+            "NENHUMA",
+            "não se aplica",
+            "Não se aplica"
+        ],
+
+        "Outro": [
+            "Outros",
+            "Outro",
+            "outro"
+        ]
+    }
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+    df = transformar_coluna(df, coluna, "capitalize")
+
+    df = limpar_coluna(df, '3.9.1. Caso a resposta anterior seja "Sim", a Escola possui quantos alunos com NEE, incluindo aqueles estudantes sem laudo médico?', remover_palavras=["alunos", "NEE", "apenas um com laudo médico", ","])
+
 
     df = limpar_coluna(df, "3.10.3. Qual a quantidade de alunos que necessitam de transporte escolar regular? Caso a Escola não utilize e não necessite de transporte escolar, indicar o número 0 (zero)", ["aluno", "alunos"])
 

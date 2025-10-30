@@ -74,6 +74,9 @@ const EIXOS = {
     }
 };
 
+
+
+
 // Gerenciador principal
 const GerenciadorEixos = {
     csvCarregado: false,

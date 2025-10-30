@@ -1,4 +1,4 @@
-// estatisticas-eixos.js - Gerenciador de Estatísticas por Eixo
+// estatisticas-eixos.js - Gerenciador de Estatísticas por Eixo com Tooltips
 
 // Definição dos Eixos e suas faixas de colunas
 const EIXOS = {
@@ -74,10 +74,20 @@ const EIXOS = {
     }
 };
 
+
+function capitalizarTexto(texto) {
+    return texto
+        .split(' ')
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase())
+        .join(' ');
+}
+
+
 // Gerenciador principal
 const GerenciadorEixos = {
     csvCarregado: false,
     graficosAtivos: [],
+    colunaEscola: null, // Guarda qual coluna tem o nome da escola
 
     /**
      * Inicializa o sistema
@@ -89,6 +99,9 @@ const GerenciadorEixos = {
             // Carrega o CSV usando o módulo Estatisticas
             await Estatisticas.initCSV('data/projeto_monitor.csv');
             this.csvCarregado = true;
+
+            // Detecta qual coluna tem o nome da escola
+            this.detectarColunaEscola();
 
             // Popula o seletor de eixos
             this.popularSeletorEixos();
@@ -102,6 +115,81 @@ const GerenciadorEixos = {
             console.error('Erro ao inicializar:', error);
             this.mostrarErro('Erro ao carregar os dados. Verifique o console para mais detalhes.');
         }
+    },
+
+    /**
+     * Detecta qual coluna contém o nome da escola
+     */
+    detectarColunaEscola() {
+        const headers = Estatisticas.getHeaders();
+
+        // Busca por palavras-chave comuns para identificar a coluna da escola
+        const palavrasChave = ['escola', 'nome', 'unidade', 'instituicao', 'instituição'];
+
+        for (let i = 0; i < headers.length; i++) {
+            const header = headers[i].toLowerCase();
+            if (palavrasChave.some(palavra => header.includes(palavra))) {
+                this.colunaEscola = headers[i];
+                console.log('Coluna da escola detectada:', this.colunaEscola);
+                return;
+            }
+        }
+
+        // Se não encontrou, usa a primeira coluna
+        this.colunaEscola = headers[0];
+        console.log('Usando primeira coluna como nome da escola:', this.colunaEscola);
+    },
+
+    /**
+     * Obtém o mapeamento de respostas para escolas
+     */
+    obterEscolasPorResposta(nomeColuna) {
+        const dados = Estatisticas.getDados();
+
+        if (!dados || dados.length === 0) {
+            console.error('Dados não disponíveis');
+            return new Map();
+        }
+
+        const respostaParaEscolas = new Map();
+        const separadorMultiplas = Estatisticas.separadorMultiplas || ';';
+        const rotuloVazio = Estatisticas.rotuloVazio || '(Não informado)';
+
+        dados.forEach((registro, index) => {
+            let valor = registro[nomeColuna];
+            const escola = registro[this.colunaEscola] || `Registro ${index + 1}`;
+
+            // Trata valores vazios
+            if (valor === null || valor === undefined || valor === '' || valor === 'null') {
+                valor = rotuloVazio;
+                if (!respostaParaEscolas.has(valor)) {
+                    respostaParaEscolas.set(valor, []);
+                }
+                respostaParaEscolas.get(valor).push(escola);
+                return;
+            }
+
+            const texto = String(valor).trim();
+
+            // Múltiplas escolhas
+            if (texto.includes(separadorMultiplas)) {
+                texto.split(separadorMultiplas).forEach(part => {
+                    const p = String(part).trim() || rotuloVazio;
+                    if (!respostaParaEscolas.has(p)) {
+                        respostaParaEscolas.set(p, []);
+                    }
+                    respostaParaEscolas.get(p).push(escola);
+                });
+            } else {
+                const unico = texto || rotuloVazio;
+                if (!respostaParaEscolas.has(unico)) {
+                    respostaParaEscolas.set(unico, []);
+                }
+                respostaParaEscolas.get(unico).push(escola);
+            }
+        });
+
+        return respostaParaEscolas;
     },
 
     /**
@@ -177,7 +265,6 @@ const GerenciadorEixos = {
 
         console.log(`Gerando gráficos para ${eixo.nome}`);
         console.log(`Colunas: ${colunasEixo.length} (índices ${eixo.inicio} a ${eixo.fim})`);
-        console.log('Colunas:', colunasEixo);
 
         const container = document.getElementById('graficosContainer');
         container.innerHTML = '';
@@ -238,17 +325,167 @@ const GerenciadorEixos = {
 
             // Aguarda o DOM atualizar antes de plotar
             setTimeout(() => {
-                // Usa o módulo Estatisticas para plotar
-                Estatisticas.plotColumn({
-                    column: coluna,
-                    pieCanvasId: idPizza,
-                    barCanvasId: idBarra,
-                    titleElIds: {} // Não precisamos atualizar títulos externos
-                });
+                this.plotarComTooltipCustomizado(coluna, idPizza, idBarra);
             }, 50);
 
         } catch (error) {
             console.error(`Erro ao criar gráfico para ${coluna}:`, error);
+        }
+    },
+
+    /**
+     * Plota os gráficos com tooltips customizados mostrando as escolas
+     */
+    plotarComTooltipCustomizado(column, pieCanvasId, barCanvasId) {
+        if (!Estatisticas.dados) {
+            console.error('CSV não foi carregado ainda');
+            return;
+        }
+
+        if (!Estatisticas.headers || !Estatisticas.headers.includes(column)) {
+            console.error(`Coluna "${column}" não encontrada no CSV`);
+            return;
+        }
+
+        try {
+            // Obtém o mapeamento de respostas para escolas
+            const respostaParaEscolas = this.obterEscolasPorResposta(column);
+
+            // Obtém os contadores normalmente
+            const contadores = Estatisticas.contarValores(column);
+            const entries = Object.entries(contadores);
+
+            if (entries.length === 0) {
+                console.warn(`Nenhum dado encontrado para a coluna "${column}"`);
+                return;
+            }
+
+            // Ordena por quantidade desc
+            entries.sort((a, b) => b[1] - a[1]);
+
+            const labels = entries.map(e => e[0]);
+            const valores = entries.map(e => e[1]);
+            const total = valores.reduce((sum, val) => sum + val, 0);
+
+            // Configuração de tooltip personalizado
+            const tooltipConfig = {
+                callbacks: {
+                    title: function(context) {
+                        return context[0].label;
+                    },
+                    label: function(context) {
+                        const valor = context.parsed || context.parsed.y || context.raw;
+                        return `Total: ${valor} escola${valor > 1 ? 's' : ''}`;
+                    },
+                    afterLabel: function(context) {
+                        const label = context.label;
+                        const escolas = respostaParaEscolas.get(label) || [];
+
+                        if (escolas.length === 0) return '';
+
+                        const linhas = ['\nEscolas:'];
+                        const maxExibir = 10;
+                        const escolasExibir = escolas.slice(0, maxExibir);
+
+                        escolasExibir.forEach((escola, i) => {
+                            linhas.push(`${i + 1}. ${escola}`);
+                        });
+
+                        if (escolas.length > maxExibir) {
+                            linhas.push(`... e mais ${escolas.length - maxExibir}`);
+                        }
+
+                        return linhas;
+                    }
+                },
+                displayColors: true,
+                padding: 12,
+                bodySpacing: 4,
+                titleFont: { size: 14, weight: 'bold' },
+                bodyFont: { size: 11 }
+            };
+
+            // Cria gráfico de pizza com tooltip customizado
+            if (pieCanvasId) {
+                const canvas = document.getElementById(pieCanvasId);
+                if (canvas) {
+                    const ctx = canvas.getContext('2d');
+
+                    if (Estatisticas.graficosAtivos[pieCanvasId]) {
+                        Estatisticas.graficosAtivos[pieCanvasId].destroy();
+                    }
+
+                    Estatisticas.graficosAtivos[pieCanvasId] = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels,
+                            datasets: [{
+                                data: valores,
+                                backgroundColor: Estatisticas.cores.slice(0, labels.length),
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { padding: 10, usePointStyle: true, font: { size: 12 } }
+                                },
+                                tooltip: tooltipConfig
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Cria gráfico de barras (Top 10) com tooltip customizado
+            if (barCanvasId) {
+                const top10Labels = labels.slice(0, 10);
+                const top10Valores = valores.slice(0, 10);
+
+                const canvas = document.getElementById(barCanvasId);
+                if (canvas) {
+                    const ctx = canvas.getContext('2d');
+
+                    if (Estatisticas.graficosAtivos[barCanvasId]) {
+                        Estatisticas.graficosAtivos[barCanvasId].destroy();
+                    }
+
+                    Estatisticas.graficosAtivos[barCanvasId] = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: top10Labels,
+                            datasets: [{
+                                label: 'Quantidade',
+                                data: top10Valores,
+                                backgroundColor: Estatisticas.cores[0],
+                                borderColor: Estatisticas.cores[0],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: { beginAtZero: true, ticks: { stepSize: 1 } },
+                                x: { ticks: { maxRotation: 45, font: { size: 11 } } }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: tooltipConfig
+                            }
+                        }
+                    });
+                }
+            }
+
+            console.log(`Gráficos com tooltips gerados para "${column}"`);
+
+        } catch (error) {
+            console.error('Erro ao plotar coluna com tooltips:', error);
         }
     },
 
