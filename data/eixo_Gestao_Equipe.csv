@@ -1,22 +1,24 @@
 1.1. Nome da Escola,5.1. A Escola possui a equipe gestora completa?,"5.2. A equipe de apoio (assistente administrativo, ASG, merendeiro(a), porteiro(a), vigia, dentre outros profissionais previstos no rol) está completa?",5.3. A Direção realizou curso de formação na área de gestão escolar?,"5.4. Além do curso de formação na área de gestão escolar, a Direção recebeu ou recebe outro tipo de capacitação oferecida pelo Poder Público?",5.5. Existe algum tipo de classificação da Escola para fins de recebimento de recursos e de gratificação pela Direção?,"5.5.1. Caso a resposta anterior seja ""Sim"", em que consiste a classificação? Caso a resposta anterior seja ""Não"", responder ""Não se aplica"".",5.6. A Direção usa regularmente o SIGEDUC?,"5.7. Os professores usam regularmente o SIGEDUC (para registro de frequência dos alunos, inclusão de planos de aula, dentre outras finalidades)?"
-EE PROF PAULO FREIRE,Sim,Não,Sim,Não,Sim,Porte da escola,Sim,Sim
-ESCOLA ESTADUAL DOUTOR PEDRO VELHO,Sim,Não,Sim,Sim,Sim,Porte da escolar,Sim,Sim
-ESCOLA MUNICIPAL NOSSA SENHORA DO DESTERRO,Sim,Sim,Sim,Sim,Sim,"A concessão de gratificação pelo exercício de funções de diretor se dar devido ao porte da escola classificando em suporte a, b e c, de acordo com o plano de carreira, cargos e remuneração dos profissionais da educação pública municipal. sendo assim, esta escola encontra-se na posição de suporte b.",Não,Não
+EE PROF PAULO FREIRE,Sim,Não,Sim,Não,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
+ESCOLA ESTADUAL DOUTOR PEDRO VELHO,Sim,Não,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
+ESCOLA MUNICIPAL NOSSA SENHORA DO DESTERRO,Sim,Sim,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Não,Não
 ESCOLA MUNICIPAL DEPUTADO GRIMALDI RIBEIRO,Sim,Sim,Sim,Sim,Sim,Processo seletivo simplicado para diretores escolares.,Não,Não
 ESCOLA MUNICIPAL JOÃO BATISTA DE MENDONÇA,Sim,Sim,Sim,Sim,Sim,"Quantidades de alunos, número de salas de aula e turnos.",Sim,Sim
-ESCOLA ESTADUAL PRESIDENTE TANCREDO NEVES,Sim,Não,Sim,Sim,Sim,Porte iv,Sim,Sim
+ESCOLA ESTADUAL PRESIDENTE TANCREDO NEVES,Sim,Não,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
 ESCOLA ESTADUAL PROFA. MARIA OCILA BEZERRIL,Sim,Não,Não,Sim,Sim,A escola precisa obter um percentual de alunos e estar em dias com a prestação de contas para poder receber os recursos,Sim,Sim
 ESCOLA MUNICIPAL BARTOLOMEU FAGUNDES,Sim,Sim,Sim,Não,Não,Não se aplica,Não,Não
-ESCOLA MUNICIPAL MANOEL GERMANO DOS SANTOS,Sim,Sim,Sim,Sim,Sim,Na quantidade de alunos.,Sim,Sim
-ESCOLA MUNICIPAL ELZA BEZERRIL RIBEIRO,Sim,Sim,Sim,Não,Sim,Quantidade alunos indica o porte e define a gratificação de acordo com a lei 561/2010 que versa sobre a carreira docente do município,Sim,Sim
-ESCOLA MUNICIPAL DE 1º GRAU DR. JOSÉ TARGINO,Sim,Sim,Sim,Sim,Sim,Quantidade de matrículas,Sim,Sim
+ESCOLA MUNICIPAL MANOEL GERMANO DOS SANTOS,Sim,Sim,Sim,Sim,Sim,Quantidade de alunos,Sim,Sim
+ESCOLA MUNICIPAL ELZA BEZERRIL RIBEIRO,Sim,Sim,Sim,Não,Sim,Quantidade de alunos,Sim,Sim
+ESCOLA MUNICIPAL DE 1º GRAU DR. JOSÉ TARGINO,Sim,Sim,Sim,Sim,Sim,Quantidade de alunos,Sim,Sim
 ESCOLA MUNICIPAL DE ENSINO FUNDAMENTAL SÃO SEBASTIÃO,Não,Sim,Sim,Não,Não,Não se aplica,Não,Não
-ESCOLA MUNICIPAL JUAREZ RABELO,Sim,Sim,Sim,Sim,Sim,Quantitativo de aluno,Sim,Sim
-CENTRO EDUCACIONAL RURAL ROBERTO MAGALHÃES DE MELO,Sim,Sim,Sim,Não,Sim,Pelo porte da escola. somos escola de medio porte,Sim,Sim
-ESCOLA MUNICIPAL JOÃO ANACLETO FILHO,Sim,Sim,Sim,Sim,Sim,A classificação se dá por meio da quantidade de alunos.,Sim,Sim
+ESCOLA MUNICIPAL JUAREZ RABELO,Sim,Sim,Sim,Sim,Sim,Quantidade de alunos,Sim,Sim
+CENTRO EDUCACIONAL RURAL ROBERTO MAGALHÃES DE MELO,Sim,Sim,Sim,Não,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
+ESCOLA MUNICIPAL JOÃO ANACLETO FILHO,Sim,Sim,Sim,Sim,Sim,Quantidade de alunos,Sim,Sim
 ESCOLA ESTADUAL MATIAS MACIEL,Não,Não,Sim,Sim,Não,Não se aplica,Sim,Sim
 ESCOLA ESTADUAL EM TEMPO INTEGRAL FELIPE FERREIRA,Sim,Não,Sim,Sim,Não,Não se aplica,Sim,Sim
 ESCOLA MUNICIPAL DR. MANOEL F. DE MELO,Sim,Sim,Sim,Sim,Não,Não se aplica,Sim,Sim
 CRECHE MUNICIPAL DONA DAL,Sim,Sim,Sim,Sim,Não,Não se aplica,Não,Não
 ESCOLA ESTADUAL FABRÍCIO MARANHÃO,Sim,Sim,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
 ESCOLA ESTADUAL EM TEMPO INTEGRAL FABRÍCIO MARANHÃO,Sim,Não,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
+ESCOLA ESTADUAL 4 DE MARÇO,Sim,Sim,Sim,Sim,Sim,"Porte da escola (pequeno, médio, grande porte)",Sim,Sim
+ESCOLA MUNICIPAL DE 1 GRAU MAIOR PADRE LEÔNCIO,Sim,Não,Sim,Sim,Não,Não se aplica,Não,Não

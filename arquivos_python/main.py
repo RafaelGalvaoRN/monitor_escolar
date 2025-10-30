@@ -58,118 +58,25 @@ def etl_csv_gestao(src_path: str):
     }
     df = padronizar_respostas(df, "1.15. Qual é a quantidade de salas de aula existentes na Escola?", mapa_uniformizacao)
 
-    # mapa_uniformizacao = {
-    #     "Futebol masculino": [
-    #         "Futebol masculino",
-    #         "futebol masculino",
-    #         "Futebol masculino e feminino",
-    #         "Futebol, futsal e futebol",
-    #         "Futebol, futsal",
-    #         "Futebol masculino e feminino, karatê",
-    #         "Futebol, voleibol, surf.",
-    #         "Futsal, futebol e futebol de areia",
-    #         "Futebol e volei",
-    #         "vôlei, jiu-jistsu, futebol",
-    #     ],
-    #
-    #     "Futebol feminino": [
-    #         "Futebol feminino",
-    #         "futebol feminino",
-    #         "Futebol masculino e feminino",
-    #         "Futebol masculino e feminino, karatê",
-    #     ],
-    #
-    #     "Futsal": [
-    #         "Futsal",
-    #         "futsal",
-    #         "Futebol, futsal e futebol",
-    #         "Futsal, capoeira, volei, queimada.",
-    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
-    #         "Futsal, vôlei, jiu-jítsu, futebol",
-    #         "Futsal, futebol e futebol de areia",
-    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
-    #     ],
-    #
-    #     "Jiu-jítsu": [
-    #         "Jiu-jitsu",
-    #         "Jiu-jítsu",
-    #         "Vôlei, jiu-jitsu, futebol",
-    #         "Vôlei, jiu-jítsu, futebol",
-    #         "vôlei, jiu-jistsu, futebol",
-    #     ],
-    #
-    #     "Capoeira": [
-    #         "Capoeira",
-    #         "capoeira",
-    #         "Futsal, capoeira, volei, queimada.",
-    #     ],
-    #
-    #     "Queimada": [
-    #         "Queimada",
-    #         "queimada",
-    #         "Futsal, capoeira, volei, queimada.",
-    #     ],
-    #
-    #     "Karatê": [
-    #         "Karatê",
-    #         "karate",
-    #         "karatê",
-    #         "Futebol masculino e feminino, karatê",
-    #     ],
-    #
-    #     "Futvôlei": [
-    #         "Futvôlei",
-    #         "futvolei",
-    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
-    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
-    #     ],
-    #
-    #     "Handball": [
-    #         "Handball",
-    #         "handball",
-    #         "handbol",
-    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
-    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
-    #     ],
-    #
-    #     "Basquete": [
-    #         "Basquete",
-    #         "basquete",
-    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
-    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
-    #     ],
-    #
-    #     "Futebol de Areia": [
-    #         "Futebol de areia",
-    #         "futebol de areia",
-    #         "Futsal, futvôlei, handbol, basquete e futebol de areia",
-    #         "Futsal, futebol e futebol de areia",
-    #         "FUTSAL, FUTVÔLEI, HANDBOL, BASQUETE E FUTEBOL E FUTEBOL DE AREIA",
-    #     ],
-    #
-    #     "Surf": [
-    #         "Surf",
-    #         "surf",
-    #         "Futebol, voleibol, surf.",
-    #     ],
-    #
-    #     "Não se aplica": [
-    #         "Não se aplica",
-    #         "NAO SE APLICA",
-    #         "NÃO SE APLICA",
-    #         "não se aplica",
-    #         "Nao se aplica",
-    #     ],
-    #
-    #     "Outro": [
-    #         "Outro",
-    #         "Outros",
-    #         "outro",
-    #         "outros",
-    #     ],
-    # }
+    mapa_uniformizacao = {
+
+
+
+
+        "Futsal": [
+            "FUTSAL",
+        ],
+        "Não se aplica": [
+            "Não se aplica",
+            "NAO SE APLICA",
+            "NÃO SE APLICA",
+            "não se aplica",
+            "Nao se aplica",
+        ],
+
+    }
     coluna = '2.11.1. Caso a resposta anterior seja "Sim", quais esportes são oferecidos? Caso a resposta anterior seja "Não", responder "Não se aplica".'
-    # df = padronizar_respostas(df, coluna , mapa_uniformizacao)
+    df = padronizar_respostas(df, coluna , mapa_uniformizacao)
     df = transformar_coluna(df, coluna, "capitalize")
 
     df = limpar_coluna(df, "2.14.1. Caso a Escola possua laboratório de informática, quantos computadores estão funcionando?", remover_palavras = ["computadores"])
@@ -177,9 +84,109 @@ def etl_csv_gestao(src_path: str):
 
 
 
-    df = transformar_coluna(df, '2.12.1. Caso a resposta anterior seja "Sim", em qual local se realizam as aulas práticas de Educação Física? Caso a resposta anterior seja "Não", responder "Não se aplica".', "capitalize")
-    df = transformar_coluna(df, '2.21.1. Caso a resposta anterior seja "Não", quais equipamentos se encontram em falta ou necessitando de manutenção/substituição? (Pode marcar mais de uma opção)', "lower")
-    df = transformar_coluna(df, '2.26.1. Caso a resposta anterior seja "Sim", de que forma é realizado o controle de estoque?', "capitalize")
+    coluna = '2.12.1. Caso a resposta anterior seja "Sim", em qual local se realizam as aulas práticas de Educação Física? Caso a resposta anterior seja "Não", responder "Não se aplica".'
+    mapa_uniformizacao = {
+        "Quadra/Pátio da escola": [
+            "Na quadra de esportes",
+            "As atividades de Educação Física são realizadas no pátio da escola.",
+            "Na área externa",
+            "A ESCOLA USA O ESPAÇO EXTERNO DA ESCOLA",
+            "NA QUADRA DA ESCOLA",
+            "NO PATIO DA PROPRIA ESCOLA",
+            "Quadra Poliesportiva da Instituição"
+        ],
+        "Locais emprestados": [
+            "EM LOCAIS EMPRESTADOS"
+        ],
+        "Ginásio/Quadra municipal": [
+            "No ginásio do município de Vila Flor",
+            "Ginásio de esporte municipal",
+            "No ginásio de esporte de município",
+            "QUADRA DE ESPORTE DO MUNICIPIO VIZINHO A ESCOLA"
+        ],
+        "Espaços cedidos (campo de areia, campo de futebol, entre outros)":
+            ["No Campo de futebol da comunidade (Municipal)."]
+    }
+
+    df = transformar_coluna(df,coluna , "capitalize")
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+
+
+
+    coluna = '2.21.1. Caso a resposta anterior seja "Não", quais equipamentos se encontram em falta ou necessitando de manutenção/substituição? (Pode marcar mais de uma opção)'
+    df = transformar_coluna(df, coluna, "lower")
+
+    mapa_uniformizacao = {
+        "Todos estão em perfeito estado/Não está faltando nada": [
+            "Todos estão em perfeito estado",
+            "não",
+            "não está faltando nada na cozinha",
+            "Tem tudo que necessita para preparar e servir a merenda."
+        ],
+        "Processador/Multiprocessador": [
+            "MULTIPROCESSADOR",
+            "PROCESSADOR"
+        ],
+        "Liquidificador": [
+            "LIQUIDIFICADOR INDUSTRIAL"
+        ]
+    }
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+
+
+    coluna = '2.26.1. Caso a resposta anterior seja "Sim", de que forma é realizado o controle de estoque?'
+
+    df = transformar_coluna(df, coluna, "capitalize")
+
+    mapa_uniformizacao = {
+        "Controle feito manualmente em caderno ou ficha de controle": [
+            "É FEITO ATRAVÉS DOE UM CONTROLE DIÁRIO DE ALIMENTOS"
+        ],
+        "Controle realizado por cardápio e valores de insumos utilizados": [
+            "O CONTROLE É REALIZADO VIA CARDÁPIO CONFORME OS VALORES RECEBIDOS."
+        ],
+        "Sistema da SEDUC / plataforma digital": [
+            "SISTEMA DA SEEC"
+        ],
+        "Controle feito pelas merendeiras": [
+            "pelas merendeiras"
+        ],
+        "Por orientação do órgão responsável (DRAE ou Secretaria de Educação)": [
+            "Por orientação do órgão responsável - DRAE"
+        ],
+        "Controle feito diariamente durante a preparação da merenda": [
+            "Sim. O registro é realizado diariamente no diário de alimentação escolar."
+        ],
+        "Controle supervisionado pela Secretaria Municipal de Educação": [
+            "Através de supervisão da gestão",
+            "O controle é realizado pelo serviço de nutrição da Secretaria Municipal de Educação semanalmente."
+        ],
+        "Verificação da qualidade e quantidade no momento do recebimento": [
+            "verificando a qualidade e quantidade de alimentos no momento do recebimento"
+        ],
+        "Controle realizado em planilhas (entrada e saída de produtos)": [
+            "PLANILHAS",
+            "ATRAVES DE PLANILHA DE ENTRADA E SAIDA DE PRODUTOS"
+        ],
+        "Controle semanal realizado pelo gestor escolar": [
+            "O gestor escolar fica responsável por esse controle."
+        ],
+        "Existe local de armazenamento e registro das entradas e saídas": [
+            "Existi um local de armazenamento, no qual é repassado todos os dias para a escola.",
+            "Recebi-se semanalmente e é armazenado na escola"
+        ],
+        "Não se aplica": [
+            "Não se aplica.",
+            "NAO SE APLICA"
+        ]
+    }
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+
 
     mapa_uniformizacao = {
         "Todos estão em perfeito estado/Não está faltando nada": [
@@ -203,104 +210,49 @@ def etl_csv_gestao(src_path: str):
 
     df = transformar_coluna(df, coluna, "title")
 
-    df = transformar_coluna(df,
-                            '2.27.1. Caso a resposta anterior seja "Não", quais equipamentos estão em falta? (Pode marcar mais de uma opção)',
-                            "title")
+    coluna = '2.27.1. Caso a resposta anterior seja "Não", quais equipamentos estão em falta? (Pode marcar mais de uma opção)'
 
+    df = transformar_coluna(df,coluna, "title")
+    mapa_uniformizacao = {
+        "Estantes para livros / Armários de armazenamento para material pedagógico": [
+            "Estantes para livros"
+        ],
+        "Produtos tecnológicos (como lousa digital ou projetor)": [
+            "produtos tecnológicos como lousa inteligente"
+        ],
+        "Não se aplica": [
+            "não se aplica",
+            "Não se aplica"
+        ]
+    }
 
-
-    df = transformar_coluna(df, '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?', "title")
-
-
-
-    #padronizar respostas
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
 
 
     coluna = '3.2. Caso a resposta anterior seja "Sim", quais as medidas adotadas pela Escola para combater o problema?'
 
     mapa_uniformizacao = {
         "Busca ativa escolar": [
-            "Busca ativa escolar",
-            "Busca ativa escolar.",
             "Busca ativa",
-            "A escola realiza busca ativa",
-            "A escola realiza Busca ativa.",
-            "A escola realiza a busca ativa.",
-            "Fazendo busca ativa através de ligação e ou visita a família",
-            "Entramos em contato com as famílias, quando não coseguimos encaminhamos para o busca ativa.",
-            "Ações do busca ativa escolar e personalização do currículo",
-            "REUNIAO COM A FAMILA, BUSCA ATIVA DESNTRE OUTROS.",
-            "fazendo busca ativa através de ligação e ou visita a família"
+            "A escola realiza a Busca Ativa.",
+            "Busca Ativa",
+            "Busca ativa escolar."
         ],
-
-        "Busca ativa com o Conselho Tutelar": [
-            "Busca ativa e encaminhamento ao o Conselho Tutelar.",
-            "Busca ativa com o Conselho Tutelar, Encaminhamento à rede de proteção/ao Conselho Tutelar",
-            "Encaminhamento para o setor de Busca Ativa e uso da FICAI com encaminhamento ao Conselho Tutelar.",
-            "A escola realiza a busca ativa do aluno, não tendo retorno a escola, aciona o conselho tutelar e a rede de proteção.",
-            "BUSCA ATIVA E ENCAMINHAMENTO AO CONSELHO TUTELAR.",
-            "Contato com os responsáveis. visitas domiciliares. encaminhamento para o setor de busca ativa e uso da ficai com encaminhamento ao conselho tutelar.",
-        ],
-
         "Contato com pais ou responsáveis": [
-            "Contato com os responsáveis.",
-            "contato com pais ou responsáveis",
-            "Entrar em contato com os pais ou responsáveis.",
-            "Entramos em contato com as famílias, quando não coseguimos encaminhamos para o busca ativa."
+            "Entrar em contato com os pais ou responsáveis."
         ],
-
-        "Visitas domiciliares": [
-            "Visitas domiciliares.",
-            "Visitas domiciliares",
-            "Fazendo busca ativa através de ligação e ou visita a família"
-        ],
-
-        "Reuniões com a família": [
-            "Reuniões com a família",
-            "REUNIAO COM A FAMILA, BUSCA ATIVA DESNTRE OUTROS."
-        ],
-
-        "Encaminhamento à rede de proteção/ao Conselho Tutelar": [
-            "Encaminhamento para o setor de Busca Ativa e uso da FICAI com encaminhamento ao Conselho Tutelar.",
-            "A escola realiza a busca ativa do aluno, não tendo retorno a escola, aciona o conselho tutelar e a rede de proteção.",
-            "BUSCA ATIVA E ENCAMINHAMENTO AO CONSELHO TUTELAR."
-        ],
-
-        "Acompanhamento individualizado dos alunos": [
-            "Acompanhamento individualizado dos alunos",
-            "Monitoramento individualizado do aluno",
-            "Acompanhamento pedagógico individualizado"
-        ],
-
-        "Reuniões de gestão sobre evasão": [
-            "Reuniões de gestão sobre evasão",
-            "reuniões de gestão sobre evasão"
-        ],
-
-        "Monitoramento pela frequência escolar": [
-            "Monitoramento pela frequência escolar",
-            "monitoramento pela frequência escolar"
-        ],
-
         "Não se aplica": [
-            "NAO SE APLICA",
-            "NÃO SE APLICA",
             "NÃO TEMOS EVASÃO",
-            "NENHUMA",
+            "NÃO SE APLICA",
+            "NAO SE APLICA",
             "não se aplica",
-            "Não se aplica"
-        ],
-
-        "Outro": [
-            "Outros",
-            "Outro",
-            "outro"
+            "NENHUMA"
         ]
     }
 
     df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+    df = transformar_coluna(df, coluna, "title")
 
-    df = transformar_coluna(df, coluna, "capitalize")
 
     df = limpar_coluna(df, '3.9.1. Caso a resposta anterior seja "Sim", a Escola possui quantos alunos com NEE, incluindo aqueles estudantes sem laudo médico?', remover_palavras=["alunos", "NEE", "apenas um com laudo médico", ","])
 
@@ -310,9 +262,51 @@ def etl_csv_gestao(src_path: str):
     df = transformar_coluna(df, '3.11.1. Caso a resposta anterior seja "Sim", quantos alunos necessitam de transporte especial?', "capitalize")
     df = transformar_coluna(df, '3.11.3. Caso seja atendida apenas parte dos alunos que necessitam de transporte escolar especial, qual a quantidade de estudantes que não está sendo atendida por esse serviço? Caso não se aplique, indicar o número 0 (zero)', "capitalize")
 
-    df = transformar_coluna(df, '5.5.1. Caso a resposta anterior seja "Sim", em que consiste a classificação? Caso a resposta anterior seja "Não", responder "Não se aplica".', "capitalize")
+    coluna =  '5.5.1. Caso a resposta anterior seja "Sim", em que consiste a classificação? Caso a resposta anterior seja "Não", responder "Não se aplica".'
 
-    df = transformar_coluna(df, '6.3.1. Caso a resposta anterior seja "Sim", quais atividades são desenvolvidas? Caso a resposta anterior seja "Não", responder "Não se aplica".', "capitalize")
+    df = transformar_coluna(df, coluna, "capitalize")
+
+    mapa_uniformizacao = {
+        "Quantidade de alunos": [
+            "Quantitativo de aluno",
+            "quantidade alunos indica o porte e define a gratificação de acordo com a lei 561/2010 que versa sobre a carreira docente do município",
+            "Na quantidade de alunos.",
+            "QUANTIDADE DE MATRÍCULAS",
+            "A classificação se dá por meio da quantidade de alunos."
+        ],
+        "Porte da escola (pequeno, médio, grande porte)": [
+            "Porte da escola",
+            "PORTE DA ESCOLAR",
+            "A concessão de gratificação pelo exercício de funções de diretor se dar devido ao porte da escola classificando em suporte A, B e C, de acordo com o plano de carreira, cargos e remuneração dos profissionais da Educação pública municipal. Sendo assim, esta escola encontra-se na posição de suporte B",
+            "porte IV",
+            "PELO PORTE DA ESCOLA. SOMOS ESCOLA DE MEDIO PORTE"
+        ],
+        "Não se aplica": [
+            "NÃO SE APLICA",
+            "Não se Aplica",
+            "Não se aplica.",
+            "NAO SE APLICA"
+        ]
+    }
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+
+
+    coluna = '6.3.1. Caso a resposta anterior seja "Sim", quais atividades são desenvolvidas? Caso a resposta anterior seja "Não", responder "Não se aplica".'
+
+    mapa_uniformizacao = {
+        "Feiras culturais": [
+            "Agosto Cultural. Dia da Consciência Negra, com exposição e apresentações."
+        ],
+        "Não se aplica": [
+            "Não se aplica."
+        ]
+    }
+
+    df = padronizar_respostas(df, coluna, mapa_uniformizacao)
+    df = transformar_coluna(df, coluna, "capitalize")
+
+
 
     df = transformar_coluna(df, '7.1. Qual(is) foi(ram) a(s) nota(s) obtida(s) pela Escola na última avaliação do IDEB? Caso a Escola não possua nota, responder "Não se aplica".', "capitalize")
 
@@ -392,7 +386,7 @@ def etl_csv_comunidade(path_file: str):
     gerar_pagina_html_ranking(df_com_colunas, "../ranking.html")
 
 if __name__ == '__main__':
-    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (17).zip"
+    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (19).zip"
     etl_csv_gestao(file_gestao)
 
 
