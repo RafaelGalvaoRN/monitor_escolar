@@ -6,29 +6,16 @@ let dadosEscolares = [];
 let escolasComStatus = [];
 
 let escolasPendentes = [
-  { nome: "Escola Municipal 16 de Julho", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Professora Anita Melo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Antônio de Carvalho Filho", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal José Pereira da Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Creche Municipal Canguaretama", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Creche Maria do Carmo", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Dr. Abelardo Calafange", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Dr. José Targino", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Firmino Antônio de Carvalho", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Homero Homem", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Jardim de Infância Municipal Criança Feliz", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal João Gomes de Torres", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal I. João Lino da Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Joaquim Gomes Sobrinho", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal José de Albuquerque Maranhão", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Manoel Rodrigues", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Creche Municipal Manoel Vieira da Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Prof. Maria Elizabeth de Castro", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Mozart Calafange", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Nossa Senhora da Conceição", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
-  { nome: "Escola Municipal Prof. Maria da Paz Moreira", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Estadual Guiomar Vasconcelos", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal José de Carvalho e Silva", rede: "Municipal", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Municipal Juvêncio dos Santos", rede: "Municipal", municipio: "Vila Flor", status: "Pendente" },
+  { nome: "Centro Educacional Maria da Conceição Freire", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal Professor Bartolomeu Fagundes", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal Jarbas Passarinho", rede: "Municipal", municipio: "Baía Formosa", status: "Pendente" },
+  { nome: "Escola Municipal Padre Leôncio", rede: "Municipal", municipio: "Pedro Velho", status: "Pendente" },
+  { nome: "Escola Estadual 4 de março", rede: "Estadual", municipio: "Canguaretama", status: "Pendente" },
+  { nome: "Escola Estadual Águida Sucupira", rede: "Estadual", municipio: "Baía Formosa", status: "Pendente" },
 ];
-
 
 // Função auxiliar para dividir CSV respeitando aspas
 function splitCSV(linha, separador) {
