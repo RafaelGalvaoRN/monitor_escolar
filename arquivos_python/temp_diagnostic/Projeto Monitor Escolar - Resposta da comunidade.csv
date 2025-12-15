@@ -1,0 +1,165 @@
+"Carimbo de data/hora","Qual a escola você gostaria de avaliar?","Como você avalia, de forma geral, a estrutura física da sua escola? 
+
+Considere na sua avalição: 
+
+- Estado de conservação (necessidade de reforma);
+- Histórico de manutenção (últimos 4 anos);
+- Manutenções pontuais (elétrica/hidráulica);
+- Climatização (tipo e cobertura);
+- Rede elétrica (capacidade para equipamentos).
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a acessibilidade da sua escola?
+
+Considere na sua avalição:
+
+- Rampas;
+- Banheiros adaptados;
+- Acessos especiais.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a qualidade dos equipamentos da sua escola?
+
+Considere na sua avalição:
+
+- Biblioteca/sala de leitura (uso e necessidade de livros); 
+- Laboratório de informática (nº de computadores, uso, manutenção);
+- Laboratório de ciências (funcionamento, materiais, uso); 
+- Internet (contrato, qualidade, acesso); 
+- Quadra poliesportiva (estado e utilização).
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a merenda escolar e os mobiliários da sua escola?
+
+Considere na sua avalição:
+
+- Refeitório (mesas/cadeiras, equipe de cozinha); 
+- Cozinha (eletrodomésticos/utensílios, fiscalização); 
+- Cardápio (definido por nutricionista e cumprimento); 
+- Frequência da merenda e suficiência do recurso;
+- Controle de estoque (forma e eficiência); 
+- Quantidade e qualidade dos móveis (suficiência, itens em falta).
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, os professores da sua escola?
+
+Considere na sua avalição:
+
+- Didática;
+- Comprometimento;
+- Assiduidade.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a qualidade da segurança da sua escola?
+
+Considere na sua avalição:
+
+- Vigilante noturno;
+- Porteiro(a);
+- Alarmes e câmeras.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, o material didático escolar?
+
+Considere na sua avalição:
+
+- Fardamento;
+- Livros didáticos;
+- Material escolar básico.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a qualidade do transporte escolar?
+
+Considere na sua avalição:
+
+- Quantidade de veículos (demanda atendida);
+- Estado de conservação;
+- Atendimento a alunos com necessidades especiais.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, o nível de violência/indisciplina na escola?
+
+Considere na sua avalição:
+
+- Gravidade dos casos de indisciplina;
+- Registro e acompanhamento dos atos;
+- Projetos de prevenção (álcool, drogas, bullying, etc.).
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente","Como você avalia, de forma geral, a gestão da escola?
+
+Considere na sua avalição:
+
+- Objetivos e atuação do(a) diretor(a);
+- Projetos desenvolvidos;
+- Necessidades e requisitos ainda não atendidos.
+
+Escala:
+( ) 1 - Péssimo
+( ) 2 - Ruim
+( ) 3 - Regular
+( ) 4 - Satisfatório
+( ) 5 - Excelente"
+"2025/10/07 8:46:41 AM GMT-3","Escola Estadual Guiomar Vasconcelos","4","3","2","4","3","2","4","4","3","3"
+"2025/10/07 8:58:47 AM GMT-3","Escola Estadual Doutor Pedro Velho","2","2","2","2","2","3","4","2","2","2"
+"2025/10/07 9:53:39 AM GMT-3","Escola Municipal Dr. José Targino","3","3","2","3","3","4","4","2","2","3"
+"2025/10/07 9:57:44 AM GMT-3","Escola Municipal Juarez Rabelo","3","3","3","2","3","2","2","1","2","2"
+"2025/10/07 10:02:41 AM GMT-3","Escola Municipal São Sebastião","1","2","1","3","3","3","3","3","3","3"
+"2025/10/07 10:07:39 AM GMT-3","Escola Municipal Deputado Grimaldi Ribeiro","3","3","2","3","3","4","4","3","2","3"
+"2025/10/07 10:14:04 AM GMT-3","Escola Estadual Professora Maria Ocila Bezerril","2","2","2","3","2","3","3","3","2","3"
+"2025/10/07 10:20:31 AM GMT-3","Escola Estadual Fabrício Maranhão - Município de Pedro Velho","3","3","2","3","3","2","3","2","2","2"
+"2025/10/30 9:33:51 PM GMT-3","Escola Municipal Padre Leôncio","3","4","2","4","5","3","4","4","4","4"
+"2025/11/12 10:01:06 AM GMT-3","Escola Municipal João Anacleto","5","5","3","5","5","4","5","4","3","5"
+"2025/11/12 11:20:51 AM GMT-3","Escola Municipal Manoel Germano dos Santos","4","4","4","5","4","3","5","4","4","4"
+"2025/11/12 4:26:31 PM GMT-3","Escola Municipal Manoel Germano dos Santos","4","4","3","4","4","3","4","4","4","4"
+"2025/11/13 9:09:31 AM GMT-3","Escola Municipal João Anacleto","4","4","4","4","5","3","4","3","4","4"
+"2025/11/13 9:38:08 AM GMT-3","Escola Municipal João Anacleto","5","5","5","5","5","5","5","5","4","5"
+"2025/11/13 9:46:16 AM GMT-3","Escola Municipal João Anacleto","5","4","2","5","4","5","4","3","3","5"
+"2025/11/13 10:33:57 AM GMT-3","Escola Municipal João Anacleto","4","4","4","5","5","4","5","4","3","5"
+"2025/11/13 11:45:19 AM GMT-3","Escola Municipal Manoel Germano dos Santos","3","3","3","4","4","3","5","3","2","3"
+"2025/11/13 11:52:50 AM GMT-3","Escola Municipal Manoel Germano dos Santos","3","3","1","5","5","2","3","4","2","5"
+"2025/11/13 12:04:53 PM GMT-3","Escola Municipal Manoel Germano dos Santos","2","3","3","5","5","2","4","3","1","2"
+"2025/11/13 12:05:14 PM GMT-3","Escola Municipal Manoel Germano dos Santos","5","4","4","5","5","4","4","4","3","5"
+"2025/11/13 12:06:43 PM GMT-3","Escola Municipal Manoel Germano dos Santos","2","4","3","5","5","4","4","3","3","5"
+"2025/11/13 12:22:05 PM GMT-3","Escola Municipal João Anacleto","3","3","3","4","4","3","4","1","2","3"
+"2025/11/13 12:24:55 PM GMT-3","Escola Municipal João Batista de Mendonça","4","3","3","4","4","3","4","1","3","3"
+"2025/11/13 12:28:47 PM GMT-3","Escola Estadual Professor Paulo Freire","3","4","3","3","3","3","2","1","2","3"
+"2025/11/13 1:56:32 PM GMT-3","Escola Municipal João Anacleto","4","4","3","5","5","4","4","2","4","5"
+"2025/11/13 6:03:27 PM GMT-3","Escola Municipal João Anacleto","5","4","5","4","4","4","4","5","5","5"
+"2025/11/14 11:53:38 PM GMT-3","Escola Municipal Manoel Germano dos Santos","4","4","1","4","4","3","4","3","3","3"

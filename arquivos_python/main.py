@@ -1,4 +1,6 @@
 import os
+import time
+
 import pandas as pd
 from pathlib import Path
 import webbrowser
@@ -8,7 +10,7 @@ from utils import (fragmenta_csv_por_faixas, save_csv, ensure_csv_local,
                    corrigir_nao_se_aplica, padronizar_respostas)
 from utils_censo import (escolas_unicas, gerar_pagina_html_escolas_unicas,
                          adicionar_colunas, gerar_pagina_html_ranking)
-from utils_processamento import limpar_dataframe_completo
+from utils_processamento import limpar_dataframe_completo, corrigir_valor
 
 # Configurações centralizadas
 TRANSFORMACOES = {
@@ -208,6 +210,9 @@ def etl_csv_gestao(src_path: str):
     # Carregar e limpar
     df = carregar_dados(src_path)
     df = limpar_dataframe_completo(df)
+    #corrigir nome da escola que diretora colocou nome proprio
+    df = corrigir_valor(df, coluna= "1.1. Nome da Escola", valor_antigo= "CLARISSA GRAZIELE PALHANO", valor_novo= "ESCOLA MUNICIPAL ANTONIO DE CARVALHO FILHO", contem=False  )
+
     df = normalize_timestamp_column(df, src_col="Carimbo de data/hora", dst_col="Data do Envio")
     df = corrigir_nao_se_aplica(df)
 
@@ -230,7 +235,7 @@ def etl_csv_gestao(src_path: str):
 
 def etl_csv_comunidade(path_file: str):
     """Pipeline de ETL para dados da comunidade."""
-    df = pd.read_csv(path_file, header=None, encoding="utf-8")
+    df = pd.read_csv(path_file, header=None,  skiprows=[0], encoding="utf-8")
     escolas = escolas_unicas(df)
 
     gerar_pagina_html_escolas_unicas(
@@ -243,15 +248,18 @@ def etl_csv_comunidade(path_file: str):
                "equipamentos", "merenda_mobiliario", "professores", "seguranca",
                "material_didatico", "transporte", "violencia", "gestao"]
 
+
+
+
     df_com_colunas = adicionar_colunas(df, colunas)
     gerar_pagina_html_ranking(df_com_colunas, "../ranking.html")
 
 
 if __name__ == '__main__':
-    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (19).zip"
+    file_gestao = r"C:\Users\User\Downloads\Projeto Monitor Escolar.csv (22).zip"
     etl_csv_gestao(file_gestao)
 
-    file_comunidade = r"C:\Users\User\Downloads\Projeto Monitor Escolar - Resposta da comunidade (5).csv"
+    file_comunidade = r"C:\Users\User\Downloads\Projeto Monitor Escolar - Resposta da comunidade.csv (8).zip"
     etl_csv_comunidade(file_comunidade)
 
     # Abrir no navegador (se necessário)

@@ -204,3 +204,35 @@ def _limpar_celula(valor):
 
     return texto
 
+
+def corrigir_valor(df, coluna, valor_antigo, valor_novo, contem=False):
+    """
+    Corrige valores em uma coluna específica de um DataFrame.
+
+    Parâmetros:
+    - df (pd.DataFrame): Seu DataFrame.
+    - coluna (str): Nome da coluna a ser corrigida.
+    - valor_antigo (str): Valor atual que deve ser corrigido.
+    - valor_novo (str): Novo valor que substituirá o antigo.
+    - contem (bool):
+        False → substitui apenas valores exatamente iguais.
+        True → substitui valores que contenham o texto antigo.
+
+    Retorna:
+    - df: DataFrame atualizado.
+    """
+
+    if coluna not in df.columns:
+        raise ValueError(f"A coluna '{coluna}' não existe no DataFrame.")
+
+    # Correção exata
+    if not contem:
+        df[coluna] = df[coluna].replace(valor_antigo, valor_novo)
+
+    # Correção por substring (contém)
+    else:
+        df[coluna] = df[coluna].apply(
+            lambda x: valor_novo if isinstance(x, str) and valor_antigo.lower() in x.lower() else x
+        )
+
+    return df
