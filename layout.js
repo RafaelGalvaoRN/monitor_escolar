@@ -30,6 +30,7 @@
     { titulo: 'Avaliações', itens: [
       { titulo: 'Avaliação dos gestores', desc: 'Tabela completa com filtros', href: 'tabela.html' },
       { titulo: 'Ranking da comunidade', desc: 'Notas de 1 a 5', href: 'ranking.html' },
+      { titulo: 'Vistoria por fotos', desc: 'Ambientes analisados por IA', href: 'vistoria.html' },
     ]},
   ];
 
@@ -93,7 +94,7 @@
       </div>
     </div>
     <div class="cols">
-      <div><h4>Explorar</h4><a href="estatisticas_eixo.html">Estatísticas</a><a href="tabela.html">Avaliação dos gestores</a><a href="ranking.html">Ranking da comunidade</a></div>
+      <div><h4>Explorar</h4><a href="estatisticas_eixo.html">Estatísticas</a><a href="tabela.html">Avaliação dos gestores</a><a href="ranking.html">Ranking da comunidade</a><a href="vistoria.html">Vistoria por fotos</a></div>
       <div><h4>Participar</h4><a href="docs/formulario2.pdf">Formulário dos gestores (PDF)</a><a href="${FORM_COMUNIDADE}" target="_blank" rel="noopener">Avaliar uma escola</a><a href="data/projeto_monitor.csv" download>Baixar dados (CSV)</a></div>
     </div>
   </div>

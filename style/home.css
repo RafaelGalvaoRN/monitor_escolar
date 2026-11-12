@@ -54,6 +54,19 @@
 @keyframes grow { from { transform: scaleX(.15); } to { transform: scaleX(1); } }
 @media (max-width: 420px) { .brow { grid-template-columns: 104px 1fr 36px; gap: 8px; } }
 
+.vist-cta { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center; padding: 32px; border-radius: 18px; text-decoration: none; color: #fff; background: linear-gradient(115deg, var(--hero-a), var(--hero-b) 55%, var(--hero-c)); position: relative; overflow: hidden; }
+.vist-cta::after { content: ""; position: absolute; right: -80px; bottom: -140px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(94,234,180,.22), transparent 65%); pointer-events: none; }
+.vist-cta .kicker { color: #7fe3bd; }
+.vist-cta h2 { font-size: clamp(24px, 3vw, 32px); margin-top: 6px; }
+.vist-cta p { color: #d5e6f2; margin-top: 10px; max-width: 52ch; }
+.vist-cta .btn { margin-top: 20px; background: #fff; color: #0b3a5c; }
+.vist-cta:hover .btn { transform: translateY(-1px); }
+.vist-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: relative; z-index: 1; }
+.vist-nums div { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.vist-nums b { font: 700 30px var(--f-display); letter-spacing: -.02em; line-height: 1; }
+.vist-nums span { font-size: 13.5px; color: #cfe2ef; line-height: 1.35; }
+@media (max-width: 860px) { .vist-cta { grid-template-columns: 1fr; padding: 24px; } }
+
 .eixos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0; counter-reset: e; }
 .eixos a { display: flex; align-items: center; gap: 12px; height: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-weight: 500; font-size: 15px; color: var(--ink); text-decoration: none; transition: border-color .15s, transform .15s; }
 .eixos a:hover { border-color: var(--petrol); transform: translateY(-2px); }

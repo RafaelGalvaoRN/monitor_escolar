@@ -96,7 +96,15 @@
     }
   }
 
-  Promise.allSettled([gestores(), comunidade()]).then(res => {
+  async function vistoria() {
+    const r = await fetch('data/vistoria_resumo.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error('vistoria ' + r.status);
+    const d = await r.json();
+    const por = { fotos: d.fotos.toLocaleString('pt-BR'), escolas: d.escolas, media: fmt(d.media, 1), graves: d.graves };
+    document.querySelectorAll('[data-vist]').forEach(el => { if (por[el.dataset.vist] != null) el.textContent = por[el.dataset.vist]; });
+  }
+
+  Promise.allSettled([gestores(), comunidade(), vistoria()]).then(res => {
     res.forEach(r => { if (r.status === 'rejected') console.warn('Página inicial: usando números de reserva.', r.reason); });
     const dim = document.getElementById('bars-dim');
     if (dim.querySelector('p')) dim.innerHTML = '<p class="sub">Não foi possível carregar as notas agora.</p>';

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vistoria por fotos · Monitor Escolar</title>
+  <meta name="description" content="Triagem por inteligência artificial das fotos dos ambientes enviadas pelas escolas participantes do Monitor Escolar." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
+  <link rel="stylesheet" href="style/vistoria.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
+
+  <!-- Dados: data/vistoria_fotos.json, gerado por monitor_escolar_fotos/exportar_site.py -->
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Avaliações</span><span>›</span><span>Vistoria por fotos</span></div>
+        <h1>Vistoria por fotos</h1>
+        <p class="lead">As direções enviaram fotos de salas, banheiros, cozinhas e demais ambientes. Cada foto foi analisada por inteligência artificial, que apontou problemas visíveis e deu uma nota de 0 a 10.</p>
+        <div class="chips">
+          <div class="chip-stat"><b class="num" id="k-escolas">–</b><span>escolas</span></div>
+          <div class="chip-stat"><b class="num" id="k-fotos">–</b><span>fotos analisadas</span></div>
+          <div class="chip-stat"><b class="num" id="k-media">–</b><span>nota média (0 a 10)</span></div>
+          <div class="chip-stat"><b class="num" id="k-graves">–</b><span>ambientes críticos ou emergenciais</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <aside class="aviso" role="note">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <p><strong>Triagem automática, não é laudo.</strong> As notas e os problemas foram gerados por IA a partir das fotos enviadas pelas próprias escolas. Servem para indicar onde olhar primeiro, podem conter erros e não substituem a vistoria presencial. <a href="#como-funciona">Como funciona</a></p>
+      </aside>
+
+      <section class="block" aria-labelledby="t-panorama">
+        <div class="sec-head">
+          <div><div class="kicker">Panorama</div><h2 id="t-panorama">Como estão os ambientes</h2></div>
+          <p id="sub-panorama">Classificação de cada foto analisada, somando todas as escolas.</p>
+        </div>
+        <div class="vt-two">
+          <div class="card">
+            <h3>Classificação das fotos</h3>
+            <div class="stack big" id="stack-geral" role="img" aria-label="Distribuição das classificações"></div>
+            <ul class="classes" id="lista-classes"></ul>
+          </div>
+          <div class="card">
+            <h3>Problemas mais apontados</h3>
+            <p class="muted small">Número de fotos em que a IA apontou o problema</p>
+            <div class="temas" id="temas"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="t-escolas">
+        <div class="sec-head">
+          <div><div class="kicker">Por escola</div><h2 id="t-escolas">Resultado de cada escola</h2></div>
+          <p>Toque em uma escola para ver cada ambiente analisado, com a nota e os problemas apontados.</p>
+        </div>
+        <div class="toolbar">
+          <div class="field"><label for="q">Buscar escola</label><input id="q" type="search" placeholder="Digite o nome da escola" autocomplete="off"></div>
+          <div class="field sort"><label for="ordem">Ordenar por</label>
+            <select id="ordem">
+              <option value="pior">Menor nota primeiro</option>
+              <option value="melhor">Maior nota primeiro</option>
+              <option value="graves">Mais ambientes graves</option>
+              <option value="nome">Nome (A–Z)</option>
+            </select>
+          </div>
+          <label class="check-alerta"><input type="checkbox" id="so-alerta"> Só escolas com alerta de interdição</label>
+        </div>
+        <div class="escolas" id="escolas"><p class="muted">Carregando análises…</p></div>
+      </section>
+
+      <section class="block" id="pendentes-sec" hidden aria-labelledby="t-pend">
+        <h2 class="sec-title" id="t-pend" style="font-size:20px">Aguardando nova análise</h2>
+        <p class="muted" style="max-width:70ch">As fotos destas escolas foram enviadas em formatos que a análise não conseguiu ler (como HEIC, PDF ou ZIP). Elas serão analisadas de novo e aparecerão aqui.</p>
+        <ul class="pendentes" id="pendentes"></ul>
+      </section>
+
+      <section class="block" id="como-funciona" aria-labelledby="t-como">
+        <div class="sec-head">
+          <div><div class="kicker">Metodologia</div><h2 id="t-como">Como funciona</h2></div>
+        </div>
+        <div class="vt-two">
+          <ol class="steps">
+            <li><strong>Envio das fotos:</strong> a direção de cada escola responde a um formulário com fotos dos ambientes: salas, banheiros, cozinha, teto, pátio e outros.</li>
+            <li><strong>Análise por IA:</strong> o modelo <span id="modelo">GPT-4o</span> examina cada foto como um perito: identifica o ambiente e avalia estrutura física, higiene, segurança, mobiliário e condições pedagógicas.</li>
+            <li><strong>Nota e alertas:</strong> cada foto recebe uma nota de 0 a 10 e, quando há risco imediato visível, um alerta de interdição.</li>
+            <li><strong>Consolidação:</strong> fotos repetidas, ilegíveis ou que não mostram a escola são descartadas, e a nota da escola é a média das fotos válidas.</li>
+          </ol>
+          <div class="card">
+            <h3>Escala das notas</h3>
+            <table class="escala">
+              <tbody>
+                <tr><td><span class="pill c-SATISFATORIO">9 a 10</span></td><td><strong>Satisfatório</strong><br><span class="muted">Boas condições, sem irregularidades relevantes</span></td></tr>
+                <tr><td><span class="pill c-REGULAR">7 a 8</span></td><td><strong>Regular</strong><br><span class="muted">Problemas menores, sem risco imediato</span></td></tr>
+                <tr><td><span class="pill c-PRECARIO">5 a 6</span></td><td><strong>Precário</strong><br><span class="muted">Problemas que afetam higiene ou conforto</span></td></tr>
+                <tr><td><span class="pill c-CRITICO">3 a 4</span></td><td><strong>Crítico</strong><br><span class="muted">Irregularidades graves, risco à saúde ou segurança</span></td></tr>
+                <tr><td><span class="pill c-EMERGENCIAL">0 a 2</span></td><td><strong>Emergencial</strong><br><span class="muted">Risco imediato, pode exigir interdição</span></td></tr>
+              </tbody>
+            </table>
+            <p class="muted small" id="data-analise" style="margin-top:12px"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="vistoria.js"></script>
+</body>
+</html>
