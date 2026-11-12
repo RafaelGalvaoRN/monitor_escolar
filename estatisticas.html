@@ -2,88 +2,61 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Monitor Escolar – Estatísticas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/projeto.css" />
-  <link rel="stylesheet" href="style/imagem-logo.css"/>
-  <link rel="stylesheet" href="style/estatisticas.css"/>
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  
-  
-
-
+  <title>Estatísticas por quesito · Monitor Escolar</title>
+  <meta name="description" content="Gráficos com as respostas dos gestores a cada pergunta do formulário do Monitor Escolar." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
 </head>
-
 <body>
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
   <main>
-    <h1 id="h1"><i class="fas fa-chart-pie"></i> Estatísticas por Pergunta</h1>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Dados</span><span>›</span><span>Por quesito</span></div>
+        <h1>Estatísticas por quesito</h1>
+        <p class="lead">Escolha uma pergunta do formulário dos gestores para ver como as escolas responderam.</p><div class="hero-actions"><a class="btn ghost" href="estatisticas_eixo.html"><i class="fas fa-layer-group"></i> Ver por eixo</a></div>
+      </div>
+    </section>
 
-    <!-- Seletor de coluna -->
-    <div class="card" style="padding:16px;margin-bottom:16px;">
-      <label for="colunaSelect"><strong>Escolha a pergunta do questionário:</strong></label>
-      <select id="colunaSelect">
-        <option value="">Carregando...</option>
-      </select>
-      <button id="btnPlotar" class="btn">Plotar</button>
-    </div>
-
-    <!-- Contêiner de gráficos -->
-    <div class="grid two">
-      <div class="card">
-        <h3 id="tituloGrafico1">Carregando dados...</h3>
-        <canvas id="graficoPizza1" width="400" height="300"></canvas>
+    <section class="wrap page-body">
+      <div class="picker">
+        <div class="field">
+          <label for="colunaSelect">Pergunta do questionário</label>
+          <select id="colunaSelect">
+            <option value="">Carregando...</option>
+          </select>
+        </div>
+        <button id="btnPlotar" class="btn" type="button"><i class="fas fa-chart-bar"></i> Gerar gráficos</button>
       </div>
 
-      <div class="card">
-        <h3 id="tituloGrafico2">Carregando dados...</h3>
-        <canvas id="graficoBarra1" width="400" height="300"></canvas>
+      <div class="grid two" style="margin-top:16px">
+        <div class="card chart-card">
+          <h3 id="tituloGrafico1">Carregando dados...</h3>
+          <div class="chart-wrap"><canvas id="graficoPizza1"></canvas></div>
+        </div>
+        <div class="card chart-card">
+          <h3 id="tituloGrafico2">Carregando dados...</h3>
+          <div class="chart-wrap"><canvas id="graficoBarra1"></canvas></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Div para mensagens (opcional) -->
-    <div id="mensagens" style="margin-top: 20px;"></div>
+      <div id="mensagens" style="margin-top: 20px;"></div>
+    </section>
   </main>
 
   <div id="footer-placeholder"></div>
-
-  <!-- Incluir os arquivos JavaScript na ordem correta -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="estatisticas.js"></script>
-<script src="estatisticas-main.js"></script>
-
-
-<!-- Carrega header e footer -->
-<script>
-  $(function () {
-    $("#footer-placeholder").load("footer.html");
-    $("#header-placeholder").load("header.html #novo_background", function () {
-      console.log("Header carregado");
-      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
-    });
-  });
-</script>
-
-<!-- Agora sim: seu JS do menu -->
-<script src="menu.js"></script>
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="estatisticas.js"></script>
+  <script src="estatisticas-main.js"></script>
 </body>
 </html>

@@ -240,7 +240,7 @@ function criarGraficoPizzaComEscolas(canvasId, labels, valores, escolasPorValor,
       datasets: [{
         data: valores,
         backgroundColor: Estatisticas.cores.slice(0, labels.length),
-        borderColor: '#fff',
+        borderColor: corBordaGrafico(),
         borderWidth: 2
       }]
     },

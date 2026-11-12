@@ -228,7 +228,7 @@ function carregarCSV() {
 
             if (status) {
                 status.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Erro: ${error.message}`;
-                status.style.color = '#dc3545';
+                status.style.color = 'var(--err-ink)';
             }
 
             // Limpa dados em caso de erro
@@ -257,9 +257,11 @@ function inicializarFiltros() {
     });
 
     // Popular select de municípios
-    const colunaMunicipio = colunas.find(col => col.toLowerCase().includes('municipio')) ||
-                           colunas.find(col => col.toLowerCase().includes('cidade')) ||
-                           colunas[1];
+    const colunaMunicipio = acharColunaMunicipio(colunas);
+
+    // esconde o filtro quando o arquivo do eixo não traz a coluna de município
+    const filtroMunicipio = document.getElementById('f-municipio').closest('.filter');
+    if (filtroMunicipio) filtroMunicipio.hidden = !colunaMunicipio;
 
     if (colunaMunicipio) {
         const municipios = [...new Set(dadosEscolares.map(d => d[colunaMunicipio]))].filter(m => m).sort();
@@ -273,15 +275,13 @@ function inicializarFiltros() {
         });
     }
 
-    // Atualizar labels dos filtros baseado nas colunas do CSV
-    if (colunaEscola) {
-        const labelEscola = document.querySelector('label[for="f-escola"]');
-        if (labelEscola) labelEscola.textContent = formatarNomeColuna(colunaEscola);
-    }
-    if (colunaMunicipio) {
-        const labelMunicipio = document.querySelector('label[for="f-municipio"]');
-        if (labelMunicipio) labelMunicipio.textContent = formatarNomeColuna(colunaMunicipio);
-    }
+}
+
+// Coluna de município (ignora acentos: "município" e "municipio"); null se o arquivo não tiver
+function acharColunaMunicipio(colunas) {
+    const norm = c => c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return colunas.find(c => norm(c).includes('municipio')) ||
+           colunas.find(c => norm(c).includes('cidade')) || null;
 }
 
 function formatarNomeColuna(nomeColuna) {
@@ -315,7 +315,8 @@ function criarCabecalhoTabela() {
     colunas.forEach(coluna => {
         const th = document.createElement('th');
         const label = formatarNomeColuna(coluna);
-        th.innerHTML = `${label} <i class="fas fa-sort"></i>`;
+        th.innerHTML = `<span class="th-txt">${label}</span> <i class="fas fa-sort"></i>`;
+        th.title = label;
         th.dataset.coluna = coluna;
         th.addEventListener('click', () => ordenarTabela(coluna));
         tr.appendChild(th);
@@ -330,7 +331,7 @@ function atualizarTabela() {
     if (dadosFiltrados.length === 0) {
         const numColunas = dadosEscolares.length > 0 ? Object.keys(dadosEscolares[0]).length : 6;
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td colspan="${numColunas}" style="text-align: center; padding: 40px; color: #6c757d;"><i class="fas fa-search"></i> Nenhum resultado encontrado</td>`;
+        tr.innerHTML = `<td colspan="${numColunas}" style="text-align: center; padding: 40px; color: var(--muted);"><i class="fas fa-search"></i> Nenhum resultado encontrado</td>`;
         tbody.appendChild(tr);
         atualizarStatus(0);
         return;
@@ -385,9 +386,7 @@ function aplicarFiltros() {
 
     const colunas = Object.keys(dadosEscolares[0]);
     const colunaEscola = colunas.find(col => col.toLowerCase().includes('escola')) || colunas[0];
-    const colunaMunicipio = colunas.find(col => col.toLowerCase().includes('municipio')) ||
-                           colunas.find(col => col.toLowerCase().includes('cidade')) ||
-                           colunas[1];
+    const colunaMunicipio = acharColunaMunicipio(colunas);
     const colunaNota = colunas.find(col => col.toLowerCase().includes('nota'));
 
     const escolaSelecionada = document.getElementById('f-escola').value;

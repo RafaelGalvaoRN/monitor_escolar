@@ -267,8 +267,7 @@ const GerenciadorEixos = {
         // Adiciona título do eixo
         const tituloEixo = document.createElement('div');
         tituloEixo.className = 'card';
-        tituloEixo.style.marginBottom = '20px';
-        tituloEixo.innerHTML = `
+                tituloEixo.innerHTML = `
             <h2><i class="fas fa-layer-group"></i> ${eixo.nome}</h2>
             <p><strong>Total de perguntas:</strong> ${colunasEixo.length}</p>
         `;
@@ -306,11 +305,11 @@ const GerenciadorEixos = {
                 <div class="grafico-container">
                     <div class="grafico-box">
                         <h4>Distribuição</h4>
-                        <canvas id="${idPizza}"></canvas>
+                        <div class="chart-wrap"><canvas id="${idPizza}"></canvas></div>
                     </div>
                     <div class="grafico-box">
                         <h4>Top 10 Valores</h4>
-                        <canvas id="${idBarra}"></canvas>
+                        <div class="chart-wrap"><canvas id="${idBarra}"></canvas></div>
                     </div>
                 </div>
             `;
@@ -416,7 +415,7 @@ const GerenciadorEixos = {
                             datasets: [{
                                 data: valores,
                                 backgroundColor: Estatisticas.cores.slice(0, labels.length),
-                                borderColor: '#fff',
+                                borderColor: corBordaGrafico(),
                                 borderWidth: 2
                             }]
                         },
@@ -520,8 +519,8 @@ const GerenciadorEixos = {
     mostrarErro(mensagem) {
         const container = document.getElementById('graficosContainer');
         container.innerHTML = `
-            <div class="card" style="background: #f8d7da; color: #721c24; padding: 20px; text-align: center;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 10px;"></i>
+            <div class="alert" style="text-align: center;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 10px;"></i>
                 <p><strong>Erro:</strong> ${mensagem}</p>
             </div>
         `;

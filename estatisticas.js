@@ -1,3 +1,26 @@
+/* Cores dos gráficos seguem o tema do site (style/tema.css), inclusive no modo escuro */
+function corDoTema(nome, reserva) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(nome).trim();
+  return v || reserva;
+}
+function corBordaGrafico() { return corDoTema('--surface', '#ffffff'); }
+function aplicarTemaGraficos() {
+  if (typeof Chart === 'undefined') return;
+  Chart.defaults.font.family = 'Inter, "Segoe UI", system-ui, sans-serif';
+  Chart.defaults.color = corDoTema('--muted', '#566776');
+  Chart.defaults.borderColor = corDoTema('--line', '#d8e2e9');
+  Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(8,44,72,.95)';
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.elements.bar.borderRadius = 6;
+  const ativos = (window.Estatisticas && window.Estatisticas.graficosAtivos) || {};
+  Object.values(ativos).forEach(g => {
+    if (!g || !g.config) return;
+    if (g.config.type === 'pie' || g.config.type === 'doughnut') g.data.datasets.forEach(d => { d.borderColor = corBordaGrafico(); });
+    g.update();
+  });
+}
+
 // estatisticas.js - Sistema de Análise de CSV (Ajustado)
 function splitCSV(linha, separador = ',') {
     const resultado = [];
@@ -42,9 +65,10 @@ const Estatisticas = {
   
     // Configurações
     cores: [
-      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-      '#FF9F40', '#C9CBCF', '#8DD3C7', '#80B1D3', '#FDB462',
-      '#B3DE69', '#FCCDE5', '#BC80BD', '#FFED6F', '#1F78B4'
+      // paleta do tema (azul-petróleo e verde do projeto + cores de apoio)
+      '#0d6fb0', '#12936b', '#e3a72f', '#5aa9e6', '#d9644a',
+      '#7b5ea7', '#3cc996', '#0b4a6e', '#c98a2e', '#2bb3a3',
+      '#b8505d', '#8bc34a', '#9fb1bf', '#566776', '#f0bd52'
     ],
     separadorMultiplas: ';',                // separador para respostas múltiplas
     rotuloVazio: '(Não informado)',         // rótulo para vazio/nulo
@@ -275,7 +299,7 @@ const Estatisticas = {
           datasets: [{
             data: valores,
             backgroundColor: this.cores.slice(0, labels.length),
-            borderColor: '#fff',
+            borderColor: corBordaGrafico(),
             borderWidth: 2
           }]
         },
@@ -367,4 +391,6 @@ const Estatisticas = {
   
   // Disponibiliza globalmente
   window.Estatisticas = Estatisticas;
+  aplicarTemaGraficos();
+  document.addEventListener('tema:alterado', aplicarTemaGraficos);
   

@@ -2,148 +2,134 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Escolas Participantes – Monitor Escolar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/imagem-logo.css"/>
-  <link rel="stylesheet" href="style/projeto.css" />
-  <link rel="stylesheet" href="style/escolas_participantes.css" />
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
+  <title>Escolas avaliadas pela comunidade · Monitor Escolar</title>
 </head>
 
 <body>
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="proj-container">
-    <header class="proj-hero">
-      <h1>Escolas Avaliadas pela Comunidade</h1>
-      <p>Lista completa das escolas que já foram avaliadas pela Comunidade no Projeto Monitor Escolar.</p>
-    </header>
+  <!-- Arquivo gerado por arquivos_python/utils_censo.py: edite o modelo lá, não aqui. -->
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Participantes</span><span>›</span><span>Comunidade</span></div>
+        <h1>Escolas avaliadas pela comunidade</h1>
+        <p class="lead">Escolas que já receberam avaliações de pais, alunos e professores no Projeto Monitor Escolar.</p>
+        <div class="chips">
+          <div class="chip-stat"><b class="num">13</b><span>escolas</span></div>
+          <div class="chip-stat"><b class="num">27</b><span>avaliações recebidas</span></div>
+        </div>
+        <div class="hero-actions"><a class="btn primary" href="https://forms.gle/7YwVNC8vuRiRnSa36" target="_blank" rel="noopener"><i class="fab fa-google"></i> Avaliar uma escola</a><a class="btn ghost" href="ranking.html"><i class="fas fa-trophy"></i> Ver ranking</a></div>
+      </div>
+    </section>
 
-    <!-- Seção com a lista de escolas -->
-    <section id="escolas" class="proj-section">
-      <div class="escolas-grid">
+    <section id="escolas" class="wrap page-body">
+      <div class="cards three">
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Estadual Doutor Pedro Velho</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Estadual Doutor Pedro Velho</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Estadual Fabrício Maranhão - Município de Pedro Velho</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Estadual Fabrício Maranhão - Município de Pedro Velho</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Estadual Guiomar Vasconcelos</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Estadual Guiomar Vasconcelos</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Estadual Professor Paulo Freire</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Estadual Professor Paulo Freire</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Estadual Professora Maria Ocila Bezerril</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Estadual Professora Maria Ocila Bezerril</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal Deputado Grimaldi Ribeiro</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal Deputado Grimaldi Ribeiro</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal Dr. José Targino</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal Dr. José Targino</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal João Anacleto</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 8</h4>
+          <h3 class="escola-nome">Escola Municipal João Anacleto</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">8</b> avaliações</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal João Batista de Mendonça</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal João Batista de Mendonça</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal Juarez Rabelo</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal Juarez Rabelo</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal Manoel Germano dos Santos</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 8</h4>
+          <h3 class="escola-nome">Escola Municipal Manoel Germano dos Santos</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">8</b> avaliações</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal Padre Leôncio</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal Padre Leôncio</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
         <article class="card escola-card">
-            <h3 class="escola-nome">Escola Municipal São Sebastião</h3>
-            <div class="escola-status">
-                <span class="badge s-participando">Participando</span>
-            </div>
-            <h4 class="escola-nome">Qtd de Avaliações: 1</h4>
+          <h3 class="escola-nome">Escola Municipal São Sebastião</h3>
+          <div class="escola-status">
+            <span class="badge s-participando">Participando</span>
+            <span class="qtd"><b class="num">1</b> avaliação</span>
+          </div>
         </article>
       </div>
     </section>
   </main>
 
   <div id="footer-placeholder"></div>
-
-  <!-- Carrega header e footer -->
-  <script>
-    $(function () {
-      $("#footer-placeholder").load("footer.html");
-      $("#header-placeholder").load("header.html #novo_background", function () {
-        console.log("Header carregado");
-      });
-    });
-  </script>
-
-  <!-- Seu JS do menu -->
-  <script src="menu.js"></script>
 </body>
 </html>

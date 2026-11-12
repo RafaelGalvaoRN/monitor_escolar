@@ -2,61 +2,52 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Monitor Escolar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/projeto.css" />
-
-
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-
-  <!-- jQuery (necessário para .load do footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Avaliação dos gestores · Monitor Escolar</title>
+  <meta name="description" content="Tabela com as respostas dos gestores das escolas, com filtros por eixo, escola e município." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
 </head>
 <body>
-
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
-
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
-    <h1 id="h1">MONITOR ESCOLAR</h1>
-    <!-- seu conteúdo aqui -->
-  </main>
-
-
-
-<section class="wrap">
-      <div class="card card_tabela">
-          <header class="proj-hero">
-      <h1>Eixos Temáticos</h1>
-      <div class="hero-actions">
-        <a class="btn primary eixo-btn" data-eixo="1" href="#"><i class="fas fa-clipboard-list"></i>Dados Escola</a>
-        <a class="btn primary eixo-btn" data-eixo="2" href="#"><i class="fas fa-clipboard-list"></i>Estrutura e Funcionamento</a>
-        <a class="btn primary eixo-btn" data-eixo="3" href="#"><i class="fas fa-clipboard-list"></i>Alunos</a>
-        <a class="btn primary eixo-btn" data-eixo="4" href="#"><i class="fas fa-clipboard-list"></i>Professores</a>
-        <a class="btn primary eixo-btn" data-eixo="5" href="#"><i class="fas fa-clipboard-list"></i>Gestão</a>
-        <a class="btn primary eixo-btn" data-eixo="6" href="#"><i class="fas fa-clipboard-list"></i>Comunidade</a>
-        <a class="btn primary eixo-btn" data-eixo="7" href="#"><i class="fas fa-clipboard-list"></i>Pedagogia</a>
-        <a class="btn primary eixo-btn" data-eixo="8" href="#"><i class="fas fa-clipboard-list"></i>Gestão Democrática</a>
-        <a class="btn primary eixo-btn" data-eixo="9" href="#"><i class="fas fa-clipboard-list"></i>Documentos</a>
-        <a class="btn primary eixo-btn" data-eixo="10" href="#"><i class="fas fa-clipboard-list"></i>Segurança</a>
-        <a class="btn primary eixo-btn" data-eixo="11" href="#"><i class="fas fa-clipboard-list"></i>Violência/Indisciplina</a>
-        <a class="btn primary eixo-btn" data-eixo="12" href="#"><i class="fas fa-clipboard-list"></i>Contas</a>
-        <a class="btn primary eixo-btn" data-eixo="13" href="#"><i class="fas fa-clipboard-list"></i>Inovação</a>
-        <a class="btn primary eixo-btn" data-eixo="14" href="#"><i class="fas fa-clipboard-list"></i>Objetivos</a>
-        <a class="btn ghost eixo-btn"   data-eixo="all" href="#"><i class="fas fa-chart-line"></i> Tabela Completa</a>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Avaliações</span><span>›</span><span>Gestores</span></div>
+        <h1>Avaliação dos gestores</h1>
+        <p class="lead">Respostas enviadas pelas direções das escolas ao formulário do Monitor Escolar. Escolha um eixo, filtre por escola ou município e clique no título de uma coluna para ordenar.</p><div class="hero-actions"><a class="btn primary" href="data/projeto_monitor.csv" download><i class="fas fa-file-csv"></i> Baixar dados (CSV)</a><a class="btn ghost" href="estatisticas_eixo.html"><i class="fas fa-chart-pie"></i> Ver gráficos por eixo</a></div>
       </div>
-    </header>
+    </section>
 
+    <section class="wrap page-body">
+      <h2 class="sec-title" style="font-size:18px;margin-bottom:12px">Eixos temáticos</h2>
+      <nav class="tabs" aria-label="Eixos temáticos">
+          <a class="eixo-btn" data-eixo="1" href="#"><span class="n">1</span>Dados Escola</a>
+          <a class="eixo-btn" data-eixo="2" href="#"><span class="n">2</span>Estrutura e Funcionamento</a>
+          <a class="eixo-btn" data-eixo="3" href="#"><span class="n">3</span>Alunos</a>
+          <a class="eixo-btn" data-eixo="4" href="#"><span class="n">4</span>Professores</a>
+          <a class="eixo-btn" data-eixo="5" href="#"><span class="n">5</span>Gestão</a>
+          <a class="eixo-btn" data-eixo="6" href="#"><span class="n">6</span>Comunidade</a>
+          <a class="eixo-btn" data-eixo="7" href="#"><span class="n">7</span>Pedagogia</a>
+          <a class="eixo-btn" data-eixo="8" href="#"><span class="n">8</span>Gestão Democrática</a>
+          <a class="eixo-btn" data-eixo="9" href="#"><span class="n">9</span>Documentos</a>
+          <a class="eixo-btn" data-eixo="10" href="#"><span class="n">10</span>Segurança</a>
+          <a class="eixo-btn" data-eixo="11" href="#"><span class="n">11</span>Violência/Indisciplina</a>
+          <a class="eixo-btn" data-eixo="12" href="#"><span class="n">12</span>Contas</a>
+          <a class="eixo-btn" data-eixo="13" href="#"><span class="n">13</span>Inovação</a>
+          <a class="eixo-btn" data-eixo="14" href="#"><span class="n">14</span>Objetivos</a>
+          <a class="eixo-btn" data-eixo="all" href="#"><i class="fas fa-table"></i>Tabela completa</a>
+      </nav>
+
+      <div style="margin-top:20px">
             <div class="filters">
                 <div class="filter">
                     <label for="f-escola">Escola</label>
@@ -82,53 +73,26 @@
                     <input id="f-busca" type="search" placeholder="Digite para filtrar…">
                 </div>
 
-                <button id="btn-limpar" class="btn">
+                <button id="btn-limpar" class="btn secondary" type="button">
                     <i class="fas fa-broom"></i> Limpar
                 </button>
             </div>
-
-          <div class="table-container">
-      <div class="table-wrap">
-        <table id="tabela">
-          <thead id="thead"></thead>
-          <tbody id="tbody"></tbody>
-        </table>
       </div>
-    </div>
 
-    <div id="status" class="status">Carregando dados do arquivo CSV...</div>
-  </div>
-</section>
+      <div class="table-container">
+        <div class="table-wrap">
+          <table id="tabela">
+            <thead id="thead"></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
 
-
+      <div id="status" class="status">Carregando dados do arquivo CSV...</div>
+    </section>
+  </main>
 
   <div id="footer-placeholder"></div>
-
-<!-- Carrega header e footer -->
-<script>
-  $(function () {
-    // Carrega o footer normalmente
-    $("#footer-placeholder").load("footer.html");
-
-    // Carrega apenas o header com id #novo_background
-    $("#header-placeholder").load("header.html #novo_background", function () {
-      console.log("Header carregado");
-      // Aqui o header já está no DOM, pode rodar menu.js ou outros scripts
-    });
-
-    // Se ainda quiser aplicar fadeOut no footer:
-    setTimeout(function () {
-      $("#footer-placeholder").fadeOut("slow");
-    }, 1000);
-  });
-</script>
-
-
-<script src="menu.js"></script>
-
-
-<script src="app.js"></script>
-
-
+  <script src="app.js"></script>
 </body>
 </html>

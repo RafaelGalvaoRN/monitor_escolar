@@ -2,73 +2,46 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Escolas Participantes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/projeto.css" />
-  <link rel="stylesheet" href="style/escolas_participantes.css" />
-  <script src="escolas_participantes.js"></script>
-
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-
+  <title>Escolas participantes · Monitor Escolar</title>
+  <meta name="description" content="Situação de envio do formulário dos gestores em cada escola participante do Monitor Escolar." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
 </head>
 <body>
-
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <section class="wrap">
-    <div class="card">
-      <header class="proj-hero">
-        <h1>Escolas Participantes</h1>
-        <p class="sub">
-          Status no projeto:
-          <span class="badge s-pendente">Pendente de envio</span> ·
-          <span class="badge s-participando">Participando</span> ·
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Participantes</span><span>›</span><span>Gestores</span></div>
+        <h1>Escolas participantes</h1>
+        <p class="lead">Situação de cada escola no envio do formulário dos gestores.</p>
+        <div class="legend-badges">Situação:
+          <span class="badge s-pendente">Pendente de envio</span>
+          <span class="badge s-participando">Participando</span>
           <span class="badge s-enviado">Dados enviados</span>
-        </p>
-      </header>
-
-
-        <div id="lista-escolas-pendentes" class="cards three">
-        <!-- Os cards serão inseridos aqui dinamicamente -->
+        </div>
       </div>
+    </section>
 
-      <!-- grade de cards -->
-      <div id="lista-escolas" class="cards three">
-        <!-- Os cards serão inseridos aqui dinamicamente -->
-      </div>
-    </div>
-  </section>
+    <section class="wrap page-body">
+      <h2 class="group-title">Aguardando envio</h2>
+      <div id="lista-escolas-pendentes" class="cards three"></div>
+
+      <h2 class="group-title">Escolas com formulário recebido</h2>
+      <div id="lista-escolas" class="cards three"></div>
+    </section>
+  </main>
 
   <div id="footer-placeholder"></div>
-
-  <!-- Script principal para carregar CSV e preencher cards -->
-
-
-<!-- Carrega header e footer -->
-<script>
-  $(function () {
-    $("#footer-placeholder").load("footer.html");
-    $("#header-placeholder").load("header.html #novo_background", function () {
-      console.log("Header carregado");
-      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
-    });
-  });
-</script>
-
-<!-- Agora sim: seu JS do menu -->
-<script src="menu.js"></script>
-
+  <script src="escolas_participantes.js"></script>
 </body>
 </html>

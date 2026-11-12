@@ -2,53 +2,41 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Monitor Escolar – Projeto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-  <link rel="stylesheet" href="style/projeto.css" />
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Título da página · Monitor Escolar</title>
+  <meta name="description" content="Descrição da página." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
 </head>
-
 <body>
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
+  <!-- Modelo de página: copie este arquivo, troque o título e escreva o conteúdo.
+       Para aparecer no menu, inclua a página na constante MENU em layout.js. -->
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Seção</span></div>
+        <h1>Título da página</h1>
+        <p class="lead">Uma frase explicando o que a pessoa encontra aqui.</p>
+      </div>
+    </section>
 
-
-  <main class="proj-container">
-
-
-
+    <section class="wrap page-body">
+      <div class="proj-section">
+        <h2><i class="fas fa-info-circle"></i> Seção</h2>
+        <p>Conteúdo.</p>
+      </div>
+    </section>
   </main>
-  <!-- CONTEÚDO PRINCIPAL -->
 
   <div id="footer-placeholder"></div>
-
-<!-- Carrega header e footer -->
-<script>
-  $(function () {
-    $("#footer-placeholder").load("footer.html");
-    $("#header-placeholder").load("header.html #novo_background", function () {
-      console.log("Header carregado");
-      // aqui o header já está no DOM, e o menu.js vai conseguir agir nele
-    });
-  });
-</script>
-
-<!-- Agora sim: seu JS do menu -->
-<script src="menu.js"></script>
-
-
 </body>
 </html>

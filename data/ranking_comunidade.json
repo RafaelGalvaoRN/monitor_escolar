@@ -1,0 +1,449 @@
+{
+ "atualizado_em": "2025-12-15",
+ "dimensoes": [
+  "Estrutura física",
+  "Acessibilidade",
+  "Equipamentos",
+  "Merenda e mobiliário",
+  "Professores",
+  "Segurança",
+  "Material didático",
+  "Transporte",
+  "Violência",
+  "Gestão"
+ ],
+ "avaliacoes": [
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4.9,
+   "notas": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    4,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4.5,
+   "notas": [
+    5,
+    4,
+    5,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4.4,
+   "notas": [
+    5,
+    5,
+    3,
+    5,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 4.3,
+   "notas": [
+    5,
+    4,
+    4,
+    5,
+    5,
+    4,
+    4,
+    4,
+    3,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4.3,
+   "notas": [
+    4,
+    4,
+    4,
+    5,
+    5,
+    4,
+    5,
+    4,
+    3,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 4.1,
+   "notas": [
+    4,
+    4,
+    4,
+    5,
+    4,
+    3,
+    5,
+    4,
+    4,
+    4
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4,
+   "notas": [
+    5,
+    4,
+    2,
+    5,
+    4,
+    5,
+    4,
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 4,
+   "notas": [
+    4,
+    4,
+    3,
+    5,
+    5,
+    4,
+    4,
+    2,
+    4,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 3.9,
+   "notas": [
+    4,
+    4,
+    4,
+    4,
+    5,
+    3,
+    4,
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3.8,
+   "notas": [
+    2,
+    4,
+    3,
+    5,
+    5,
+    4,
+    4,
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3.8,
+   "notas": [
+    4,
+    4,
+    3,
+    4,
+    4,
+    3,
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  {
+   "escola": "Escola Municipal Padre Leôncio",
+   "media": 3.7,
+   "notas": [
+    3,
+    4,
+    2,
+    4,
+    5,
+    3,
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3.3,
+   "notas": [
+    3,
+    3,
+    1,
+    5,
+    5,
+    2,
+    3,
+    4,
+    2,
+    5
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3.3,
+   "notas": [
+    3,
+    3,
+    3,
+    4,
+    4,
+    3,
+    5,
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3.3,
+   "notas": [
+    4,
+    4,
+    1,
+    4,
+    4,
+    3,
+    4,
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Batista de Mendonça",
+   "media": 3.2,
+   "notas": [
+    4,
+    3,
+    3,
+    4,
+    4,
+    3,
+    4,
+    1,
+    3,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Estadual Guiomar Vasconcelos",
+   "media": 3.2,
+   "notas": [
+    4,
+    3,
+    2,
+    4,
+    3,
+    2,
+    4,
+    4,
+    3,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal Manoel Germano dos Santos",
+   "media": 3,
+   "notas": [
+    2,
+    3,
+    3,
+    5,
+    5,
+    2,
+    4,
+    3,
+    1,
+    2
+   ]
+  },
+  {
+   "escola": "Escola Municipal Deputado Grimaldi Ribeiro",
+   "media": 3,
+   "notas": [
+    3,
+    3,
+    2,
+    3,
+    3,
+    4,
+    4,
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal João Anacleto",
+   "media": 3,
+   "notas": [
+    3,
+    3,
+    3,
+    4,
+    4,
+    3,
+    4,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal Dr. José Targino",
+   "media": 2.9,
+   "notas": [
+    3,
+    3,
+    2,
+    3,
+    3,
+    4,
+    4,
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Estadual Professor Paulo Freire",
+   "media": 2.7,
+   "notas": [
+    3,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Estadual Fabrício Maranhão - Município de Pedro Velho",
+   "media": 2.5,
+   "notas": [
+    3,
+    3,
+    2,
+    3,
+    3,
+    2,
+    3,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "escola": "Escola Estadual Professora Maria Ocila Bezerril",
+   "media": 2.5,
+   "notas": [
+    2,
+    2,
+    2,
+    3,
+    2,
+    3,
+    3,
+    3,
+    2,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Municipal São Sebastião",
+   "media": 2.5,
+   "notas": [
+    1,
+    2,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "escola": "Escola Estadual Doutor Pedro Velho",
+   "media": 2.3,
+   "notas": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    4,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "escola": "Escola Municipal Juarez Rabelo",
+   "media": 2.3,
+   "notas": [
+    3,
+    3,
+    3,
+    2,
+    3,
+    2,
+    2,
+    1,
+    2,
+    2
+   ]
+  }
+ ]
+}

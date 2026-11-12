@@ -1,44 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Monitor Escolar – Avaliação da Comunidade</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Seus estilos existentes -->
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/footer.css" />
-  <link rel="stylesheet" href="style/tabela.css" />
-  <link rel="stylesheet" href="style/headers.css" />
-  <link rel="stylesheet" href="style/navbar.css" />
-
-  <!-- Estilo desta página -->
-  <link rel="stylesheet" href="style/projeto.css" />
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-
-  <!-- jQuery (para carregar header/footer) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Avaliação da comunidade · Monitor Escolar</title>
+  <meta name="description" content="Como pais, alunos e professores podem avaliar as escolas no Monitor Escolar." />
+  <meta name="theme-color" content="#082c48" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <script>try{var t=localStorage.getItem('me-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link rel="stylesheet" href="style/tema.css" />
 </head>
 
 <body>
   <div id="header-placeholder"></div>
+  <script src="layout.js"></script>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main class="proj-container">
-    <header class="proj-hero">
-      <h1>Avaliação da Comunidade</h1>
-      <p>Sua opinião é fundamental para construirmos escolas melhores! Participe avaliando a qualidade dos serviços e da infraestrutura das escolas do município.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="https://forms.gle/7YwVNC8vuRiRnSa36" target="_blank">
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumbs"><a href="index.html">Início</a><span>›</span><span>Projeto</span><span>›</span><span>Comunidade</span></div>
+        <h1>Avaliação da Comunidade</h1>
+        <p class="lead">Sua opinião é fundamental para construirmos escolas melhores! Participe avaliando a qualidade dos serviços e da infraestrutura das escolas do município.</p>
+        <div class="hero-actions">
+        <a class="btn primary" href="https://forms.gle/7YwVNC8vuRiRnSa36" target="_blank" rel="noopener">
           <i class="fab fa-google"></i> Responder Avaliação
         </a>
         <a class="btn ghost" href="ranking.html"><i class="fas fa-chart-line"></i> Ver Resultados</a>
       </div>
-    </header>
+      </div>
+    </section>
+
+  <div class="proj-container">
 
     <!-- Navegação interna da página -->
     <nav class="proj-toc">
@@ -387,21 +384,9 @@
       </div>
     </section>
 
+  </div>
   </main>
 
   <div id="footer-placeholder"></div>
-
-  <!-- Carrega header e footer -->
-  <script>
-    $(function () {
-      $("#footer-placeholder").load("footer.html");
-      $("#header-placeholder").load("header.html #novo_background", function () {
-        console.log("Header carregado");
-      });
-    });
-  </script>
-
-  <!-- JS do menu -->
-  <script src="menu.js"></script>
 </body>
 </html>
