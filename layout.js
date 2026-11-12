@@ -171,7 +171,9 @@
         links.forEach(a => {
           const on = a.getAttribute('href') === '#' + en.target.id;
           a.classList.toggle('is-active', on);
-          if (on) a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+          // rola só a barra de atalhos na horizontal; scrollIntoView mexia na página inteira
+          // e a jogava de volta para o topo da barra (que é fixa), travando a rolagem
+          if (on) toc.scrollTo({ left: a.offsetLeft - (toc.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
